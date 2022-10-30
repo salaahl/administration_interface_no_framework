@@ -1,8 +1,7 @@
 <?php session_start();
 
 
-// Timer : réduction du temps maximal d'une session
-$timeout = 600; // Nombre de secondes max
+$timeout = 600;
 
 if (isset($_SESSION['timeout'])) {
   // See if the number of seconds since the last
@@ -12,17 +11,17 @@ if (isset($_SESSION['timeout'])) {
     session_destroy();
     session_start();
   }
+
+  $_SESSION['timeout'] = time();
 }
 
-// Update the timout field with the current time.
-$_SESSION['timeout'] = time();
+
 
 // Niveau 3 : admin
 if (!isset($_SESSION['admin'])) {
   echo '<script>alert("Vous n\'avez pas les droits requis pour accéder à cette page.");
           window.location.href="../login.html"</script>';
 }
-
 ?>
 
 <!DOCTYPE html>

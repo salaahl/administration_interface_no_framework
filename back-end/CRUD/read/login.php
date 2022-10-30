@@ -1,10 +1,8 @@
 <?php
 
-// Les modifications apportées au login partenaire sont à apporter aux autres également.
-// Il y a l'air d'avoir un doublon au niveau des droits dans la partie partenaire d'ailleurs
+// LOGIN :
 if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
 
-  // Filtrage des données
   $mail = mysqli_real_escape_string($db, $_POST['login_mail']);
   $mdp = $_POST['login_mdp'];
   $reponse = [];
@@ -51,7 +49,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
 
 
 
-  // LOGIN ADMIN
+  // LOGIN ADMIN :
   if (isset($mot_de_passe_admin) && password_verify($mdp, $mot_de_passe_admin)) {
     session_start();
     $_SESSION['mail'] = $mail;
@@ -61,7 +59,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
     echo json_encode($reponse);
     die();
   }
-  // LOGIN PARTENAIRE
+  // LOGIN PARTENAIRE :
   if (isset($mot_de_passe_partenaire) && password_verify($mdp, $mot_de_passe_partenaire)) {
     session_start();
     $_SESSION['mail_p'] = $mail;
@@ -72,7 +70,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
     echo json_encode($reponse);
     die();
   }
-  // LOGIN STRUCTURE
+  // LOGIN STRUCTURE :
   if (isset($mot_de_passe_structure) && password_verify($mdp, $mot_de_passe_structure)) {
     session_start();
     $_SESSION['mail_s'] = $mail;

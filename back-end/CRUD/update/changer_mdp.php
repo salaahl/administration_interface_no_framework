@@ -1,7 +1,7 @@
 <?php
 
 
-
+// Va gérer la logique de changement de mot de passe lors de la 1è connexion :
 if (isset($_POST['nouveau_mdp'])) {
 
     $mail = mysqli_real_escape_string($db, $_POST['mail']);
@@ -22,7 +22,7 @@ if (isset($_POST['nouveau_mdp'])) {
     $structureQ->execute();
     $structureQ->close();
 
-    // Mettre 1è connexion sur "1" si ce n'est pas déjà fait et changer le mot de passe :
+    // Met la colonne 1è connexion sur "1" si ce n'est pas déjà fait et change le mot de passe :
     if (isset($partenaireQ)) {
         $partenaireU = $db->prepare(
             "UPDATE FitnessP_Partenaire
@@ -48,10 +48,8 @@ if (isset($_POST['nouveau_mdp'])) {
 
     // On démarre la session
     session_start();
-
     // On détruit les variables de notre session
     session_unset();
-
     // On détruit notre session
     session_destroy();
 }

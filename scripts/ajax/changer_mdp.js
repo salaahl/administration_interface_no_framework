@@ -19,7 +19,7 @@ function confirm() {
       return true;
     }
   }
-  // Enlever ?
+  
   motDePasse.onchange = validerMotDePasse;
   confirmerMotDePasse.onkeyup = validerMotDePasse;
 }

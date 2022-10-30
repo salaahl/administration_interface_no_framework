@@ -2,7 +2,6 @@
 
 
 // PAGE PARTENAIRES :
-
 if (isset($_POST['page_partenaire'])) {
   $mail = $_POST['mail'];
   $reponse = [];
@@ -38,17 +37,16 @@ if (isset($_POST['page_partenaire'])) {
   $structureQ->close();
 
 
-  // ----- Permissions
-  $permissions = $db->prepare(
+  $partenaireQ = $db->prepare(
     "SELECT *
     FROM FitnessP_Partenaire
     WHERE mail = ?"
   );
-  $permissions->bind_param("s", $mail);
-  $permissions->execute();
-  $permissions->store_result();
-  $permissions->bind_result($nom_marque, $nom, $mail, $mdp, $droits, $premiere_connexion, $nombre_de_structures, $permB, $permN, $permP);
-  $permissions->fetch();
+  $partenaireQ->bind_param("s", $mail);
+  $partenaireQ->execute();
+  $partenaireQ->store_result();
+  $partenaireQ->bind_result($nom_marque, $nom, $mail, $mdp, $droits, $premiere_connexion, $nombre_de_structures, $permB, $permN, $permP);
+  $partenaireQ->fetch();
 
 
 
@@ -57,7 +55,7 @@ if (isset($_POST['page_partenaire'])) {
   $reponse['perm_newsletter'] = $permN;
   $reponse['perm_planning'] = $permP;
 
-  $permissions->close();
+  $partenaireQ->close();
 
   // Conversion de mon niveau de droits en boolean
   if ($droits == 2) {

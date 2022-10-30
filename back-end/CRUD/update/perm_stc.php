@@ -2,7 +2,7 @@
 
 
 
-// PERMISSIONS STRUCTURE :
+// PERMISSIONS D'UNE STRUCTURE :
 if (isset($_POST['toggle_structure'])) {
   if ($_POST['id'] == 'perm_boissons' || $_POST['id'] == 'perm_planning' || $_POST['id'] == 'perm_newsletter') {
 
@@ -27,7 +27,7 @@ if (isset($_POST['toggle_structure'])) {
     $permS->close();
   }
 
-  // Confirmer au partenaire que la permission a bien été changée :
+  // Confirmer au partenaire et à sa structure que la permission a bien été changée :
   $mailConfirmation = "
   <html>
 
@@ -103,10 +103,8 @@ if (isset($_POST['toggle_structure'])) {
   // Mode developpement :
   if ($_SERVER["SERVER_NAME"] == "localhost") {
     try {
-      // try and send the email
       $response = $sendgrid->send($email);
 
-      // C'est l'espèce de texte en forme de tableau qui s'affiche lorsque mon mail est envoyé
       print $response->statusCode() . "\n";
       print_r($response->headers());
       print $response->body() . "\n";
@@ -116,10 +114,8 @@ if (isset($_POST['toggle_structure'])) {
     }
   } else {
     try {
-      // try and send the email
       $response = $sendgrid->send($email);
     } catch (Exception $e) {
-      // En cas d'erreur :
       echo "Erreur. Veuillez contacter un administrateur.";
     }
   }

@@ -1,19 +1,16 @@
 <?php session_start();
 
 
-// Timer : réduction du temps maximal d'une session
-$timeout = 600; // Nombre de secondes max
+$timeout = 600;
 
 if (isset($_SESSION['timeout'])) {
-  // See if the number of seconds since the last
-  // visit is larger than the timeout period.
+
   $duration = time() - (int)$_SESSION['timeout'];
   if ($duration > $timeout) {
     session_destroy();
     session_start();
   }
 
-  // Update the timout field with the current time.
   $_SESSION['timeout'] = time();
 }
 

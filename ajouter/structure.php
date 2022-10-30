@@ -22,7 +22,7 @@ if (!isset($_SESSION['admin'])) {
 
 <body>
   <div class="container">
-    <form action="../index.php" method="post">
+    <form>
 
       <h2 class="formTitle">
         Ajouter une nouvelle structure :
@@ -60,6 +60,7 @@ if (!isset($_SESSION['admin'])) {
   </div>
   <script src="../scripts/confirm_pwd_franchise.js"></script>
   <script src="../scripts/ajax/part_affilie.js"></script>
+  <script src="../scripts/ajax/nv_structure.js"></script>
 </body>
 
 </html>

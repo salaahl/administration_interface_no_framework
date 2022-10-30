@@ -2,13 +2,12 @@
 
 
 
-// PAGE STRUCTURES :
+// PAGE D'UNE STRUCTURE :
 if (isset($_POST['page_structure'])) {
 
   $mail = $_POST['mail'];
   $reponse = [];
 
-  // ----- Structure
   $structureQ = $db->prepare(
     "SELECT *
     FROM FitnessP_Structure

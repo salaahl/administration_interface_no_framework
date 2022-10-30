@@ -22,7 +22,6 @@
     grid-row-start: ligneQuatre;
   }
 
-  /* permissions */
   .permissions {
     grid-row-start: ligneDeux;
     grid-column-start: colonneUne;

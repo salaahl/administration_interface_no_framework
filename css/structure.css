@@ -79,7 +79,6 @@ body {
   background-color: darkgray;
 }
 
-/* permissions */
 .permissions {
   display: flex;
   flex-direction: column;

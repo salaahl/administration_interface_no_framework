@@ -1,21 +1,19 @@
 <?php session_start();
 
 
-// Timer : réduction du temps maximal d'une session
-$timeout = 600; // Nombre de secondes max
+$timeout = 600;
 
 if (isset($_SESSION['timeout'])) {
-  // See if the number of seconds since the last
-  // visit is larger than the timeout period.
+
   $duration = time() - (int)$_SESSION['timeout'];
   if ($duration > $timeout) {
     session_destroy();
     session_start();
   }
+  
+  $_SESSION['timeout'] = time();
 }
 
-// Update the timout field with the current time.
-$_SESSION['timeout'] = time();
 
 // Niveau 2 : partenaire
 // 1è vérification : attribution d'un passe-droit pour l'admin
@@ -106,17 +104,17 @@ if (!isset($_SESSION['admin'])) {
           <label class="form-check-label" for="toggle_planning">Gérer le planning d'une équipe</label>
         </div>
       </div>
-      <!-- Peut-être à enlever ça...-->
-      <div id="liste_perm"></div>
     </div>
   </div>
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  
   <?php if (isset($_SESSION['niveau_droits']) && $_SESSION['niveau_droits'] > 2) { ?>
     <script src="../scripts/composants/sidebar.js"></script>
   <?php } else { ?>
     <script src="../scripts/composants/sidebar_part_struc.js"></script>
   <?php } ?>
+  
   <script src="../scripts/ajax/toggle_partenaire.js"></script>
   <script src="../scripts/ajax/partenaire.js"></script>
   <script src="../scripts/ajax/statut_part.js"></script>

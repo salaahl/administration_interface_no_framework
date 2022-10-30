@@ -11,8 +11,7 @@ if (isset($_POST['mot_de_passe_admin'])) {
     "INSERT INTO FitnessP_Admin (mail_admin, mot_de_passe_admin)
     VALUES (?, ?)"
   );
-  // Le double 's' indique 'string, string pour chacune de mes entrées.
-  // https://www.php.net/manual/fr/mysqli-stmt.bind-param.php
+  
   $adminR->bind_param("ss", $mail, $passwordHash);
   $adminR->execute();
   $adminR->close();

@@ -6,9 +6,13 @@ $(function () {
       type: "post",
       url: "../index.php",
       data: $(this).serialize(),
-      success: function () {
-        alert("Profil crée !");
-        location.replace("../front-end/liste_part.php");
+      success: function (data) {
+        if(data == '') {
+          alert("Profil crée !");
+          location.replace("../front-end/liste_part.php");
+          } else {
+            alert(data);
+          }
       },
       error: function (xhr) {
         alert(

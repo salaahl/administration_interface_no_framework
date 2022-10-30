@@ -1,9 +1,9 @@
 <?php
 
 
-// RECHERCHE PARTENAIRES :
+// RECHERCHE D'UN PARTENAIRE :
 if (isset($_POST['rech_partenaire'])) {
-  // "trim" supprime les espaces et "(string)" convertit en type "string" les caractères entrés j'imagine
+
   $filtre = mysqli_real_escape_string($db, $_POST['rech_partenaire']);
   $saisie = (string) trim($filtre);
 

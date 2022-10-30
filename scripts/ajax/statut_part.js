@@ -7,7 +7,6 @@ $("#statut_part").change(function () {
     $.ajax({
       url: "../index.php",
       method: "POST",
-      // Données qui seront ensuite accéssibles dans                $_POST : l'état du switch (true/false) et son id
       data: { activer_partenaire: toggle, mail: mail },
       success: function (data) {},
       error: function () {},

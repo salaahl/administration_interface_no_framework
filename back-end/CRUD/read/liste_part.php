@@ -1,13 +1,11 @@
 <?php
 
 
-// LISTE PARTENAIRES :
+// LISTE DES PARTENAIRES :
 if (isset($_POST['liste_part'])) {
 
   $reponse = [];
-  // A remplacer par une requête préparée et des champs pour le tri ?
-  // (lorsque je clique sur tel bouton ça injecte ASC ou DESC à la fin etc...)
-  // Je pense qu'il vaut mieux laisser cette partie à Javascript...
+
   $partenairesQ = $db->query(
     "SELECT nom, mail, niveau_droits, nombre_de_structures
      FROM FitnessP_Partenaire"
@@ -38,16 +36,15 @@ if (isset($_POST['liste_part'])) {
 
 
 
-// LISTE PARTENAIRES ACTIFS UNIQUEMENT :
+// LISTE DES PARTENAIRES ACTIFS UNIQUEMENT :
 if (isset($_POST['statut_du_partenaire'])) {
   $toggle = $_POST['statut_du_partenaire'];
 
   // Si le bouton est sur true...
   if ($toggle == "true") {
+
     $reponse = [];
-    // A remplacer par une requête préparée et des champs pour le tri ?
-    // (lorsque je clique sur tel bouton ça injecte ASC ou DESC à la fin etc...)
-    // Je pense qu'il vaut mieux laisser cette partie à Javascript...
+
     $partenairesQ = $db->query(
       "SELECT nom, mail, niveau_droits, nombre_de_structures
       FROM FitnessP_Partenaire WHERE niveau_droits > 0"
@@ -74,9 +71,7 @@ if (isset($_POST['statut_du_partenaire'])) {
   //
   else {
     $reponse = [];
-    // A remplacer par une requête préparée et des champs pour le tri ?
-    // (lorsque je clique sur tel bouton ça injecte ASC ou DESC à la fin etc...)
-    // Je pense qu'il vaut mieux laisser cette partie à Javascript...
+    
     $partenairesQ = $db->query(
       "SELECT nom, mail, niveau_droits, nombre_de_structures
       FROM FitnessP_Partenaire"

@@ -21,5 +21,4 @@ foreach (glob("./back-end/CRUD/*") as $dossier) {
 }
 
 
-
 exit();

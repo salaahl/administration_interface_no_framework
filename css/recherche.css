@@ -1,9 +1,5 @@
 body {
-  max-width: 100%;
-}
-
-.row {
-  max-width: 100%;
+  width: 99%;
 }
 
 .ui-widget {

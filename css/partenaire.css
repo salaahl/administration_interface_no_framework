@@ -31,7 +31,7 @@
   }
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 901px) {
   .body {
     grid-template-columns: [colonneUne] 1fr [colonneDeux] 1fr[colonneTrois] 1fr [laDer];
     grid-template-rows: [ligneUne] 2fr [ligneDeux] 1fr [ligneTrois] 2fr [laDer];

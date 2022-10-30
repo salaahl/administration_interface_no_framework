@@ -59,8 +59,8 @@ if (!isset($_SESSION['admin'])) {
 
 <body>
   <div class="row">
-    <div class="col-4 col-ml-3 col-xl-3" id="sidebar"></div>
-    <div class="body col-8 col-xl-9 pt-2 px-5">
+    <div class="col-4 col-md-4 col-lg-3" id="sidebar"></div>
+    <div class="body col-8 col-md-8 col-lg-9 pt-2 px-5">
       <?php
       if (isset($_SESSION['mail_p']) or isset($_SESSION['admin'])) { ?>
         <a href="" id="retour_page_partenaire"><svg xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
@@ -117,7 +117,7 @@ if (!isset($_SESSION['admin'])) {
   <?php } else { ?>
     <script src="../scripts/composants/sidebar_part_struc.js"></script>
   <?php } ?>
-  
+
   <script src="../scripts/ajax/toggle_structure.js"></script>
   <script src="../scripts/ajax/structure.js"></script>
   <script src="../scripts/ajax/statut_structure.js"></script>

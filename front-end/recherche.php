@@ -40,12 +40,12 @@ if (!isset($_SESSION['admin'])) {
 
 <body>
   <div class="row">
-    <div class="col-4 col-ml-3 col-xl-3" id="sidebar"></div>
-    <div class="ui-widget col-8 col-xl-9 pt-2 px-5">
+    <div class="col-4 col-md-4 col-lg-3" id="sidebar"></div>
+    <main class="ui-widget col-8 col-md-8 col-lg-9 pt-2 px-5">
       <h1 class="display-6">Rechercher un partenaire :</h1>
       <input id="recherche_part" placeholder="Rechercher un partenaire">
       <div id="resultat_part"></div>
-    </div>
+    </main>
   </div>
   <script src="../scripts/ajax/recherche.js"></script>
   <script src="../scripts/composants/sidebar.js"></script>

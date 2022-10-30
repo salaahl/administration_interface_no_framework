@@ -1,10 +1,11 @@
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1024px) {
   #retour_page_partenaire {
-    left: 26%;
+    left: 27%;
+    
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1023px) {
   #retour_page_partenaire {
     left: 34%;
   }

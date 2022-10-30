@@ -21,14 +21,13 @@ if (!isset($_SESSION['admin'])) {
 
   // 2è vérification : les droits
   if ($_SESSION['niveau_droits'] < 2) {
-    echo '<script>alert("Vous n\'avez pas les droits requis pour accéder à cette page.");
+    echo '<script>alert("Connectez-vous pour accéder à cette page.");
           window.location.href="../login.html"</script>';
   }
 
   // 3è vérification : empêcher un partenaire de se rendre sur la page d'un autre partenaire
   else if ($_SESSION['mail_p'] !== $_GET['mail_p']) {
-    echo '<script>alert("Vous n\'êtes pas autorisé à accéder à la page d\'un autre partenaire. Vous allez être redirigé vers la vôtre.");
-          window.location.href="./partenaire.php?mail=' . $_SESSION['mail'] . '"</script>';
+    echo '<script>window.location.href="./partenaire.php?mail=' . $_SESSION['mail'] . '"</script>';
   }
 }
 ?>
@@ -114,7 +113,7 @@ if (!isset($_SESSION['admin'])) {
   <?php } else { ?>
     <script src="../scripts/composants/sidebar_part_struc.js"></script>
   <?php } ?>
-  
+
   <script src="../scripts/ajax/toggle_partenaire.js"></script>
   <script src="../scripts/ajax/partenaire.js"></script>
   <script src="../scripts/ajax/statut_part.js"></script>

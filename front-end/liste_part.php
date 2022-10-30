@@ -18,7 +18,7 @@ if (isset($_SESSION['timeout'])) {
 
 // Niveau 3 : admin
 if (!isset($_SESSION['admin'])) {
-  echo '<script>alert("Vous n\'avez pas les droits requis pour accéder à cette page. Veuillez vous connecter");
+  echo '<script>alert("Accès non autorisé.");
           window.location.href="../login.html"</script>';
 }
 

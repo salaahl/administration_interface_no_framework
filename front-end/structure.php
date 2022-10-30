@@ -21,11 +21,11 @@ if (!isset($_SESSION['admin'])) {
 
   // 2è vérification : les droits
   if ($_SESSION['niveau_droits'] < 1) {
-    echo '<script>alert("Vous n\'avez pas les droits requis pour accéder à cette page.");
+    echo '<script>alert("Connectez-vous pour accéder à cette page.");
           window.location.href="../login.html"</script>';
   }
 
-  // 3è vérification : empêcher une structure de se rendre sur la page d'une autre structure
+  // 3è vérification : empêcher une structure de se rendre sur la page d'une autre structure :
 
   // Cas de figure 1 : accès depuis un login structure
   if (isset($_SESSION['mail_s'])) {

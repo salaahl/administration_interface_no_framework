@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "Restricted access"
+AuthUserFile /app/errors/.htpasswd
+Require valid-user
+# En local : AuthUserFile "C:/xampp/htdocs/ECF/errors/.htpasswd". En ligne : AuthUserFile /app/errors/.htpasswd

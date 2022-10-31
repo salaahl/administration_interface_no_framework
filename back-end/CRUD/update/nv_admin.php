@@ -29,9 +29,14 @@ if (isset($_POST['mot_de_passe_admin'])) {
 
     $adminR->bind_param("ss", $mail, $passwordHash);
     $adminR->execute();
-    $adminR->close();
 
+    if (mysqli_affected_rows($db) > 0) {
+      $adminR->close();
+    } else {
+      echo "Erreur. Le mail est déjà pris.";
+    }
   } else {
-    echo "Erreur. Réessayez avec un autre mail.";
+    $adminR->close();
+    echo "Erreur. Le mail est déjà pris.";
   }
 }

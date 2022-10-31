@@ -77,7 +77,7 @@ if (!isset($_SESSION['admin'])) {
         <?php if (isset($_SESSION['niveau_droits']) && $_SESSION['niveau_droits'] >= 2) { ?>
 
           <div class="statut_structure">
-            <label for="">Structure actif : </label>
+            <label for="">Structure active : </label>
             <label class="switch">
               <input id="statut_structure" type="checkbox">
               <div class="slider"></div>

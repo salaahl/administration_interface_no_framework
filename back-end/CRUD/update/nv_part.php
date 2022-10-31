@@ -28,15 +28,13 @@ if (isset($_POST["nom_partenaire"])) {
       VALUES (?, ?, ?)"
     );
 
-      // Le triple 's' indique 'string, string, string' pour chacune de mes entrées.
-      // https://www.php.net/manual/fr/mysqli-stmt.bind-param.php
-      $partenaireR->bind_param("sss", $nom, $mail, $passwordHash);
-      $partenaireR->execute();
-      
-
-      // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
+    // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
     if (mysqli_affected_rows($db) > 0) {
-      $partenaireR->close();
+    // Le triple 's' indique 'string, string, string' pour chacune de mes entrées.
+    // https://www.php.net/manual/fr/mysqli-stmt.bind-param.php
+    $partenaireR->bind_param("sss", $nom, $mail, $passwordHash);
+    $partenaireR->execute();
+    $partenaireR->close();
 
       $mailConfirmation =
         "

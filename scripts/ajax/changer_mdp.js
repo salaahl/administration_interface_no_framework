@@ -58,8 +58,12 @@ $("form").on("submit", function (e) {
       url: "index.php",
       data: { mail: mail, nouveau_mdp: nouveauMdp },
       success: function (data) {
-        alert("Nouveau mot de passe enregistré. Veuillez vous reconnecter.");
-        location.replace("./login.html");
+        if (data == "") {
+          alert("Nouveau mot de passe enregistré. Veuillez vous reconnecter.");
+          location.replace("./login.html");
+        } else {
+          alert(data);
+        }
       },
       error: function () {
         alert("Erreur");

@@ -5,6 +5,8 @@ if ($_SERVER["SERVER_NAME"] !== "localhost") {
   ini_set('display_errors', 'Off');
   ini_set('log_errors', 'On');
   ini_set("error_log", "./back-end/errors/error_log");
+} else {
+  ini_set('display_errors', 'On');
 }
 
 require_once './back-end/database/db_connection.php';
@@ -19,6 +21,5 @@ foreach (glob("./back-end/CRUD/*") as $dossier) {
     require_once $fichier;
   }
 }
-
 
 exit();

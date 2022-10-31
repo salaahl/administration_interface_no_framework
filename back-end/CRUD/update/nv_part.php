@@ -24,7 +24,7 @@ if (isset($_POST["nom_partenaire"])) {
   if ($verif == null) {
 
     $partenaireR = $db->prepare(
-      "INSERT INTO FitnessP_Partenaire (nom, mail, mot_de_passe)
+      "INSERT IGNORE INTO FitnessP_Partenaire (nom, mail, mot_de_passe)
       VALUES (?, ?, ?)"
     );
 
@@ -33,10 +33,10 @@ if (isset($_POST["nom_partenaire"])) {
     $partenaireR->bind_param("sss", $nom, $mail, $passwordHash);
     $partenaireR->execute();
 
-    // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
-    if ($partenaireR && mysqli_affected_rows($db) > 0) {
 
-    $partenaireR->close();
+    // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
+    if (mysqli_affected_rows($db) > 0) {
+      $partenaireR->close();
 
       $mailConfirmation =
         "

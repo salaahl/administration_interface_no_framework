@@ -37,7 +37,7 @@ if (isset($_POST["adresse_structure"])) {
   if ($verif == null) {
 
     $structureR = $db->prepare(
-      "INSERT INTO FitnessP_Structure (adresse, mail, mot_de_passe, mail_part, perm_boissons, perm_planning, perm_newsletter)
+      "INSERT IGNORE INTO FitnessP_Structure (adresse, mail, mot_de_passe, mail_part, perm_boissons, perm_planning, perm_newsletter)
       VALUES (?, ?, ?, ?, ?, ?, ?)"
     );
 

@@ -7,12 +7,31 @@ if (isset($_POST['mot_de_passe_admin'])) {
 
   $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-  $adminR = $db->prepare(
-    "INSERT INTO FitnessP_Admin (mail_admin, mot_de_passe_admin)
+  // Etape 1 : vérifie que le mail n'est pas déjà utilisé par une structure
+  $mail_verif = $db->prepare("SELECT mail_admin
+    FROM FitnessP_Admin
+    WHERE mail_admin = ?");
+
+  $mail_verif->bind_param("s", $mail);
+  $mail_verif->execute();
+  $mail_verif->store_result();
+  $mail_verif->bind_result($verif);
+  $mail_verif->fetch();
+  $mail_verif->close();
+
+  // Etape 2 : Si le résultat est positif...
+  if ($verif == null) {
+
+    $adminR = $db->prepare(
+      "INSERT INTO FitnessP_Admin (mail_admin, mot_de_passe_admin)
     VALUES (?, ?)"
-  );
-  
-  $adminR->bind_param("ss", $mail, $passwordHash);
-  $adminR->execute();
-  $adminR->close();
+    );
+
+    $adminR->bind_param("ss", $mail, $passwordHash);
+    $adminR->execute();
+    $adminR->close();
+
+  } else {
+    echo "Erreur. Réessayez avec un autre mail.";
+  }
 }

@@ -8,7 +8,7 @@ $(function () {
       data: $(this).serialize(),
       success: function (data) {
         if(data == '') {
-          alert("Profil crée !");
+          alert("Profil partenaire crée ! Un mail lui a été automatiquement envoyé avec ses informations d'identification.");
           location.replace("../front-end/liste_part.php");
           } else {
             alert(data);
@@ -16,7 +16,7 @@ $(function () {
       },
       error: function (xhr) {
         alert(
-          "Erreur : le nom et/ou le mail sont déjà utilisés par un autre partenaire."
+          "Erreur"
         );
       },
     });

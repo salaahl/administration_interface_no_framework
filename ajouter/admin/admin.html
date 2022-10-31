@@ -1,39 +1,57 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Ajout d'un administrateur</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Ajout d'un administrateur</title>
+    <!-- CSS only -->
+    <link href="../../css/ajouter_partenaire.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
 
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-</head>
+  <body>
+    <div class="container">
+      <form>
+        <h2 class="formTitle">Ajouter un nouvel administrateur :</h2>
 
-<body>
-  <h1 class="display-5">Ajouter un nouvel administrateur :</h1>
-  <form action="../../index.php" method="post">
-    <div class="row">
-      <div class="col">
-        <input type="email" class="form-control" name="mail_admin" placeholder="Entrez votre mail">
-      </div>
+        <div class="inputDiv">
+          <label class="inputLabel">Entrez votre mail :</label>
+          <input type="email" name="mail_admin" required />
+        </div>
+
+        <div class="inputDiv">
+          <label class="inputLabel">Entrez votre mot de passe :</label>
+          <label id="niveau_mot_de_passe" style="color: red"></label>
+          <input
+            type="password"
+            id="changer_mot_de_passe"
+            name="mot_de_passe_admin"
+            required
+          />
+        </div>
+
+        <div class="inputDiv">
+          <label class="inputLabel">Confirmez votre mot de passe :</label>
+          <input type="password" id="confirmer_mot_de_passe" required />
+        </div>
+
+        <button type="submit" class="btn btn-dark">Valider</button>
+      </form>
     </div>
-    <div class="row">
-      <div class="col">
-        <input type="password" class="form-control" name="mot_de_passe_admin" placeholder="Mot de passe">
-      </div>
-      <div class="row">
-      <div class="col-6">
-        <button class="btn btn-primary" type="submit">Enregistrer</button>
-      </div>
-      </div>
-  </form>
-  
-  <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-    crossorigin="anonymous"></script>
-</body>
-
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../scripts/composants/nbp.min.js"></script>
+  <script src="../../scripts/ajax/nv_admin.js"></script>
+  </body>
 </html>

@@ -38,15 +38,18 @@ if (isset($_POST["adresse_structure"])) {
 
     $structureR = $db->prepare(
       "INSERT INTO FitnessP_Structure (adresse, mail, mot_de_passe, mail_part, perm_boissons, perm_planning, perm_newsletter)
-      VALUES (?, ?, ?, ?, ?, ?, ?)");
+      VALUES (?, ?, ?, ?, ?, ?, ?)"
+    );
+
+    $structureR->bind_param("ssssiii", $adresse, $mail, $passwordHash, $mail_partenaire, $perm_boissons_p, $perm_planning_p, $perm_newsletter_p);
+    $structureR->execute();
 
     // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
-    if ($structureR) {
-      $structureR->bind_param("ssssiii", $adresse, $mail, $passwordHash, $mail_partenaire, $perm_boissons_p, $perm_planning_p, $perm_newsletter_p);
-      $structureR->execute();
+    if (mysqli_affected_rows($db) > 0) {
+
       $structureR->close();
 
-      // Etape 2 : incrémentation de la colonne "nombre_de_structures"
+      // Etape 3 : incrémentation de la colonne "nombre_de_structures"
       $partenaireU = $db->prepare("UPDATE FitnessP_Partenaire
       SET nombre_de_structures = nombre_de_structures + 1
       WHERE mail = ?");
@@ -117,7 +120,7 @@ if (isset($_POST["adresse_structure"])) {
   </body>
   </html>";
 
-      // Envoyer un mail...
+      // Etape 4 : Envoyer un mail...
       // Initialisation des données. Méthode de récup différente selon l'environnemment
       $from_email = $_SERVER["SERVER_NAME"] == "localhost" ? FROM_EMAIL : getenv("FROM_EMAIL");
       $from_name = $_SERVER["SERVER_NAME"] == "localhost" ? FROM_NAME : getenv("FROM_NAME");
@@ -154,6 +157,9 @@ if (isset($_POST["adresse_structure"])) {
           echo "Erreur. Veuillez contacter un administrateur.";
         }
       }
+    } else {
+      $structureR->close();
+      echo "Erreur. Le mail est déjà pris.";
     }
   } else {
     echo 'Ce mail est déjà utilisé. Veuillez en choisir un autre';

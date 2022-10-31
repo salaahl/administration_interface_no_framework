@@ -19,14 +19,14 @@ function confirm() {
       return true;
     }
   }
-
+  
   motDePasse.onchange = validerMotDePasse;
   confirmerMotDePasse.onkeyup = validerMotDePasse;
 }
 
 // FONCTION
 motDePasse.addEventListener("keyup", function (evt) {
-  NBP.init("mostcommon_10000", "./collections", true);
+  NBP.init("mostcommon_10000", "../../collections", true);
 
   var pwd = document.getElementById("changer_mot_de_passe").value;
 
@@ -44,9 +44,6 @@ motDePasse.addEventListener("keyup", function (evt) {
 // SUBMIT
 $("form").on("submit", function (e) {
   e.preventDefault();
-  var searchParams = new URLSearchParams(window.location.search);
-  var mail = searchParams.get("mail");
-  var nouveauMdp = $("#changer_mot_de_passe").val();
 
   if (status_msg.textContent !== "Ok") {
     alert(
@@ -55,14 +52,18 @@ $("form").on("submit", function (e) {
   } else {
     $.ajax({
       type: "post",
-      url: "index.php",
-      data: { mail: mail, nouveau_mdp: nouveauMdp },
+      url: "../../index.php",
+      data: $(this).serialize(),
       success: function (data) {
-        alert("Nouveau mot de passe enregistré. Veuillez vous reconnecter.");
-        location.replace("./login.html");
+        if(data == '') {
+        alert("Administrateur enregistré ! Veuillez vous connecter.");
+        location.replace("../../login.html");
+        } else {
+          alert(data);
+        }
       },
       error: function () {
-        alert("Erreur");
+        alert("Erreur. L'administrateur n'a pas été créé.");
       },
     });
   }

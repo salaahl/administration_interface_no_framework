@@ -23,17 +23,19 @@ if (isset($_POST["nom_partenaire"])) {
   // Si le résultat est positif :
   if ($verif == null) {
 
-  $partenaireR = $db->prepare(
-    "INSERT INTO FitnessP_Partenaire (nom, mail, mot_de_passe)
+    $partenaireR = $db->prepare(
+      "INSERT INTO FitnessP_Partenaire (nom, mail, mot_de_passe)
       VALUES (?, ?, ?)"
-  );
+    );
 
-  // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
-    if ($partenaireR) {
       // Le triple 's' indique 'string, string, string' pour chacune de mes entrées.
       // https://www.php.net/manual/fr/mysqli-stmt.bind-param.php
       $partenaireR->bind_param("sss", $nom, $mail, $passwordHash);
       $partenaireR->execute();
+      
+
+      // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
+    if (mysqli_affected_rows($db) > 0) {
       $partenaireR->close();
 
       $mailConfirmation =
@@ -101,7 +103,7 @@ if (isset($_POST["nom_partenaire"])) {
   </body>
   </html>";
 
-      // Envoyer un mail...
+      // Etape 2 : envoyer un mail...
       // Initialisation des données. Méthode de récup différente selon l'environnemment
       $from_email =
         $_SERVER["SERVER_NAME"] == "localhost"
@@ -148,6 +150,9 @@ if (isset($_POST["nom_partenaire"])) {
           echo "Erreur. Veuillez contacter un administrateur.";
         }
       }
+    } else {
+      $partenaireR->close();
+      echo "Erreur. Le mail et/ou le nom de ville sont déjà pris.";
     }
   } else {
     echo 'Ce mail est déjà utilisé. Veuillez en choisir un autre';

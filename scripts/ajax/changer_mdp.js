@@ -28,7 +28,7 @@ function confirm() {
 motDePasse.addEventListener("keyup", function (evt) {
   NBP.init("mostcommon_10000", "./collections", true);
 
-  var pwd = document.getElementById("changer_mot_de_passe").value;
+  let pwd = document.getElementById("changer_mot_de_passe").value;
 
   if (pwd.length < 1) {
     status_msg.innerHTML = "";
@@ -44,9 +44,9 @@ motDePasse.addEventListener("keyup", function (evt) {
 // SUBMIT
 $("form").on("submit", function (e) {
   e.preventDefault();
-  var searchParams = new URLSearchParams(window.location.search);
-  var mail = searchParams.get("mail");
-  var nouveauMdp = $("#changer_mot_de_passe").val();
+  let searchParams = new URLSearchParams(window.location.search);
+  let mail = searchParams.get("mail");
+  let nouveauMdp = $("#changer_mot_de_passe").val();
 
   if (status_msg.textContent !== "Ok") {
     alert(

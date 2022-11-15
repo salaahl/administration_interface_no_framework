@@ -2,7 +2,7 @@ $(document).ready(function () {
   $("#recherche_part").keyup(function () {
     $("#resultat_part").html("");
 
-    var saisie = $(this).val();
+    let saisie = $(this).val();
 
     if (saisie != "") {
       $.ajax({
@@ -49,7 +49,7 @@ $(document).ready(function () {
             }
           } else {
             document.getElementById("resultat_part").innerHTML =
-              "<div style='font-size: 20px; text-align: center;'>Aucun partenaire</div>";
+              "<div style='font-size: 20px; text-align: center;'>Aucun partenaire trouvé</div>";
           }
         },
       });

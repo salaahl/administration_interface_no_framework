@@ -17,10 +17,10 @@ Admin :
 mail : s.admin@gmail.com, mdp : Sokhona
 
 Partenaire : 
-mail : p.paris@gmail.com, mdp : Sokhona
+mail : sokhona.salaha@gmail.com, mdp : Sokhona
 
 Structure : 
-mail : s.paris@gmail.com, mdp : Sokhona
+mail : s.paris@gmail.com, mdp : Sokhonaa
 
 ---
 

@@ -11,7 +11,7 @@ if (isset($_POST['part_structure'])) {
 
 
     foreach ($partenairesQ as $partenaire) {
-        $reponse[] = $partenaire['nom'];
+        $reponse[] = htmlspecialchars($partenaire['nom']);
     }
     echo json_encode($reponse);
 }

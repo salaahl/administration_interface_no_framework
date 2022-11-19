@@ -52,7 +52,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
   // LOGIN ADMIN :
   if (isset($mot_de_passe_admin) && password_verify($mdp, $mot_de_passe_admin)) {
     session_start();
-    $_SESSION['mail'] = $mail;
+    $_SESSION['mail'] = htmlspecialchars($mail);
     $_SESSION['admin'] = 'admin';
     $_SESSION['niveau_droits'] = htmlspecialchars($niveau_droits_admin);
     $reponse['droits'] = htmlspecialchars($niveau_droits_admin);
@@ -62,10 +62,10 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
   // LOGIN PARTENAIRE :
   if (isset($mot_de_passe_partenaire) && password_verify($mdp, $mot_de_passe_partenaire)) {
     session_start();
-    $_SESSION['mail_p'] = $mail;
+    $_SESSION['mail_p'] = htmlspecialchars($mail);
     $_SESSION['niveau_droits'] = htmlspecialchars($niveau_droits_partenaire);
     $reponse['droits'] = htmlspecialchars($niveau_droits_partenaire);
-    $reponse['mail'] = $mail;
+    $reponse['mail'] = htmlspecialchars($mail);
     $reponse['premiere_connexion'] = htmlspecialchars($premiere_connexion_partenaire);
     echo json_encode($reponse);
     die();
@@ -73,10 +73,10 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
   // LOGIN STRUCTURE :
   if (isset($mot_de_passe_structure) && password_verify($mdp, $mot_de_passe_structure)) {
     session_start();
-    $_SESSION['mail_s'] = $mail;
+    $_SESSION['mail_s'] = htmlspecialchars($mail);
     $_SESSION['niveau_droits'] = htmlspecialchars($niveau_droits_structure);
     $reponse['droits'] = htmlspecialchars($niveau_droits_structure);
-    $reponse['mail'] = $mail;
+    $reponse['mail'] = htmlspecialchars($mail);
     $reponse['mail_part'] = htmlspecialchars($mail_part);
     $reponse['premiere_connexion'] = htmlspecialchars($premiere_connexion_structure);
     echo json_encode($reponse);

@@ -4,7 +4,7 @@
 
 // PERMISSIONS D'UNE STRUCTURE :
 if (isset($_POST['toggle_structure'])) {
-  if ($_POST['id'] == 'perm_boissons' || $_POST['id'] == 'perm_planning' || $_POST['id'] == 'perm_newsletter') {
+  if ($_POST['id'] === 'perm_boissons' || $_POST['id'] === 'perm_planning' || $_POST['id'] === 'perm_newsletter') {
 
     $perm = $_POST['id'];
     $mail = htmlspecialchars($_POST['mail']);

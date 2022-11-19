@@ -1,20 +1,6 @@
 <?php session_start();
 
 
-$timeout = 600;
-
-if (isset($_SESSION['timeout'])) {
-
-  $duration = time() - (int)$_SESSION['timeout'];
-  if ($duration > $timeout) {
-    session_destroy();
-    session_start();
-  }
-  
-  $_SESSION['timeout'] = time();
-}
-
-
 // Niveau 2 : partenaire
 // 1è vérification : attribution d'un passe-droit pour l'admin
 if (!isset($_SESSION['admin'])) {

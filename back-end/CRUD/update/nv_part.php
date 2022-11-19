@@ -147,7 +147,7 @@ if (isset($_POST["nom_partenaire"])) {
         try {
           $response = $sendgrid->send($email);
         } catch (Exception $e) {
-          echo "Erreur. Veuillez contacter un administrateur.";
+          echo "Erreur. La requête n'a pas aboutie.";
         }
       }
     } else {

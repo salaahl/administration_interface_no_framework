@@ -1,22 +1,6 @@
 <?php session_start();
 
 
-$timeout = 600;
-
-if (isset($_SESSION['timeout'])) {
-  // See if the number of seconds since the last
-  // visit is larger than the timeout period.
-  $duration = time() - (int)$_SESSION['timeout'];
-  if ($duration > $timeout) {
-    session_destroy();
-    session_start();
-  }
-
-  $_SESSION['timeout'] = time();
-}
-
-
-
 // Niveau 3 : admin
 if (!isset($_SESSION['admin'])) {
   echo '<script>alert("Accès non autorisé.");

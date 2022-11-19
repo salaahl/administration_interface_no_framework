@@ -1,26 +1,13 @@
 <?php session_start();
 
 
-$timeout = 600;
-
-if (isset($_SESSION['timeout'])) {
-
-  $duration = time() - (int)$_SESSION['timeout'];
-  if ($duration > $timeout) {
-    session_destroy();
-    session_start();
-  }
-
-  $_SESSION['timeout'] = time();
-}
-
 
 // Page de niveau 1 : structure
 // 1è vérification : attribution d'un passe-droit pour l'admin
 if (!isset($_SESSION['admin'])) {
 
   // 2è vérification : les droits
-  if ($_SESSION['niveau_droits'] < 1) {
+  if (isset($_SESSION['niveau_droits']) && $_SESSION['niveau_droits'] < 1) {
     echo '<script>alert("Connectez-vous pour accéder à cette page.");
           window.location.href="../login.html"</script>';
   }
@@ -77,7 +64,7 @@ if (!isset($_SESSION['admin'])) {
         <?php if (isset($_SESSION['niveau_droits']) && $_SESSION['niveau_droits'] >= 2) { ?>
 
           <div class="statut_structure">
-            <label for="">Structure actif : </label>
+            <label for="">Structure active : </label>
             <label class="switch">
               <input id="statut_structure" type="checkbox">
               <div class="slider"></div>

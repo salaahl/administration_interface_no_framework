@@ -70,6 +70,18 @@ if (!isset($_SESSION['admin'])) {
               <div class="slider"></div>
             </label>
           </div>
+          <div class="delete-structure">
+            <form method="POST">
+              <input type="hidden" id="delete_structure" name="delete_structure" value="" />
+              <button class="btn btn-danger" 
+              type="submit" 
+              onclick="return confirm(
+                'Etes-vous sûr ? Cette action est irréversible.'
+              )">
+              Supprimer ce partenaire
+              </button>
+            </form>
+          </div>
 
         <?php } ?>
       </div>

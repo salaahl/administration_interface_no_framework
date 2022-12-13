@@ -36,6 +36,7 @@ $(document).ready(function () {
       // Données du partenaire et permissions
       $("h1").append(data.nom);
       $("#mail").append(mail);
+      $("#delete_partner").val(mail);
       $("#statut_part").prop("checked", data.statut);
       $("#perm_boissons").prop("checked", data.perm_boissons);
       $("#perm_newsletter").prop("checked", data.perm_newsletter);

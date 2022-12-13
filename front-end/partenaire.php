@@ -52,7 +52,7 @@ if (!isset($_SESSION['admin'])) {
             </label>
           </div>
           <div class="delete-partner">
-            <form method="POST">
+            <form action="../index.php" method="POST">
               <input type="hidden" id="delete_partner" name="delete_partner" value="" />
               <button class="btn btn-danger" 
               type="submit" 

@@ -10,6 +10,7 @@ $(document).ready(function () {
     data: { page_structure: pageS, mail: mail },
     dataType: "JSON",
     success: function (data) {
+       $("#delete_structure").val(mail);
       $("h1").append(data.nom_partenaire);
       $("#mail_structure").append(mail);
       $("#adresse_structure").append(data.adresse);

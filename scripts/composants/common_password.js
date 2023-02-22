@@ -1,21 +1,17 @@
-window.onload = function () {
-  NBP.init("mostcommon_1000000", "./collections", true);
+let commonPassword = (passwordInput, messageStatus) => {
+  $(passwordInput).keyup(function() {
+    NBP.init("mostcommon_10000", "./collections", true);
+    let status = $(messageStatus);
+    let password = $(passwordInput).val();
 
-  var status_msg = document.getElementById("niveau_mot_de_passe");
-
-  document
-    .getElementById("changer_mot_de_passe")
-    .addEventListener("keyup", function (evt) {
-      var pwd = document.getElementById("changer_mot_de_passe").value;
-
-      if (pwd.length < 1) {
-        status_msg.innerHTML = "";
-      } else if (NBP.isCommonPassword(pwd) || pwd.length < 5) {
-        status_msg.innerHTML = "Faible";
-        status_msg.style.color = "red";
-      } else {
-        status_msg.innerHTML = "Ok";
-        status_msg.style.color = "green";
-      }
-    });
+    if (password.length < 1) {
+      status.html("");
+    } else if (NBP.isCommonPassword(password) || password.length < 5) {
+      status.html("Faible");
+      status.css("color", "red");
+    } else {
+      status.html("Ok");
+      status.css("color", "green");
+    }
+  })
 };

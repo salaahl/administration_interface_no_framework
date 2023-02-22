@@ -28,29 +28,32 @@ $(function() {
     },
     submitHandler: function() {
       // Peut-être faudra-il mettre cette partie dans le 'form.submit()'
-      if (commonPassword('#changer_mot_de_passe', '#niveau_mot_de_passe')) {
-        let searchParams = new URLSearchParams(window.location.search);
-        let mail = searchParams.get("mail");
-        let nouveauMdp = $("#changer_mot_de_passe").val();
+      $("form").on("submit", function (e) {
+        e.preventDefault();
+        if (commonPassword('#changer_mot_de_passe', '#niveau_mot_de_passe')) {
+          let searchParams = new URLSearchParams(window.location.search);
+          let mail = searchParams.get("mail");
+          let nouveauMdp = $("#changer_mot_de_passe").val();
 
-        $.ajax({
-          type: "post",
-          url: "index.php",
-          data: { mail: mail, nouveau_mdp: nouveauMdp },
-          success: function(data) {
-            if (data == "") {
-              alert("Nouveau mot de passe enregistré. Veuillez vous reconnecter.");
-              location.replace("./login.html");
-            } else {
-              alert(data);
-            }
-          },
-          error: function() {
-            alert("Erreur");
-          },
-        });
-      } else {
-        alert("Le mot de passe est faible. Veuillez le changer.");
+          $.ajax({
+            type: "post",
+            url: "index.php",
+            data: { mail: mail, nouveau_mdp: nouveauMdp },
+            success: function(data) {
+              if (data == "") {
+                alert("Nouveau mot de passe enregistré. Veuillez vous reconnecter.");
+                location.replace("./login.html");
+              } else {
+                alert(data);
+              }
+            },
+            error: function() {
+              alert("Erreur");
+            },
+          });
+        } else {
+          alert("Le mot de passe est faible. Veuillez le changer.");
+        }
       }
     }
   });

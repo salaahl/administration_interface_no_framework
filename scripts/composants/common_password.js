@@ -1,5 +1,7 @@
-let commonPassword = (passwordInput, messageStatus) => {
-  $(passwordInput).keyup(function() {
+function commonPassword (passwordInput, messageStatus) 
+{
+  $(passwordInput).keyup(function() 
+  {
     NBP.init("mostcommon_10000", "./collections", true);
     let status = $(messageStatus);
     let password = $(passwordInput).val();

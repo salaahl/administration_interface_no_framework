@@ -1,21 +1,4 @@
 $(function() {
-
-  $("#changer_mot_de_passe").keyup(function() {
-    NBP.init("mostcommon_10000", "./collections", true);
-    let status_msg = $("#niveau_mot_de_passe");
-    let pwd = $(this).val();
-
-    if (pwd.length < 1) {
-      status_msg.html("");
-    } else if (NBP.isCommonPassword(pwd)) {
-      status_msg.html("Faible");
-      status_msg.css("color", "red");
-    } else {
-      status_msg.html("Ok");
-      status_msg.css("color", "green");
-    }
-  });
-
   $("#form-dish").validate({
     rules: {
       changer_mot_de_passe: {

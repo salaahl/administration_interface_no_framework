@@ -1,73 +1,70 @@
-var motDePasse = document.getElementById("changer_mot_de_passe"),
-  confirmerMotDePasse = document.getElementById("confirmer_mot_de_passe"),
-  status_msg = document.getElementById("niveau_mot_de_passe");
+$(function() {
 
-NBP.init("mostcommon_10000", "./collections", true);
+  $("#changer_mot_de_passe").keyup(function() {
+    NBP.init("mostcommon_10000", "./collections", true);
+    let status_msg = $("#niveau_mot_de_passe");
+    let pwd = $(this).val();
 
-var confirm = confirm();
-
-// FONCTION
-function confirm() {
-  function validerMotDePasse() {
-    if (motDePasse.value != confirmerMotDePasse.value) {
-      confirmerMotDePasse.setCustomValidity(
-        "Les mots de passe ne correspondent pas"
-      );
-      return false;
+    if (pwd.length < 1) {
+      status_msg.html("");
+    } else if (NBP.isCommonPassword(pwd)) {
+      status_msg.html("Faible");
+      status_msg.css("color", "red");
     } else {
-      confirmerMotDePasse.setCustomValidity("");
-      return true;
+      status_msg.html("Ok");
+      status_msg.css("color", "green");
     }
-  }
+  });
 
-  motDePasse.onchange = validerMotDePasse;
-  confirmerMotDePasse.onkeyup = validerMotDePasse;
-}
-
-// FONCTION
-motDePasse.addEventListener("keyup", function (evt) {
-  NBP.init("mostcommon_10000", "./collections", true);
-
-  let pwd = document.getElementById("changer_mot_de_passe").value;
-
-  if (pwd.length < 1) {
-    status_msg.innerHTML = "";
-  } else if (NBP.isCommonPassword(pwd) || pwd.length < 5) {
-    status_msg.innerHTML = "Faible";
-    status_msg.style.color = "red";
-  } else {
-    status_msg.innerHTML = "Ok";
-    status_msg.style.color = "green";
-  }
-});
-
-// SUBMIT
-$("form").on("submit", function (e) {
-  e.preventDefault();
-  let searchParams = new URLSearchParams(window.location.search);
-  let mail = searchParams.get("mail");
-  let nouveauMdp = $("#changer_mot_de_passe").val();
-
-  if (status_msg.textContent !== "Ok") {
-    alert(
-      "Votre mot de passe est faible. Il ne doit pas être commun et avoir au minimum 5 caractères. Veuillez le changer."
-    );
-  } else {
-    $.ajax({
-      type: "post",
-      url: "index.php",
-      data: { mail: mail, nouveau_mdp: nouveauMdp },
-      success: function (data) {
-        if (data == "") {
-          alert("Nouveau mot de passe enregistré. Veuillez vous reconnecter.");
-          location.replace("./login.html");
-        } else {
-          alert(data);
-        }
+  $("#form-dish").validate({
+    rules: {
+      changer_mot_de_passe: {
+        required: true,
+        minlength: 5
       },
-      error: function () {
-        alert("Erreur");
+      confirmer_mot_de_passe: {
+        required: true,
+        equalTo: "#changer_mot_de_passe"
       },
-    });
-  }
+      niveau_mot_de_passe: {
+        equalTo: "Ok"
+      }
+    },
+    messages: {
+      changer_mot_de_passe: {
+        required: "Veuillez remplir ce champ",
+        minlength: "Le mot de passe doit faire plus de cinq caractères"
+      },
+      confirmer_mot_de_passe: {
+        required: "Veuillez remplir ce champ",
+        equalTo: "Le mot de passe ne correspond pas"
+      },
+      niveau_mot_de_passe: {
+        equalTo: "Votre mot de passe est faible. Veuillez le changer"
+      }
+    },
+    submitHandler: function() {
+      // Peut-être faudra-il mettre cette partie dans le 'form.submit()'
+      let searchParams = new URLSearchParams(window.location.search);
+      let mail = searchParams.get("mail");
+      let nouveauMdp = $("#changer_mot_de_passe").val();
+
+      $.ajax({
+        type: "post",
+        url: "index.php",
+        data: { mail: mail, nouveau_mdp: nouveauMdp },
+        success: function(data) {
+          if (data == "") {
+            alert("Nouveau mot de passe enregistré. Veuillez vous reconnecter.");
+            location.replace("./login.html");
+          } else {
+            alert(data);
+          }
+        },
+        error: function() {
+          alert("Erreur");
+        },
+      });
+    }
+  });
 });

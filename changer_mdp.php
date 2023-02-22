@@ -37,7 +37,7 @@ if (isset($_SESSION['mail_p'])) {
 
       <div class="inputDiv">
         <label class="inputLabel" for="changer_mot_de_passe">Nouveau mot de passe :</label>
-        <label id="niveau_mot_de_passe" style="color: red"></label>
+        <label id="niveau_mot_de_passe" name="niveau_mot_de_passe" style="color: red"></label>
         <input type="password" id="changer_mot_de_passe" name="changer_mot_de_passe" required>
       </div>
 

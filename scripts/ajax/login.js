@@ -14,7 +14,7 @@ $(document).ready(function () {
       data: $(this).serialize(),
       success: function (response) {
         function changerMdp() {
-          return location.replace("./changer_mdp.php?mail=" + response.mail);
+          return location.replace("./change_password.php?mail=" + response.mail);
         }
 
         if (response.droits == 3) {

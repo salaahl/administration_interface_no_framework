@@ -40,8 +40,8 @@ if (isset($_SESSION['mail_p'])) {
       </div>
 
       <div class="inputDiv">
-        <label class="inputLabel" for="confirmer_mot_de_passe">Confirmez le nouveau mot de passe :</label>
-        <input type="password" id="confirmer_mot_de_passe" name="confirmer_mot_de_passe" required>
+        <label class="inputLabel" for="change_password">Confirmez le nouveau mot de passe :</label>
+        <input type="password" id="change_password" name="change_password" required>
       </div>
 
       <button type="submit" class="btn btn-dark">Valider</button>

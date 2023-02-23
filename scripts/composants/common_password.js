@@ -1,19 +1,14 @@
-function commonPassword (passwordInput, messageStatus) 
+$.getScript("./nbp.min.js");
+
+function commonPassword (passwordInput) 
 {
-  $(passwordInput).keyup(function() 
-  {
-    NBP.init("mostcommon_10000", "./collections", true);
-    let status = $(messageStatus);
+    NBP.init("mostcommon_10000", "collections", true);
     let password = $(passwordInput).val();
 
-    if (password.length < 1) {
-      status.html("");
-    } else if (NBP.isCommonPassword(password) || password.length < 5) {
-      status.html("Faible");
-      status.css("color", "red");
+    if (NBP.isCommonPassword(password))
+    {
+      return false;
     } else {
-      status.html("Ok");
-      status.css("color", "green");
+      return true;
     }
-  })
 };

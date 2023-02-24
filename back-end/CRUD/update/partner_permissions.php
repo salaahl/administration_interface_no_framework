@@ -3,12 +3,12 @@
 
 
 // PERMISSIONS GLOBALES D'UN PARTENAIRE :
-if (isset($_POST['toggle_partenaire'])) {
+if (isset($_POST['id']) && isset($_POST['partner_toggle'])) {
   if ($_POST['id'] == 'perm_boissons' || $_POST['id'] == 'perm_planning' || $_POST['id'] == 'perm_newsletter') {
 
     $perm = $_POST['id'];
     $mail = htmlspecialchars($_POST['mail']);
-    $toggle = mysqli_real_escape_string($db, $_POST['toggle_partenaire']);
+    $toggle = mysqli_real_escape_string($db, $_POST['partner_toggle']);
 
     if ($toggle == "true") {
       $toggle = 1;

@@ -2,7 +2,7 @@
 
 
 // PAGE PARTENAIRES :
-if (isset($_POST['partner'])) {
+if (isset($_POST['partner_page']) && isset($_POST['mail'])) {
   
   $mail = $_POST['mail'];
   $reponse = [];

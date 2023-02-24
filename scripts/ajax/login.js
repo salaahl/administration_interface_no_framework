@@ -4,6 +4,10 @@ $(document).ready(function () {
   $.ajax({
     url: "index.php",
   });
+  
+  function changerMdp() {
+    return location.replace("./change_password.php?mail=" + response.mail);
+  }
 
   $("form").on("submit", function (e) {
     e.preventDefault();
@@ -13,12 +17,7 @@ $(document).ready(function () {
       dataType: "JSON",
       data: $(this).serialize(),
       success: function (response) {
-        function changerMdp() {
-          return location.replace("./change_password.php?mail=" + response.mail);
-        }
-
         if (response.droits == 3) {
-          console.log(response);
           location.replace("./front-end/liste_part.php");
         } else if (response.droits == 2) {
           if (response.premiere_connexion == 1) {
@@ -44,7 +43,6 @@ $(document).ready(function () {
             "Profil désactivé. Veuillez contacter un administrateur."
           );
         } else {
-          // Peut-être préciser si c'est le mail ou le mdp le fautif...
           $(".id_incorrects").text(response.droits);
         }
       },

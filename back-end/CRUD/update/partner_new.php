@@ -1,8 +1,8 @@
 <?php
 
 // Va gérer la logique des formulaires de création de partenaires
-if (isset($_POST["nom_partenaire"])) {
-  $nom = mysqli_real_escape_string($db, $_POST["nom_partenaire"]);
+if (isset($_POST["partner_name"])) {
+  $nom = mysqli_real_escape_string($db, $_POST["partner_name"]);
   $mail = mysqli_real_escape_string($db, $_POST["mail_partenaire"]);
   $password = mysqli_real_escape_string($db, $_POST["mot_de_passe_partenaire"]);
 

@@ -1,15 +1,13 @@
 $(document).ready(function () {
-  var pageP = "ok";
   var searchParams = new URLSearchParams(window.location.search);
   var mail = searchParams.get("mail_p");
 
   $.ajax({
     type: "post",
     url: "../index.php",
-    data: { page_partenaire: pageP, mail: mail },
+    data: { page_partenaire: 'initialize", mail: mail },
     dataType: "JSON",
     success: function (data) {
-      // Structures
       if (data.mails_s != "") {
         for (let c = 0; data.adresses_s.length > c; c++) {
           $("#structures").append(
@@ -33,7 +31,6 @@ $(document).ready(function () {
         }
       }
 
-      // Données du partenaire et permissions
       $("h1").append(data.nom);
       $("#mail").append(mail);
       $("#delete_partner").val(mail);
@@ -42,9 +39,8 @@ $(document).ready(function () {
       $("#perm_newsletter").prop("checked", data.perm_newsletter);
       $("#perm_planning").prop("checked", data.perm_planning);
     },
-    error: function (xhr) {
-      var err = JSON.parse(xhr.responseText);
-      alert(err.message);
+    error: function () {
+      alert('Erreur. Veuillez contacter un administrateur.');
     },
   });
 });

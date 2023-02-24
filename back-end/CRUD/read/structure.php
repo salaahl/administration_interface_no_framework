@@ -3,7 +3,7 @@
 
 
 // PAGE D'UNE STRUCTURE :
-if (isset($_POST['page_structure'])) {
+if (isset($_POST['structure']) && isset($_POST['mail'])) {
 
   $mail = $_POST['mail'];
   $reponse = [];

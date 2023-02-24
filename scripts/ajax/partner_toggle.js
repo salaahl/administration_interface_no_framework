@@ -19,9 +19,8 @@ $(".toggle").change(function () {
         nom: nom,
         permission: permission,
       },
-      success: function (data) {},
       error: function () {
-        alert("Erreur. Veuillez contacter un administrateur.");
+        alert("Impossible de mettre à jour la permission. Veuillez contacter un administrateur.");
       },
     });
   } else {

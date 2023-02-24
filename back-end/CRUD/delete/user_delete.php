@@ -1,8 +1,6 @@
 <?php
 
-<?php
-
-if (isset($_POST['delete_partner'])) {
+if (isset($_POST['partner_delete'])) {
   $mail = mysqli_real_escape_string($db, $_POST['mail_partenaire']);
 
   $partnerD = $db->prepare(
@@ -14,7 +12,7 @@ if (isset($_POST['delete_partner'])) {
   $partnerD->execute();
 }
 
-if (isset($_POST['delete_structure'])) {
+if (isset($_POST['structure_delete'])) {
   $mail = mysqli_real_escape_string($db, $_POST['mail_partenaire']);
 
   $structureD = $db->prepare(

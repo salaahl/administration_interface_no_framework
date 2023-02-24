@@ -6,7 +6,7 @@ $(document).ready(function () {
   $.ajax({
     type: "POST",
     url: "../index.php",
-    data: { page_structure: 'initialize', mail: mail },
+    data: { structure_page: 'initialize', mail: mail },
     dataType: "JSON",
     success: function (data) {
       $("#delete_structure").val(mail);
@@ -18,7 +18,7 @@ $(document).ready(function () {
       $("#perm_newsletter").prop("checked", data.perm_newsletter);
       $("#perm_planning").prop("checked", data.perm_planning);
       $("#retour_page_partenaire").attr("href",
-        "../front-end/partenaire.php?mail_p=" + data.mail_partenaire
+        "../front-end/partner.php?mail_p=" + data.mail_partenaire
       );
     },
     error: function () {

@@ -1,7 +1,5 @@
 <?php session_start();
 
-
-
 // Page de niveau 1 : structure
 // 1è vérification : attribution d'un passe-droit pour l'admin
 if (!isset($_SESSION['admin'])) {
@@ -36,7 +34,6 @@ if (!isset($_SESSION['admin'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Page structure</title>
-  <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <link href="../css/structure.css" rel="stylesheet" type="text/css" />
   <link href="../css/bouton_desac.css" rel="stylesheet" type="text/css" />

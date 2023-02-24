@@ -4,7 +4,7 @@ $(function () {
   
       $.ajax({
         type: "post",
-        url: "../index.php",
+        url: "../../index.php",
         data: $(this).serialize(),
         success: function (data) {
           if(data == '') {

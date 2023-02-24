@@ -38,12 +38,12 @@ $(function() {
         
         let searchParams = new URLSearchParams(window.location.search);
         let mail = searchParams.get("mail");
-        let nouveauMdp = $("#change_password").val();
+        let changePassword = $("#change_password").val();
 
         $.ajax({
           type: "post",
           url: "index.php",
-          data: { mail: mail, nouveau_mdp: nouveauMdp },
+          data: { mail: mail, change_password: changePassword },
           success: function(data) {
             if (data == "") {
               alert("Nouveau mot de passe enregistré. Veuillez vous reconnecter.");

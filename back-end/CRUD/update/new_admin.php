@@ -1,7 +1,7 @@
 <?php
 
 // Va gérer la logique des formulaires de création d'admins
-if (isset($_POST['admin_mail'])) {
+if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
   $mail = mysqli_real_escape_string($db, $_POST['admin_mail']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
 

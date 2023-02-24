@@ -1,10 +1,11 @@
 <?php
 
+
 // LOGIN :
-if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
+if (isset($_POST['login_mail']) && isset($_POST['login_password'])) {
 
   $mail = mysqli_real_escape_string($db, $_POST['login_mail']);
-  $mdp = $_POST['login_mdp'];
+  $mdp = $_POST['login_password'];
   $reponse = [];
 
   $adminsQ = $db->prepare(
@@ -14,6 +15,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
   $adminsQ->execute();
   $adminsQ->store_result();
   $adminsQ->bind_result($mot_de_passe_admin, $niveau_droits_admin);
+  
   if (isset($adminsQ)) {
     $adminsQ->fetch();
   }
@@ -26,6 +28,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
   $partenairesQ->execute();
   $partenairesQ->store_result();
   $partenairesQ->bind_result($mot_de_passe_partenaire, $niveau_droits_partenaire, $premiere_connexion_partenaire);
+  
   if (isset($partenairesQ)) {
     $partenairesQ->fetch();
   }
@@ -37,17 +40,14 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
   $structuresQ->execute();
   $structuresQ->store_result();
   $structuresQ->bind_result($mail_part, $mot_de_passe_structure, $niveau_droits_structure, $premiere_connexion_structure);
+  
   if (isset($structuresQ)) {
     $structuresQ->fetch();
   }
 
-
-
   $adminsQ->close();
   $partenairesQ->close();
   $structuresQ->close();
-
-
 
   // LOGIN ADMIN :
   if (isset($mot_de_passe_admin) && password_verify($mdp, $mot_de_passe_admin)) {
@@ -59,6 +59,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
     echo json_encode($reponse);
     die();
   }
+  
   // LOGIN PARTENAIRE :
   if (isset($mot_de_passe_partenaire) && password_verify($mdp, $mot_de_passe_partenaire)) {
     session_start();
@@ -70,6 +71,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
     echo json_encode($reponse);
     die();
   }
+  
   // LOGIN STRUCTURE :
   if (isset($mot_de_passe_structure) && password_verify($mdp, $mot_de_passe_structure)) {
     session_start();
@@ -82,7 +84,6 @@ if (isset($_POST['login_mail']) && isset($_POST['login_mdp'])) {
     echo json_encode($reponse);
     die();
   }
-
 
   $reponse['droits'] = 'Identifiants non reconnus. Veuillez réessayer.';
   echo json_encode($reponse);

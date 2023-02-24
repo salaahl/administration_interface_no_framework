@@ -2,11 +2,11 @@
 
 
 // ACTIVER/DESACTIVER PARTENAIRE ET SES STRUCTURES :
-if (isset($_POST['activer_partenaire'])) {
+if (isset($_POST['partner_activate'])) {
 
   $mail = mysqli_real_escape_string($db, $_POST['mail']);
 
-  if ($_POST['activer_partenaire'] == 'true') {
+  if ($_POST['partner_activate'] == 'true') {
     $statutPrt = 2;
     $statutStc = 1;
   } else {

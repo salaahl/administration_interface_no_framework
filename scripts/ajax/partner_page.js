@@ -5,7 +5,7 @@ $(document).ready(function () {
   $.ajax({
     type: "post",
     url: "../index.php",
-    data: { page_partenaire: 'initialize", mail: mail },
+    data: { partner_page: 'initialize", mail: mail },
     dataType: "JSON",
     success: function (data) {
       if (data.mails_s != "") {

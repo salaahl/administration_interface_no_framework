@@ -1,14 +1,13 @@
 <?php
 
 
-
 // PERMISSIONS D'UNE STRUCTURE :
-if (isset($_POST['toggle_structure'])) {
+if (isset($_POST['id']) && isset($_POST['structure_toggle'])) {
   if ($_POST['id'] === 'perm_boissons' || $_POST['id'] === 'perm_planning' || $_POST['id'] === 'perm_newsletter') {
 
     $perm = $_POST['id'];
     $mail = htmlspecialchars($_POST['mail']);
-    $toggle = mysqli_real_escape_string($db, $_POST['toggle_structure']);
+    $toggle = mysqli_real_escape_string($db, $_POST['structure_toggle']);
 
     if ($toggle == "true") {
       $toggle = 1;

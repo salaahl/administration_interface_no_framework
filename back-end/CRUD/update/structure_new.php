@@ -1,11 +1,11 @@
 <?php
 // Va gérer la logique des formulaires de création de structures
-if (isset($_POST["adresse_structure"])) {
+if (isset($_POST["structure_adress"])) {
 
-  $adresse = mysqli_real_escape_string($db, $_POST["adresse_structure"]);
-  $mail = mysqli_real_escape_string($db, $_POST["mail_structure"]);
-  $password = mysqli_real_escape_string($db, $_POST["mot_de_passe_structure"]);
-  $nom_partenaire = mysqli_real_escape_string($db, $_POST["partenaire"]);
+  $adresse = mysqli_real_escape_string($db, $_POST["structure_adress"]);
+  $mail = mysqli_real_escape_string($db, $_POST["structure_mail"]);
+  $password = mysqli_real_escape_string($db, $_POST["structure_password"]);
+  $city = mysqli_real_escape_string($db, $_POST["city"]);
 
   $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -14,7 +14,7 @@ if (isset($_POST["adresse_structure"])) {
     FROM FitnessP_Partenaire
     WHERE nom = ?");
 
-  $partenaireQ->bind_param("s", $nom_partenaire);
+  $partenaireQ->bind_param("s", $city);
   $partenaireQ->execute();
   $partenaireQ->store_result();
   $partenaireQ->bind_result($mail_partenaire, $perm_boissons_p, $perm_newsletter_p, $perm_planning_p);
@@ -101,7 +101,7 @@ if (isset($_POST["adresse_structure"])) {
       </thead>
       <tbody>
         <tr>
-          <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($nom_partenaire) . ",<br>Voici les identifiants de connexion de la structure située au " . htmlspecialchars($adresse) . ".<br>Notez que le mot de passe n'est valable que pour la première connexion. Il
+          <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($city) . ",<br>Voici les identifiants de connexion de la structure située au " . htmlspecialchars($adresse) . ".<br>Notez que le mot de passe n'est valable que pour la première connexion. Il
             devra être changé lors de la première connexion au site.</td>
         </tr>
         <tr>

@@ -33,14 +33,14 @@ $(document).ready(function () {
 
       $("h1").append(data.nom);
       $("#mail").append(mail);
-      $("#delete_partner").val(mail);
-      $("#statut_part").prop("checked", data.statut);
+      $("#partner_delete").val(mail);
+      $("#partner_status").prop("checked", data.statut);
       $("#perm_boissons").prop("checked", data.perm_boissons);
       $("#perm_newsletter").prop("checked", data.perm_newsletter);
       $("#perm_planning").prop("checked", data.perm_planning);
     },
     error: function () {
-      alert('Erreur. Veuillez contacter un administrateur.');
+      alert('Impossible de charger correctement la page. Veuillez contacter un administrateur.');
     },
   });
 });

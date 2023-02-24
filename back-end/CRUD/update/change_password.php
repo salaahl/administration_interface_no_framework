@@ -1,11 +1,10 @@
 <?php
 
-
 // Va gérer la logique de changement de mot de passe lors de la 1è connexion :
-if (isset($_POST['nouveau_mdp'])) {
+if (isset($_POST['change_password'])) {
 
     $mail = mysqli_real_escape_string($db, $_POST['mail']);
-    $password = password_hash($_POST['nouveau_mdp'], PASSWORD_DEFAULT);
+    $password = password_hash($_POST['change_password'], PASSWORD_DEFAULT);
 
     // Vérifie dans quelle base de données se trouve le mail :
     $partenaireQ = $db->prepare(
@@ -29,7 +28,7 @@ if (isset($_POST['nouveau_mdp'])) {
     $structureQ->close();
 
     if (isset($partenaire)) {
-        if (password_verify($_POST['nouveau_mdp'], $passwordHashP)) {
+        if (password_verify($_POST['change_password'], $passwordHashP)) {
             echo 'Vous ne pouvez pas réutiliser le même mot de passe';
             die();
         } else {
@@ -46,7 +45,7 @@ if (isset($_POST['nouveau_mdp'])) {
         }
     }
     if (isset($structure)) {
-        if (password_verify($_POST['nouveau_mdp'], $passwordHashS)) {
+        if (password_verify($_POST['change_password'], $passwordHashS)) {
             echo 'Vous ne pouvez pas réutiliser le même mot de passe';
             die();
         } else {

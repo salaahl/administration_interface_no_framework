@@ -2,7 +2,8 @@
 
 
 // PAGE PARTENAIRES :
-if (isset($_POST['page_partenaire'])) {
+if (isset($_POST['partner'])) {
+  
   $mail = $_POST['mail'];
   $reponse = [];
 
@@ -24,6 +25,7 @@ if (isset($_POST['page_partenaire'])) {
   $mes_adresses = [];
   $mes_mails = [];
   $mes_mails_part = [];
+  
   while ($structureQ->fetch()) {
     $mes_adresses[] = htmlspecialchars($adresseS);
     $mes_mails[] = htmlspecialchars($mailS);
@@ -36,19 +38,17 @@ if (isset($_POST['page_partenaire'])) {
 
   $structureQ->close();
 
-
   $partenaireQ = $db->prepare(
     "SELECT *
     FROM FitnessP_Partenaire
     WHERE mail = ?"
   );
+  
   $partenaireQ->bind_param("s", $mail);
   $partenaireQ->execute();
   $partenaireQ->store_result();
   $partenaireQ->bind_result($nom_marque, $nom, $mail, $mdp, $droits, $premiere_connexion, $nombre_de_structures, $permB, $permN, $permP);
   $partenaireQ->fetch();
-
-
 
   $reponse['nom'] = htmlspecialchars($nom);
   $reponse['perm_boissons'] = $permB;

@@ -1,9 +1,8 @@
 <?php
 
 
-
 // PAGE D'UNE STRUCTURE :
-if (isset($_POST['structure']) && isset($_POST['mail'])) {
+if (isset($_POST['structure_page']) && isset($_POST['mail'])) {
 
   $mail = $_POST['mail'];
   $reponse = [];
@@ -13,6 +12,7 @@ if (isset($_POST['structure']) && isset($_POST['mail'])) {
     FROM FitnessP_Structure
     WHERE mail = ?"
   );
+  
   $structureQ->bind_param("s", $mail);
   $structureQ->execute();
   $structureQ->store_result();
@@ -40,6 +40,7 @@ if (isset($_POST['structure']) && isset($_POST['mail'])) {
       FROM FitnessP_Partenaire
       WHERE mail = ?"
   );
+  
   $PartenaireQ->bind_param("s", $mailP);
   $PartenaireQ->execute();
   $PartenaireQ->store_result();

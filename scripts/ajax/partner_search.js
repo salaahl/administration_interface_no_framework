@@ -8,7 +8,7 @@ $(document).ready(function () {
       $.ajax({
         type: "POST",
         url: "../index.php",
-        data: { rech_partenaire: encodeURIComponent(saisie) },
+        data: { partner_search: encodeURIComponent(saisie) },
         dataType: "JSON",
         success: function (data) {
           if (data.noms.length !== 0) {
@@ -39,7 +39,7 @@ $(document).ready(function () {
                   "</div>" +
                   "</div>" +
                   '<div class="lien">' +
-                  '<a href="partenaire.php?mail_p=' +
+                  '<a href="partner.php?mail_p=' +
                   data.mails[c] +
                   '">Détails</a>' +
                   "</div>" +

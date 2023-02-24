@@ -1,4 +1,3 @@
-// Se déclenchera chaque fois que N'IMPORTE QUEL switch de ma page sera modifié :
 $(".toggle").change(function () {
   let toggle = $(this).prop("checked");
   let id = $(this).attr("id");
@@ -22,6 +21,9 @@ $(".toggle").change(function () {
         permission: permission,
         adresse: adresse,
       },
+      error: function() {
+        alert("Impossible de mettre à jour la permission. Veuillez contacter un administrateur.")
+      }
     });
   } else {
     return toggle

@@ -8,8 +8,9 @@ $("#statut_part").change(function () {
       url: "../index.php",
       method: "POST",
       data: { activer_partenaire: toggle, mail: mail },
-      success: function (data) {},
-      error: function () {},
+      error: function () {
+        alert('Impossible de mettre à jour le statut. Veuillez contacter un administrateur.')
+      },
     });
   } else {
     return toggle

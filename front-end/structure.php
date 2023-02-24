@@ -71,7 +71,7 @@ if (!isset($_SESSION['admin'])) {
           </div>
           <div class="delete-structure">
             <form action="../index.php" method="POST">
-              <input type="hidden" id="delete_structure" name="delete_structure" value="" />
+              <input type="hidden" id="delete_structure" name="structure_delete" value="" />
               <button class="btn btn-danger" 
               type="submit" 
               onclick="return confirm(

@@ -45,7 +45,7 @@ $("#statut_du_partenaire").change(function () {
       }
     },
     error: function () {
-      console.log("Erreur dans le back");
+      console.log("Erreur. Veuillez contacter un administrateur.");
     },
   });
 });

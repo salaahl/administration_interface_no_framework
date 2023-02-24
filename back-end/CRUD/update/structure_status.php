@@ -2,11 +2,11 @@
 
 
 // ACTIVER/DESACTIVER STRUCTURES :
-if (isset($_POST['activer_structure'])) {
+if (isset($_POST['structure_activate'])) {
 
   $mail = mysqli_real_escape_string($db, $_POST['mail']);
 
-  if ($_POST['activer_structure'] == 'true') {
+  if ($_POST['structure_activate'] == 'true') {
     $statutStc = 1;
   } else {
     $statutStc = 0;

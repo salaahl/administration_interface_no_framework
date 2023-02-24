@@ -50,7 +50,7 @@ if (!isset($_SESSION['admin'])) {
           </div>
           <div class="delete-partner">
             <form action="../index.php" method="POST">
-              <input type="hidden" id="delete_partner" name="delete_partner" value="" />
+              <input type="hidden" id="partner_delete" name="partner_delete" />
               <button class="btn btn-danger" 
               type="submit" 
               onclick="return confirm(
@@ -60,12 +60,9 @@ if (!isset($_SESSION['admin'])) {
               </button>
             </form>
           </div>
-
         <?php } ?>
-
       </div>
 
-      <!-- Structures du partenaire -->
       <div class="label_structures">
         <h3>Mes structures</h3>
       </div>

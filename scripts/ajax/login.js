@@ -46,9 +46,8 @@ $(document).ready(function () {
           $(".id_incorrects").text(response.droits);
         }
       },
-      error: function (xhr) {
-        var err = JSON.parse(xhr.responseText);
-        console.log(err.message);
+      error: function () {
+        alert('Connexion impossible. Veuillez contacter un administrateur.')
       },
     });
   });

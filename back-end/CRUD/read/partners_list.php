@@ -2,7 +2,7 @@
 
 
 // LISTE DES PARTENAIRES :
-if (isset($_POST['liste_part'])) {
+if (isset($_POST['partners_list'])) {
 
   $reponse = [];
 
@@ -16,14 +16,12 @@ if (isset($_POST['liste_part'])) {
   $niveau_droits = [];
   $nombre_de_structures = [];
 
-
   foreach ($partenairesQ as $partenaire) {
     $nom[] = htmlspecialchars($partenaire['nom']);
     $mail[] = htmlspecialchars($partenaire['mail']);
     $niveau_droits[] = htmlspecialchars($partenaire['niveau_droits']);
     $nombre_de_structures[] = htmlspecialchars($partenaire['nombre_de_structures']);
   }
-
 
   $reponse['noms'] = $nom;
   $reponse['mails'] = $mail;
@@ -32,7 +30,6 @@ if (isset($_POST['liste_part'])) {
 
   echo json_encode($reponse);
 }
-
 
 
 
@@ -50,7 +47,6 @@ if (isset($_POST['statut_du_partenaire'])) {
       FROM FitnessP_Partenaire WHERE niveau_droits > 0"
     );
 
-
     $nom = [];
     $mail = [];
     $niveau_droits = [];
@@ -67,16 +63,13 @@ if (isset($_POST['statut_du_partenaire'])) {
     $reponse['mails'] = $mail;
     $reponse['niveau_droits'] = $niveau_droits;
     $reponse['nombre_de_structures'] = $nombre_de_structures;
-  }
-  //
-  else {
+  }  else {
     $reponse = [];
     
     $partenairesQ = $db->query(
       "SELECT nom, mail, niveau_droits, nombre_de_structures
       FROM FitnessP_Partenaire"
     );
-
 
     $nom = [];
     $mail = [];

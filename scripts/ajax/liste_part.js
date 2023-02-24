@@ -1,10 +1,8 @@
 $(document).ready(function () {
-  var listePart = "ok";
-
   $.ajax({
     type: "POST",
     url: "../index.php",
-    data: { liste_part: listePart },
+    data: { liste_part: "initialize" },
     dataType: "JSON",
     success: function (data) {
       for (let c = 0; data.noms.length > c; c++) {

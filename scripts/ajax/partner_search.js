@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  $("#recherche_part").keyup(function () {
-    $("#resultat_part").html("");
+  $("#partner_search").keyup(function () {
+    $("#search_result").html("");
 
     let saisie = $(this).val();
 
@@ -20,7 +20,7 @@ $(document).ready(function () {
                 var statut = "Partenaire désactivé";
                 var classe = "part_non_actif";
               }
-              $("#resultat_part").append(
+              $("#search_result").append(
                 '<div class="liste_part">' +
                   '<div class="infos_part">' +
                   "<div>" +
@@ -48,7 +48,7 @@ $(document).ready(function () {
               $(".liste_part").animate({ opacity: 1 }, 500);
             }
           } else {
-            document.getElementById("resultat_part").innerHTML =
+            document.getElementById("search_result").innerHTML =
               "<div style='font-size: 20px; text-align: center;'>Aucun partenaire trouvé</div>";
           }
         },

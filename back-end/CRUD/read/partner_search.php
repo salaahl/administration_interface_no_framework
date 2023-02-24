@@ -2,9 +2,9 @@
 
 
 // RECHERCHE D'UN PARTENAIRE :
-if (isset($_POST['rech_partenaire'])) {
+if (isset($_POST['partner_search'])) {
 
-  $filtre = mysqli_real_escape_string($db, $_POST['rech_partenaire']);
+  $filtre = mysqli_real_escape_string($db, $_POST['partner_search']);
   $saisie = (string) trim($filtre);
 
   $reponse = [];

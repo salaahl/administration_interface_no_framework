@@ -7,15 +7,15 @@ if (isset($_POST['change_password'])) {
     $password = password_hash($_POST['change_password'], PASSWORD_DEFAULT);
 
     // Vérifie dans quelle base de données se trouve le mail :
-    $partenaireQ = $db->prepare(
+    $partnerQ = $db->prepare(
         "SELECT mail, mot_de_passe FROM FitnessP_Partenaire WHERE mail = ?"
     );
-    $partenaireQ->bind_param("s", $mail);
-    $partenaireQ->execute();
-    $partenaireQ->store_result();
-    $partenaireQ->bind_result($partenaire, $passwordHashP);
-    $partenaireQ->fetch();
-    $partenaireQ->close();
+    $partnerQ->bind_param("s", $mail);
+    $partnerQ->execute();
+    $partnerQ->store_result();
+    $partnerQ->bind_result($partner, $passwordHashP);
+    $partnerQ->fetch();
+    $partnerQ->close();
 
     $structureQ = $db->prepare(
         "SELECT mail, mot_de_passe FROM FitnessP_Structure WHERE mail = ?"
@@ -27,21 +27,21 @@ if (isset($_POST['change_password'])) {
     $structureQ->fetch();
     $structureQ->close();
 
-    if (isset($partenaire)) {
+    if (isset($partner)) {
         if (password_verify($_POST['change_password'], $passwordHashP)) {
             echo 'Vous ne pouvez pas réutiliser le même mot de passe';
             die();
         } else {
             // Met la colonne 1è connexion sur "1" si ce n'est pas déjà fait et change le mot de passe :
-            $partenaireU = $db->prepare(
+            $partnerU = $db->prepare(
                 "UPDATE FitnessP_Partenaire
                 SET premiere_connexion = 1, mot_de_passe = ?
                 WHERE mail = ?"
             );
 
-            $partenaireU->bind_param("ss", $password, $mail);
-            $partenaireU->execute();
-            $partenaireU->close();
+            $partnerU->bind_param("ss", $password, $mail);
+            $partnerU->execute();
+            $partnerU->close();
         }
     }
     

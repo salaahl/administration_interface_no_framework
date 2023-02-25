@@ -1,16 +1,14 @@
 <?php
 
-
-
 // PERMISSIONS GLOBALES D'UN PARTENAIRE :
 if (isset($_POST['id']) && isset($_POST['partner_toggle'])) {
-  if ($_POST['id'] == 'perm_boissons' || $_POST['id'] == 'perm_planning' || $_POST['id'] == 'perm_newsletter') {
+  if ($_POST['id'] == 'drink_permission' || $_POST['id'] == 'planning_permission' || $_POST['id'] == 'newsletter_permission') {
 
-    $perm = $_POST['id'];
+    $permission_id = $_POST['id'];
     $mail = htmlspecialchars($_POST['mail']);
     $toggle = mysqli_real_escape_string($db, $_POST['partner_toggle']);
 
-    if ($toggle == "true") {
+    if ($toggle == true) {
       $toggle = 1;
     } else {
       $toggle = 0;
@@ -18,7 +16,7 @@ if (isset($_POST['id']) && isset($_POST['partner_toggle'])) {
 
     $permP = $db->prepare(
       "UPDATE FitnessP_Partenaire
-        SET $perm = ?
+        SET $permission_id = ?
         WHERE mail = ?"
     );
 
@@ -28,7 +26,7 @@ if (isset($_POST['id']) && isset($_POST['partner_toggle'])) {
 
     $permS = $db->prepare(
       "UPDATE FitnessP_Structure
-        SET $perm = ?
+        SET $permission_id = ?
         WHERE mail_part = ?"
     );
 

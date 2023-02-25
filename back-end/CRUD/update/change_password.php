@@ -35,8 +35,8 @@ if (isset($_POST['change_password'])) {
             // Met la colonne 1è connexion sur "1" si ce n'est pas déjà fait et change le mot de passe :
             $partenaireU = $db->prepare(
                 "UPDATE FitnessP_Partenaire
-            SET premiere_connexion = 1, mot_de_passe = ?
-            WHERE mail = ?"
+                SET premiere_connexion = 1, mot_de_passe = ?
+                WHERE mail = ?"
             );
 
             $partenaireU->bind_param("ss", $password, $mail);
@@ -44,6 +44,7 @@ if (isset($_POST['change_password'])) {
             $partenaireU->close();
         }
     }
+    
     if (isset($structure)) {
         if (password_verify($_POST['change_password'], $passwordHashS)) {
             echo 'Vous ne pouvez pas réutiliser le même mot de passe';
@@ -51,8 +52,8 @@ if (isset($_POST['change_password'])) {
         } else {
             $structureU = $db->prepare(
                 "UPDATE FitnessP_Structure
-            SET premiere_connexion = 1, mot_de_passe = ?
-            WHERE mail = ?"
+                SET premiere_connexion = 1, mot_de_passe = ?
+                WHERE mail = ?"
             );
 
             $structureU->bind_param("ss", $password, $mail);
@@ -60,11 +61,8 @@ if (isset($_POST['change_password'])) {
             $structureU->close();
         }
     }
-
-    // On démarre la session
+    
     session_start();
-    // On détruit les variables de notre session
     session_unset();
-    // On détruit notre session
     session_destroy();
 }

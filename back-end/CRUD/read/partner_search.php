@@ -1,17 +1,16 @@
 <?php
 
-
 // RECHERCHE D'UN PARTENAIRE :
 if (isset($_POST['partner_search'])) {
 
-  $filtre = mysqli_real_escape_string($db, $_POST['partner_search']);
-  $saisie = (string) trim($filtre);
+  $filter = mysqli_real_escape_string($db, $_POST['partner_search']);
+  $input = (string) trim($filter);
 
-  $reponse = [];
-  $noms = [];
-  $mails = [];
-  $niveau_droits_partenaires = [];
-  $nombre_de_structures_partenaires = [];
+  $response = [];
+  $partner_city = [];
+  $partner_mail = [];
+  $partner_rights = [];
+  $partner_structures = [];
 
   $partenaireQ = $db->prepare(
     "SELECT nom, mail, niveau_droits, nombre_de_structures
@@ -20,22 +19,23 @@ if (isset($_POST['partner_search'])) {
           LIMIT 3"
   );
 
-  $partenaireQ->bind_param("s", $saisie);
+  $partenaireQ->bind_param("s", $input);
   $partenaireQ->execute();
   $partenaireQ->store_result();
-  $partenaireQ->bind_result($nom, $mail, $niveau_droits, $nombre_de_structures);
+  $partenaireQ->bind_result($city, $mail, $rights, $structures_number);
+  
   while ($partenaireQ->fetch()) {
-    $noms[] = htmlspecialchars($nom);
-    $mails[] = htmlspecialchars($mail);
-    $niveau_droits_partenaires[] = htmlspecialchars($niveau_droits);
-    $nombre_de_structures_partenaires[] = htmlspecialchars($nombre_de_structures);
+    $partner_city[] = htmlspecialchars($city);
+    $partner_mail[] = htmlspecialchars($mail);
+    $partner_rights[] = htmlspecialchars($rights);
+    $partner_structures[] = htmlspecialchars($structures_number);
   }
   $partenaireQ->close();
 
-  $reponse['noms'] = $noms;
-  $reponse['mails'] = $mails;
-  $reponse['niveau_droits'] = $niveau_droits_partenaires;
-  $reponse['nombre_de_structures'] = $nombre_de_structures_partenaires;
+  $reponse['$partner_city'] = $partner_city;
+  $reponse['$partner_mail'] = $partner_mail;
+  $reponse['$partner_rights'] = $partner_rights;
+  $reponse['$partner_structures'] = $partner_structures;
 
-  echo json_encode($reponse);
+  echo json_encode($response);
 }

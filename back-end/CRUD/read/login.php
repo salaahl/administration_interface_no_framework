@@ -1,12 +1,11 @@
 <?php
 
-
 // LOGIN :
 if (isset($_POST['login_mail']) && isset($_POST['login_password'])) {
 
   $mail = mysqli_real_escape_string($db, $_POST['login_mail']);
-  $mdp = $_POST['login_password'];
-  $reponse = [];
+  $password = $_POST['login_password'];
+  $response = [];
 
   $adminsQ = $db->prepare(
     "SELECT mot_de_passe_admin, niveau_droits FROM FitnessP_Admin WHERE mail_admin = ?"
@@ -14,7 +13,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_password'])) {
   $adminsQ->bind_param("s", $mail);
   $adminsQ->execute();
   $adminsQ->store_result();
-  $adminsQ->bind_result($mot_de_passe_admin, $niveau_droits_admin);
+  $adminsQ->bind_result($admin_password, $admin_rights);
   
   if (isset($adminsQ)) {
     $adminsQ->fetch();
@@ -27,7 +26,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_password'])) {
   $partenairesQ->bind_param("s", $mail);
   $partenairesQ->execute();
   $partenairesQ->store_result();
-  $partenairesQ->bind_result($mot_de_passe_partenaire, $niveau_droits_partenaire, $premiere_connexion_partenaire);
+  $partenairesQ->bind_result($partner_password, $partner_rights, $partner_first_connection);
   
   if (isset($partenairesQ)) {
     $partenairesQ->fetch();
@@ -39,7 +38,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_password'])) {
   $structuresQ->bind_param("s", $mail);
   $structuresQ->execute();
   $structuresQ->store_result();
-  $structuresQ->bind_result($mail_part, $mot_de_passe_structure, $niveau_droits_structure, $premiere_connexion_structure);
+  $structuresQ->bind_result($partner_mail, $structure_password, $structure_rights, $structure_first_connection);
   
   if (isset($structuresQ)) {
     $structuresQ->fetch();
@@ -50,41 +49,41 @@ if (isset($_POST['login_mail']) && isset($_POST['login_password'])) {
   $structuresQ->close();
 
   // LOGIN ADMIN :
-  if (isset($mot_de_passe_admin) && password_verify($mdp, $mot_de_passe_admin)) {
+  if (isset($admin_password) && password_verify($password, $admin_password)) {
     session_start();
     $_SESSION['mail'] = htmlspecialchars($mail);
-    $_SESSION['admin'] = 'admin';
-    $_SESSION['niveau_droits'] = htmlspecialchars($niveau_droits_admin);
-    $reponse['droits'] = htmlspecialchars($niveau_droits_admin);
-    echo json_encode($reponse);
+    $_SESSION['admin'] = 'initialize';
+    $_SESSION['rights'] = htmlspecialchars($admin_rights);
+    $response['rights'] = htmlspecialchars($admin_rights);
+    echo json_encode($response);
     die();
   }
   
   // LOGIN PARTENAIRE :
-  if (isset($mot_de_passe_partenaire) && password_verify($mdp, $mot_de_passe_partenaire)) {
+  if (isset($partner_password) && password_verify($password, $partner_password)) {
     session_start();
-    $_SESSION['mail_p'] = htmlspecialchars($mail);
-    $_SESSION['niveau_droits'] = htmlspecialchars($niveau_droits_partenaire);
-    $reponse['droits'] = htmlspecialchars($niveau_droits_partenaire);
-    $reponse['mail'] = htmlspecialchars($mail);
-    $reponse['premiere_connexion'] = htmlspecialchars($premiere_connexion_partenaire);
-    echo json_encode($reponse);
+    $_SESSION['partner_mail'] = htmlspecialchars($mail);
+    $_SESSION['rights'] = htmlspecialchars($partner_rights);
+    $response['rights'] = htmlspecialchars($partner_rights);
+    $response['mail'] = htmlspecialchars($mail);
+    $response['first_connection'] = htmlspecialchars($partner_first_connection);
+    echo json_encode($response);
     die();
   }
   
   // LOGIN STRUCTURE :
-  if (isset($mot_de_passe_structure) && password_verify($mdp, $mot_de_passe_structure)) {
+  if (isset($structure_password) && password_verify($password, $structure_password)) {
     session_start();
-    $_SESSION['mail_s'] = htmlspecialchars($mail);
-    $_SESSION['niveau_droits'] = htmlspecialchars($niveau_droits_structure);
-    $reponse['droits'] = htmlspecialchars($niveau_droits_structure);
-    $reponse['mail'] = htmlspecialchars($mail);
-    $reponse['mail_part'] = htmlspecialchars($mail_part);
-    $reponse['premiere_connexion'] = htmlspecialchars($premiere_connexion_structure);
-    echo json_encode($reponse);
+    $_SESSION['structure_mail'] = htmlspecialchars($mail);
+    $_SESSION['rights'] = htmlspecialchars($structure_rights);
+    $response['rights'] = htmlspecialchars($structure_rights);
+    $response['mail'] = htmlspecialchars($mail);
+    $response['partner_mail'] = htmlspecialchars($partner_mail);
+    $response['first_connection'] = htmlspecialchars($structure_first_connection);
+    echo json_encode($response);
     die();
   }
 
-  $reponse['droits'] = 'Identifiants non reconnus. Veuillez réessayer.';
-  echo json_encode($reponse);
+  $response['droits'] = 'Identifiants inconnus. Veuillez réessayer.';
+  echo json_encode($response);
 }

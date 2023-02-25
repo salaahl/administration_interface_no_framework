@@ -14,9 +14,9 @@ if (isset($_POST['partner_search'])) {
 
   $partenaireQ = $db->prepare(
     "SELECT nom, mail, niveau_droits, nombre_de_structures
-          FROM FitnessP_Partenaire
-          WHERE nom LIKE CONCAT(?, '%')
-          LIMIT 3"
+    FROM FitnessP_Partenaire
+    WHERE nom LIKE CONCAT(?, '%')
+    LIMIT 3"
   );
 
   $partenaireQ->bind_param("s", $input);

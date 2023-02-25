@@ -1,13 +1,12 @@
 <?php
 
 
-$marque = $db->query(
+$brand = $db->query(
   "CREATE TABLE IF NOT EXISTS FitnessP (
   marque VARCHAR(10) NOT NULL DEFAULT 'FitnessP',
   PRIMARY KEY (marque)
   )"
 );
-
 
 $admin = $db->query(
   "CREATE TABLE IF NOT EXISTS FitnessP_Admin (
@@ -20,7 +19,7 @@ $admin = $db->query(
   )"
 );
 
-$partenaire = $db->query(
+$partner = $db->query(
   "CREATE TABLE IF NOT EXISTS FitnessP_Partenaire (
   nom_marque VARCHAR(10) NOT NULL DEFAULT 'FitnessP',
   nom VARCHAR(100) NOT NULL UNIQUE,
@@ -53,12 +52,12 @@ $structure = $db->query(
   )"
 );
 
-$marque_verif = $db->query(
+$brand_check = $db->query(
   "SELECT * FROM FitnessP"
 );
 
-if (mysqli_num_rows($marque_verif) < 1) {
-  $marque_insert = $db->query(
+if (mysqli_num_rows($brand_check) < 1) {
+  $brand_insert = $db->query(
     "INSERT INTO FitnessP VALUES()"
   );
 };

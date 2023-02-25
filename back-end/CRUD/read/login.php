@@ -19,7 +19,6 @@ if (isset($_POST['login_mail']) && isset($_POST['login_password'])) {
     $adminsQ->fetch();
   }
 
-
   $partenairesQ = $db->prepare(
     "SELECT mot_de_passe, niveau_droits, premiere_connexion FROM FitnessP_Partenaire WHERE mail = ?"
   );

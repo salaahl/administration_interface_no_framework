@@ -4,7 +4,7 @@
     grid-template-rows: [ ligneUne ] 2fr [ ligneDeux ] 2fr [ ligneTrois ] 1fr [ ligneQuatre ] 2fr [ laDer ];
   }
 
-  .en_tete {
+  .en-tete {
     grid-row-start: ligneUne;
     grid-column-start: colonneUne;
     grid-column-end: laDer;
@@ -39,7 +39,7 @@
     flex-wrap: wrap;
   }
 
-  .en_tete {
+  .en-tete {
     grid-row-start: ligneUne;
     grid-column-start: colonneUne;
     grid-column-end: colonneTrois;
@@ -75,7 +75,7 @@ body {
   padding: 1%;
 }
 
-.en_tete {
+.en-tete {
   display: grid;
   margin-right: 2%;
   border-radius: 20px;
@@ -83,7 +83,7 @@ body {
   background-color: lightgrey;
 }
 
-.statut_partenaire {
+.partner-status {
   grid-row-start: ligneTrois;
   grid-column-start: colonneUne;
   grid-column-end: LaDer;
@@ -97,7 +97,7 @@ body {
   background-color: darkgray;
 }
 
-#nom_part {
+#city {
   grid-row-start: ligneUne;
   grid-column-start: colonneUne;
   grid-column-end: LaDer;

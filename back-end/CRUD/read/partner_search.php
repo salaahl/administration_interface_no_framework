@@ -32,10 +32,10 @@ if (isset($_POST['partner_search'])) {
   }
   $partenaireQ->close();
 
-  $reponse['$partner_city'] = $partner_city;
-  $reponse['$partner_mail'] = $partner_mail;
-  $reponse['$partner_rights'] = $partner_rights;
-  $reponse['$partner_structures'] = $partner_structures;
+  $reponse['city'] = $partner_city;
+  $reponse['mail'] = $partner_mail;
+  $reponse['rights'] = $partner_rights;
+  $reponse['structures'] = $partner_structures;
 
   echo json_encode($response);
 }

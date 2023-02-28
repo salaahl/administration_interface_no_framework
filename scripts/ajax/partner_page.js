@@ -9,7 +9,7 @@ $(document).ready(function () {
     dataType: "JSON",
     success: function (data) {
       if (data.structure_mail != "") {
-        for (let c = 0; data.adress.length > c; c++) {
+        for (let c = 0; data.address.length > c; c++) {
           $("#structures").append(
             '<div class="structure">' +
               '<a id="structure_' +
@@ -19,7 +19,7 @@ $(document).ready(function () {
               "&partner_mail=" +
               data.partner_mail[c] +
               '">' +
-              '<div class="structure_adresse">' +
+              '<div class="structure_address">' +
               data.address[c] +
               "</div>" +
               '<div class="structure_mail">' +
@@ -32,11 +32,11 @@ $(document).ready(function () {
       }
       $("h1").append(data.city);
       $("#mail").append(partnerMail);
-      $("#partner_delete").val(partnerMail);
+      $("#partner-delete").val(partnerMail);
       $("#status").prop("checked", data.status);
-      $("#drinks_permission").prop("checked", data.drinks_permission);
-      $("#newsletter_permission").prop("checked", data.newsletter_permission);
-      $("#planning_permission").prop("checked", data.planning_permission);
+      $("#drinks-permission").prop("checked", data.drinks_permission);
+      $("#newsletter-permission").prop("checked", data.newsletter_permission);
+      $("#planning-permission").prop("checked", data.planning_permission);
     },
     error: function () {
       alert('Impossible de charger correctement la page. Veuillez contacter un administrateur.');

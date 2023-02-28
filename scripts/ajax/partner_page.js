@@ -9,12 +9,12 @@ $(document).ready(function () {
     dataType: "JSON",
     success: function (data) {
       if (data.structure_mail != "") {
-        for (let c = 0; data.address.length > c; c++) {
+        for (let c = 0; data.adress.length > c; c++) {
           $("#structures").append(
             '<div class="structure">' +
               '<a id="structure_' +
               c +
-              '" href="structure.php?structure_mail=' +
+              '" href="structure_page.php?structure_mail=' +
               data.structure_mail[c] +
               "&partner_mail=" +
               data.partner_mail[c] +
@@ -30,7 +30,7 @@ $(document).ready(function () {
           );
         }
       }
-      $("h1").append(data.city);
+      $("city").append(data.city);
       $("#mail").append(partnerMail);
       $("#partner-delete").val(partnerMail);
       $("#status").prop("checked", data.status);

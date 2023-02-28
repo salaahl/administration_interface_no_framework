@@ -12,7 +12,7 @@ $(document).ready(function () {
       $("#structure-delete").val(structureMail);
       $("#structure-mail").append(structureMail);
       $("#partner-page").attr("href",
-        "../front-end/partner.php?partner_mail=" + partnerMail
+        "../front-end/partner_page.php?partner_mail=" + partnerMail
       );
       $("#city").append(data.city);
       $("#structure-address").append(data.address);

@@ -1,36 +1,36 @@
 <?php
 
 // PERMISSIONS GLOBALES D'UN PARTENAIRE :
-if (isset($_POST['id']) && isset($_POST['partner_toggle'])) {
-  if ($_POST['id'] == 'drink_permission' || $_POST['id'] == 'planning_permission' || $_POST['id'] == 'newsletter_permission') {
+if (isset($_POST['partner_mail']) && isset($_POST['partner_toggle']) && isset($_POST['toggle_name'])) {
+  if ($_POST['toggle_name'] === 'drinks_permission' || $_POST['toggle_name'] === 'newsletter_permission' || $_POST['toggle_name'] === 'planning_permission') {
 
-    $permission_id = $_POST['id'];
-    $mail = htmlspecialchars($_POST['mail']);
-    $toggle = mysqli_real_escape_string($db, $_POST['partner_toggle']);
+    $toggle = $_POST['toggle_name'];
+    $mail = htmlspecialchars($_POST['partner_mail']);
+    $toggle_status = mysqli_real_escape_string($db, $_POST['partner_toggle']);
 
-    if ($toggle == true) {
-      $toggle = 1;
+    if ($toggle_status == "true") {
+      $toggle_status = 1;
     } else {
-      $toggle = 0;
+      $toggle_status = 0;
     }
 
     $permP = $db->prepare(
       "UPDATE FitnessP_Partenaire
-        SET $permission_id = ?
+        SET $toggle = ?
         WHERE mail = ?"
     );
 
-    $permP->bind_param("is", $toggle, $mail);
+    $permP->bind_param("is", $toggle_status, $mail);
     $permP->execute();
     $permP->close();
 
     $permS = $db->prepare(
       "UPDATE FitnessP_Structure
-        SET $permission_id = ?
+        SET $toggle = ?
         WHERE mail_part = ?"
     );
 
-    $permS->bind_param("is", $toggle, $mail);
+    $permS->bind_param("is", $toggle_status, $mail);
     $permS->execute();
     $permS->close();
 
@@ -79,8 +79,8 @@ if (isset($_POST['id']) && isset($_POST['partner_toggle'])) {
     </thead>
     <tbody>
       <tr>
-        <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($_POST['nom']) . ",
-        <br>Votre modification de la permission globale - " . htmlspecialchars($_POST['permission']) . " - a bien été prise en compte.
+        <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($_POST['city']) . ",
+        <br>Votre modification de la permission globale - " . htmlspecialchars($_POST['toggle_name']) . " - a bien été prise en compte.
         <br>Cordialement,
         <br>Votre club FitnessP</td>
       </tr>

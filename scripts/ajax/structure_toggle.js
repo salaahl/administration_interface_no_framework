@@ -1,25 +1,23 @@
 $(".toggle").change(function () {
-  let toggle = $(this).prop("checked");
-  let id = $(this).attr("id");
-  let nom = document.getElementById("nom_partenaire").textContent.slice(26);
-  let adresse = document
-    .getElementById("adresse_structure")
+  let structureToggle = $(this).prop("checked");
+  let toggleName = $(this).attr("name");
+  let structureCity = document.getElementById("city").textContent.slice(26);
+  let structureAddress = document
+    .getElementById("structure_address")
     .textContent.slice(10);
-  let permission = id.slice(5);
   let searchParams = new URLSearchParams(window.location.search);
-  let mail = searchParams.get("mail_s");
+  let structureMail = searchParams.get("structure_mail");
 
   if (confirm("Veuillez confirmer votre choix") == true) {
     $.ajax({
       url: "../index.php",
       method: "POST",
       data: {
-        toggle_structure: toggle,
-        id: id,
-        mail: mail,
-        nom: nom,
-        permission: permission,
-        adresse: adresse,
+        structure_toggle: structureToggle,
+        toggle_name: toggleName,
+        structure_mail: structureMail,
+        structure_city: structureCity,
+        structure_address: structureAddress,
       },
       error: function() {
         alert("Impossible de mettre à jour la permission. Veuillez contacter un administrateur.")

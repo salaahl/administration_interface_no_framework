@@ -29,32 +29,25 @@ if (isset($_SESSION['mail_p'])) {
 <body>
   <div class="container">
     <form>
-
       <h2 class="formTitle">
         Veuillez modifier votre mot de passe
       </h2>
-
       <div class="inputDiv">
         <label class="inputLabel" for="change_password">Nouveau mot de passe :</label>
-        <input type="password" id="change_password" name="change_password" required>
+        <input type="password" id="change_password" name="change_password">
       </div>
-
       <div class="inputDiv">
-        <label class="inputLabel" for="change_password">Confirmez le nouveau mot de passe :</label>
-        <input type="password" id="change_password" name="change_password" required>
+        <label class="inputLabel" for="confirm_password">Confirmez le nouveau mot de passe :</label>
+        <input type="password" id="confirm_password" name="confirm_password">
       </div>
-
       <button type="submit" class="btn btn-dark">Valider</button>
     </form>
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
-    integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"
-    integrity="sha512-6S5LYNn3ZJCIm0f9L6BCerqFlQ4f5MwNKq+EthDXabtaJvg3TuFLhpno9pcm+5Ynm6jdA9xfpQoMz2fcjVMk9g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js" integrity="sha512-6S5LYNn3ZJCIm0f9L6BCerqFlQ4f5MwNKq+EthDXabtaJvg3TuFLhpno9pcm+5Ynm6jdA9xfpQoMz2fcjVMk9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./scripts/composants/nbp.min.js"></script>
+  <script src="./scripts/composants/common_password.js"></script>
   <script src="./scripts/ajax/change_password.js"></script>
 </body>
 

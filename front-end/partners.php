@@ -50,7 +50,7 @@ if (!isset($_SESSION['admin'])) {
     integrity="sha512-6S5LYNn3ZJCIm0f9L6BCerqFlQ4f5MwNKq+EthDXabtaJvg3TuFLhpno9pcm+5Ynm6jdA9xfpQoMz2fcjVMk9g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../scripts/composants/sidebar.js"></script>
-  <script src="../scripts/ajax/partners_list.js"></script>
+  <script src="../scripts/ajax/partners.js"></script>
   <script src="../scripts/ajax/partners_filter.js"></script>
 </body>
 

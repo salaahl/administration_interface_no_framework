@@ -1,14 +1,10 @@
 $(function() {
 
-  $.getScript("../composants/common_password.js");
-
   $.validator.addMethod(
     "noCommonPassword",
     function() {
-      return commonPassword('#change_password');
-    },
-    "Votre mot de passe n'est pas assez sécurisé. Veuillez le modifier."
-  );
+      return commonPassword('#change_password')
+    });
 
   $("form").validate({
     rules: {
@@ -25,7 +21,8 @@ $(function() {
     messages: {
       change_password: {
         required: "Ce champ est obligatoire.",
-        minlength: "Veuillez saisir au moins 5 caractères."
+        minlength: "Veuillez saisir au moins 5 caractères.",
+        noCommonPassword: "Votre mot de passe n'est pas assez sécurisé. Veuillez le modifier."
       },
       confirm_password: {
         required: "Ce champ est obligatoire.",

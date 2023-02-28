@@ -2,7 +2,7 @@
 
 // Va gérer la logique des formulaires de création d'admins
 if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
-  
+
   $mail = mysqli_real_escape_string($db, $_POST['admin_mail']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
   $passwordHash = password_hash($password, PASSWORD_DEFAULT);
@@ -13,7 +13,7 @@ if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
       SELECT FitnessP_Admin.mail_admin, FitnessP_Partenaire.mail, FitnessP_Structure.mail
       FROM FitnessP_Admin, FitnessP_Partenaire, FitnessP_Structure
       WHERE 
-      FitnessP_Admin.mail = ?
+      FitnessP_Admin.mail_admin = ?
       OR
       FitnessP_Partenaire.mail = ?
       OR
@@ -37,4 +37,5 @@ if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
     $adminR->bind_param("ss", $mail, $passwordHash);
     $adminR->execute();
     $adminR->close();
+  }
 }

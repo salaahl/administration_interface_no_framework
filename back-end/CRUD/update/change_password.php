@@ -1,7 +1,7 @@
 <?php
 
 // Va gérer la logique de changement de mot de passe lors de la 1è connexion :
-if (isset($_POST['change_password'])) {
+if (isset($_POST['change_password']) && isset($_POST['mail'])) {
 
     $mail = mysqli_real_escape_string($db, $_POST['mail']);
     $password = password_hash($_POST['change_password'], PASSWORD_DEFAULT);

@@ -6,14 +6,14 @@
 if (!isset($_SESSION['admin'])) {
 
   // 2è vérification : les droits
-  if ($_SESSION['niveau_droits'] < 2) {
+  if ($_SESSION['rights'] < 2) {
     echo '<script>alert("Connectez-vous pour accéder à cette page.");
           window.location.href="../login.html"</script>';
   }
 
   // 3è vérification : empêcher un partenaire de se rendre sur la page d'un autre partenaire
-  else if ($_SESSION['mail_p'] !== $_GET['mail_p']) {
-    echo '<script>window.location.href="./partner.php?mail=' . $_SESSION['mail'] . '"</script>';
+  else if ($_SESSION['partner_mail'] !== $_GET['partner_mail']) {
+    echo '<script>window.location.href="./partner.php?partner_mail=' . $_SESSION['partner_mail'] . '"</script>';
   }
 }
 ?>
@@ -81,18 +81,18 @@ if (!isset($_SESSION['admin'])) {
         <h6>Permissions globales : </h6>
         <!-- Switch 1 -->
         <div class="form-check form-switch">
-          <input class="form-check-input toggle" type="checkbox" role="switch" id="perm_boissons" />
-          <label class="form-check-label" for="toggle_boissons">Vente de boissons</label>
+          <input class="form-check-input toggle" type="checkbox" role="switch" id="drinks_permission" />
+          <label class="form-check-label" for="drinks_permission">Vente de boissons</label>
         </div>
         <!-- Switch 2 -->
         <div class="form-check form-switch">
-          <input class="form-check-input toggle" type="checkbox" role="switch" id="perm_newsletter" />
-          <label class="form-check-label" for="toggle_newsletter">Envoyer une newsletter</label>
+          <input class="form-check-input toggle" type="checkbox" role="switch" id="newsletter_permission" />
+          <label class="form-check-label" for="newsletter_permission">Envoyer une newsletter</label>
         </div>
         <!-- Switch 3 -->
         <div class="form-check form-switch">
-          <input class="form-check-input toggle" type="checkbox" role="switch" id="perm_planning" />
-          <label class="form-check-label" for="toggle_planning">Gérer le planning d'une équipe</label>
+          <input class="form-check-input toggle" type="checkbox" role="switch" id="planning_permission" />
+          <label class="form-check-label" for="planning_permission">Gérer le planning d'une équipe</label>
         </div>
       </div>
     </div>
@@ -114,7 +114,7 @@ if (!isset($_SESSION['admin'])) {
     <script src="../scripts/composants/sidebar_part_struc.js"></script>
   <?php } ?>
   
-  <script src="../scripts/ajax/partner.js"></script>
+  <script src="../scripts/ajax/partner_page.js"></script>
   <script src="../scripts/ajax/partner_status.js"></script>
   <script src="../scripts/ajax/partner_toggle.js"></script>
 </body>

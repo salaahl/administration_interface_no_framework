@@ -1,10 +1,10 @@
 <?php
 
 // LOGIN :
-if (isset($_POST['login_mail']) && isset($_POST['login_password'])) {
+if (isset($_POST['login_mail']) && isset($_POST['password'])) {
 
   $mail = mysqli_real_escape_string($db, $_POST['login_mail']);
-  $password = $_POST['login_password'];
+  $password = $_POST['password'];
   $response = [];
 
   $adminsQ = $db->prepare(
@@ -50,7 +50,7 @@ if (isset($_POST['login_mail']) && isset($_POST['login_password'])) {
   // LOGIN ADMIN :
   if (isset($admin_password) && password_verify($password, $admin_password)) {
     session_start();
-    $_SESSION['mail'] = htmlspecialchars($mail);
+    $_SESSION['admin_mail'] = htmlspecialchars($mail);
     $_SESSION['admin'] = 'initialize';
     $_SESSION['rights'] = htmlspecialchars($admin_rights);
     $response['rights'] = htmlspecialchars($admin_rights);

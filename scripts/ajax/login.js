@@ -4,10 +4,6 @@ $(document).ready(function () {
   $.ajax({
     url: "index.php",
   });
-  
-  function changerMdp() {
-    return location.replace("./change_password.php?mail=" + response.mail);
-  }
 
   $("form").on("submit", function (e) {
     e.preventDefault();
@@ -17,33 +13,36 @@ $(document).ready(function () {
       dataType: "JSON",
       data: $(this).serialize(),
       success: function (response) {
-        if (response.droits == 3) {
-          location.replace("./front-end/liste_part.php");
-        } else if (response.droits == 2) {
-          if (response.premiere_connexion == 1) {
+        function changerMdp() {
+          return location.replace("./change_password.php?mail=" + response.mail);
+        }
+        if (response.rights == 3) {
+          location.replace("./front-end/partners.php");
+        } else if (response.rights == 2) {
+          if (response.first_connection == 1) {
             location.replace(
-              "./front-end/partenaire.php?mail_p=" + response.mail
+              "./front-end/partner.php?partner_mail=" + response.mail
             );
           } else {
             changerMdp();
           }
-        } else if (response.droits == 1) {
-          if (response.premiere_connexion == 1) {
+        } else if (response.rights == 1) {
+          if (response.first_connection == 1) {
             location.replace(
-              "./front-end/structure.php?mail_s=" +
-                response.mail +
-                "&mail_p=" +
-                response.mail_part
+              "./front-end/structure.php?structure_mail=" +
+                response.structure_mail +
+                "&partner_mail=" +
+                response.partner_mail
             );
           } else {
             changerMdp();
           }
-        } else if (response.droits == 0) {
+        } else if (response.rights == 0) {
           $(".id_incorrects").text(
             "Profil désactivé. Veuillez contacter un administrateur."
           );
         } else {
-          $(".id_incorrects").text(response.droits);
+          $(".id_incorrects").text(response.rights);
         }
       },
       error: function () {
@@ -51,4 +50,5 @@ $(document).ready(function () {
       },
     });
   });
+
 });

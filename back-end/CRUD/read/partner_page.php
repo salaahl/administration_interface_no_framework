@@ -1,13 +1,13 @@
 <?php
 
 // PAGE PARTENAIRES :
-if (isset($_POST['partner_page']) && isset($_POST['mail'])) {
+if (isset($_POST['partner_page']) && isset($_POST['partner_mail'])) {
   
-  $mail = $_POST['mail'];
+  $partner_mail = $_POST['partner_mail'];
   $response = [];
 
   $structureQ = $db->prepare(
-    "SELECT adresse, s.mail, mail_part
+    "SELECT adresse, s.mail
     FROM FitnessP_Structure s
     JOIN FitnessP_Partenaire p
     ON s.mail_part = p.mail
@@ -17,19 +17,18 @@ if (isset($_POST['partner_page']) && isset($_POST['mail'])) {
   $structureQ->bind_param("s", $mail);
   $structureQ->execute();
   $structureQ->store_result();
-  $structureQ->bind_result($structure_adress, $structure_mail, $partner_mail);
+  $structureQ->bind_result($structure_adress, $mail);
 
-  $addresses = [];
-  $structures_mails = [];
+  $address = [];
+  $structure_mail = [];
   
   while ($structureQ->fetch()) {
-    $addresses[] = htmlspecialchars($structure_adress);
-    $structures_mails[] = htmlspecialchars($structure_mail);
+    $address[] = htmlspecialchars($structure_adress);
+    $structure_mail[] = htmlspecialchars($mail);
   }
 
-  $response['addresses'] = $addresses;
-  $response['structures_mails'] = $structures_mails;
-  $response['partner_mail'] = htmlspecialchars($partner_mail);
+  $response['address'] = $address;
+  $response['structure_mail'] = $structure_mail;
 
   $structureQ->close();
 
@@ -42,11 +41,11 @@ if (isset($_POST['partner_page']) && isset($_POST['mail'])) {
   $partenaireQ->bind_param("s", $mail);
   $partenaireQ->execute();
   $partenaireQ->store_result();
-  $partenaireQ->bind_result($city, $boisson_permission, $newsletter_permission, $planning_permission);
+  $partenaireQ->bind_result($city, $drinks_permission, $newsletter_permission, $planning_permission);
   $partenaireQ->fetch();
 
   $response['city'] = htmlspecialchars($city);
-  $response['boisson_permission'] = $boisson_permission;
+  $response['drinks_permission'] = $drinks_permission;
   $response['newsletter_permission'] = $newsletter_permission;
   $response['planning_permission'] = $planning_permission;
 

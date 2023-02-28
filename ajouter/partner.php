@@ -1,4 +1,6 @@
-<?php session_start();
+<?php 
+/*
+session_start();
 
 // Niveau 3 : accessible uniquement aux admins
 if (!isset($_SESSION['admin'])) {
@@ -6,6 +8,7 @@ if (!isset($_SESSION['admin'])) {
   echo '<script>alert("Vous n\'avez pas les droits requis pour accéder à cette page.");
           window.location.href="../login.html"</script>';
 }
+*/
 ?>
 
 <!DOCTYPE html>

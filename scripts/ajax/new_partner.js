@@ -14,9 +14,9 @@ $(function () {
             alert(data);
           }
       },
-      error: function (xhr) {
+      error: function () {
         alert(
-          "Erreur"
+          "Erreur. Le partenaire n'a pas été créé."
         );
       },
     });

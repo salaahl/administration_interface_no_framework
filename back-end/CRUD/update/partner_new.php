@@ -1,7 +1,8 @@
 <?php
 
 // Va gérer la logique des formulaires de création de partenaires
-if (isset($_POST["partner_name"])) {
+if (isset($_POST["partner_name"]) && isset($_POST["partner_mail"]) && isset($_POST["partner_password"])) {
+
   $city = mysqli_real_escape_string($db, $_POST["partner_name"]);
   $mail = mysqli_real_escape_string($db, $_POST["partner_mail"]);
   $password = mysqli_real_escape_string($db, $_POST["partner_password"]);
@@ -14,7 +15,7 @@ if (isset($_POST["partner_name"])) {
       SELECT FitnessP_Admin.mail_admin, FitnessP_Partenaire.mail, FitnessP_Structure.mail
       FROM FitnessP_Admin, FitnessP_Partenaire, FitnessP_Structure
       WHERE 
-      FitnessP_Admin.mail = ?
+      FitnessP_Admin.mail_admin = ?
       OR
       FitnessP_Partenaire.mail = ?
       OR
@@ -24,11 +25,11 @@ if (isset($_POST["partner_name"])) {
   $check->bind_param("sss", $mail, $mail, $mail);
   $check->execute();
   $check->store_result();
-  $check->bind_result($exist);
+  $check->bind_result($result);
   $check->fetch();
   $check->close();
 
-  if ($exist == false) {
+  if ($result == false) {
     $partenaireR = $db->prepare(
       "INSERT INTO FitnessP_Partenaire (nom, mail, mot_de_passe)
       VALUES (?, ?, ?)"
@@ -86,14 +87,14 @@ if (isset($_POST["partner_name"])) {
                 <tr>
                   <td>mail :</td>
                   <td>" .
-                htmlspecialchars($mail) .
-                "</td>
+        htmlspecialchars($mail) .
+        "</td>
                 </tr>
                 <tr>
                   <td>mot de passe :</td>
                   <td>" .
-                htmlspecialchars($password) .
-                "</td>
+        htmlspecialchars($password) .
+        "</td>
                 </tr>
                 <tr>
                   <td colspan='2'><a href='https://ecf-salaha.herokuapp.com/login.html' class='btn btn-primary'>Se connecter</a></td>

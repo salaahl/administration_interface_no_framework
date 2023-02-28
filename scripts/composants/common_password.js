@@ -1,5 +1,3 @@
-$.getScript("./nbp.min.js");
-
 function commonPassword (passwordInput) 
 {
     NBP.init("mostcommon_10000", "./collections", true);

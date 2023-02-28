@@ -6,7 +6,7 @@ function OpenCon()
         $dbhost = "localhost";
         $dbuser = "root";
         $dbpass = "";
-        $conn = "ECF";
+        $conn = "ECF-2.0";
         ($db = new mysqli($dbhost, $dbuser, $dbpass, $conn)) or
             die("Connect failed: %s\n" . $db->error);
 

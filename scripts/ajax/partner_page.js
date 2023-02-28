@@ -1,11 +1,11 @@
 $(document).ready(function () {
-  var searchParams = new URLSearchParams(window.location.search);
-  var partner_mail = searchParams.get("partner_mail");
+  let searchParams = new URLSearchParams(window.location.search);
+  let partnerMail = searchParams.get("partner_mail");
 
   $.ajax({
     type: "post",
     url: "../index.php",
-    data: { partner_page: "initialize", partner_mail: partner_mail },
+    data: { partner_page: "initialize", partner_mail: partnerMail },
     dataType: "JSON",
     success: function (data) {
       if (data.structure_mail != "") {
@@ -20,7 +20,7 @@ $(document).ready(function () {
               data.partner_mail[c] +
               '">' +
               '<div class="structure_adresse">' +
-              data.adress[c] +
+              data.address[c] +
               "</div>" +
               '<div class="structure_mail">' +
               data.structure_mail[c] +
@@ -30,10 +30,9 @@ $(document).ready(function () {
           );
         }
       }
-
       $("h1").append(data.city);
-      $("#mail").append(partner_mail);
-      $("#partner_delete").val(partner_mail);
+      $("#mail").append(partnerMail);
+      $("#partner_delete").val(partnerMail);
       $("#status").prop("checked", data.status);
       $("#drinks_permission").prop("checked", data.drinks_permission);
       $("#newsletter_permission").prop("checked", data.newsletter_permission);

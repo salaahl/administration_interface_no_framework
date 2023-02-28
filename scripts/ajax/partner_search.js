@@ -1,9 +1,7 @@
 $(document).ready(function () {
   $("#partner_search").keyup(function () {
     $("#search_result").html("");
-
     let saisie = $(this).val();
-
     if (saisie != "") {
       $.ajax({
         type: "POST",
@@ -11,41 +9,41 @@ $(document).ready(function () {
         data: { partner_search: encodeURIComponent(saisie) },
         dataType: "JSON",
         success: function (data) {
-          if (data.noms.length !== 0) {
-            for (let c = 0; data.noms.length > c; c++) {
-              if (data.niveau_droits[c] == 2) {
-                var statut = "Partenaire activé";
-                var classe = "part_actif";
+          if (data.city.length !== 0) {
+            for (let c = 0; data.city.length > c; c++) {
+              if (data.rights[c] == 2) {
+                var status = "Partenaire activé";
+                var classe = "partner_active";
               } else {
-                var statut = "Partenaire désactivé";
-                var classe = "part_non_actif";
+                var status = "Partenaire désactivé";
+                var classe = "partner_inactive";
               }
               $("#search_result").append(
-                '<div class="liste_part">' +
-                  '<div class="infos_part">' +
+                '<div class="partner_list">' +
+                  '<div class="partner-about">' +
                   "<div>" +
-                  data.noms[c] +
+                  data.city[c] +
                   "</div>" +
                   "<div>" +
-                  data.mails[c] +
+                  data.mail[c] +
                   "</div>" +
                   "<div>Nombre de structures : " +
-                  data.nombre_de_structures[c] +
+                  data.structures[c] +
                   "</div>" +
                   '<div class="' +
                   classe +
                   ' px-2">' +
-                  statut +
+                  status +
                   "</div>" +
                   "</div>" +
-                  '<div class="lien">' +
-                  '<a href="partner.php?mail_p=' +
-                  data.mails[c] +
+                  '<div class="partner-link">' +
+                  '<a href="partner_page.php?partner_mail=' +
+                  data.mail[c] +
                   '">Détails</a>' +
                   "</div>" +
                   "</div>"
               );
-              $(".liste_part").animate({ opacity: 1 }, 500);
+              $(".partner-list").animate({ opacity: 1 }, 500);
             }
           } else {
             document.getElementById("search_result").innerHTML =

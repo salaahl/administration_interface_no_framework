@@ -24,7 +24,7 @@ if (!isset($_SESSION['admin'])) {
   <title>Page partenaire</title>
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <link href="../css/partner.css" rel="stylesheet" type="text/css" />
+  <link href="../css/partner_page.css" rel="stylesheet" type="text/css" />
   <link href="../css/bouton_desac.css" rel="stylesheet" type="text/css" />
   <link href="../css/sidebar.css" rel="stylesheet" type="text/css" />
 </head>
@@ -32,24 +32,24 @@ if (!isset($_SESSION['admin'])) {
   <div class="row">
     <div class="col-4 col-md-4 col-lg-3" id="sidebar"></div>
     <div class="body col-8 col-md-8 col-lg-9">
-      <div class="en_tete">
-        <div id="nom_part">
-          <h1 id="nom_partenaire" class="display-6">Partenaire : </h1>
+      <div class="en-tete">
+        <div>
+          <h1 id="city" class="display-6">Partenaire : </h1>
         </div>
         <div id="mail">Mail : </div>
 
-        <?php if (isset($_SESSION['niveau_droits']) && $_SESSION['niveau_droits'] > 2) { ?>
+        <?php if (isset($_SESSION['rights']) && $_SESSION['rights'] > 2) { ?>
 
-          <div class="statut_partenaire">
-            <label for="">Partenaire actif : </label>
+          <div class="partner-status">
+            <label>Partenaire actif : </label>
             <label class="switch">
               <input id="statut_part" type="checkbox">
               <div class="slider"></div>
             </label>
           </div>
-          <div class="delete-partner">
+          <div class="partner-delete">
             <form action="../index.php" method="POST">
-              <input type="hidden" id="partner_delete" name="partner_delete" />
+              <input type="hidden" id="partner-delete" name="partner_delete" />
               <button class="btn btn-danger" 
               type="submit" 
               onclick="return confirm(
@@ -80,17 +80,17 @@ if (!isset($_SESSION['admin'])) {
         <h6>Permissions globales : </h6>
         <!-- Switch 1 -->
         <div class="form-check form-switch">
-          <input type="checkbox" role="switch" class="form-check-input toggle" id="drinks_permission" name="drinks_permission" />
+          <input type="checkbox" role="switch" class="form-check-input toggle" id="drinks-permission" name="drinks_permission" />
           <label class="form-check-label" for="drinks_permission">Vente de boissons</label>
         </div>
         <!-- Switch 2 -->
         <div class="form-check form-switch">
-          <input type="checkbox" role="switch" class="form-check-input toggle" id="newsletter_permission" name="newsletter_permission" />
+          <input type="checkbox" role="switch" class="form-check-input toggle" id="newsletter-permission" name="newsletter_permission" />
           <label class="form-check-label" for="newsletter_permission">Envoyer une newsletter</label>
         </div>
         <!-- Switch 3 -->
         <div class="form-check form-switch">
-          <input type="checkbox" role="switch" class="form-check-input toggle" id="planning_permission" name="planning_permission" />
+          <input type="checkbox" role="switch" class="form-check-input toggle" id="planning-permission" name="planning_permission" />
           <label class="form-check-label" for="planning_permission">Gérer le planning d'une équipe</label>
         </div>
       </div>

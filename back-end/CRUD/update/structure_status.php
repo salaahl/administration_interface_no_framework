@@ -1,10 +1,9 @@
 <?php
 
-
 // ACTIVER/DESACTIVER STRUCTURES :
-if (isset($_POST['structure_activate'])) {
+if (isset($_POST['structure_activate']) && isset($_POST['structure_mail'])) {
 
-  $mail = mysqli_real_escape_string($db, $_POST['mail']);
+  $structure_mail = mysqli_real_escape_string($db, $_POST['structure_mail']);
 
   if ($_POST['structure_activate'] == 'true') {
     $statutStc = 1;
@@ -17,7 +16,7 @@ if (isset($_POST['structure_activate'])) {
       SET niveau_droits = ?
       WHERE mail = ?"
   );
-  $statutS->bind_param("is", $statutStc, $mail);
+  $statutS->bind_param("is", $statutStc, $structure_mail);
   $statutS->execute();
   $statutS->close();
 }

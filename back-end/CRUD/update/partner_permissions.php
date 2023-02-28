@@ -79,7 +79,7 @@ if (isset($_POST['partner_mail']) && isset($_POST['partner_toggle']) && isset($_
     </thead>
     <tbody>
       <tr>
-        <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($_POST['city']) . ",
+        <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($_POST['partner_city']) . ",
         <br>Votre modification de la permission globale - " . htmlspecialchars($_POST['toggle_name']) . " - a bien été prise en compte.
         <br>Cordialement,
         <br>Votre club FitnessP</td>

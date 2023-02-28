@@ -1,27 +1,26 @@
 <?php
 
-
 // PERMISSIONS D'UNE STRUCTURE :
-if (isset($_POST['id']) && isset($_POST['structure_toggle'])) {
-  if ($_POST['id'] === 'perm_boissons' || $_POST['id'] === 'perm_planning' || $_POST['id'] === 'perm_newsletter') {
+if (isset($_POST['structure_mail']) && isset($_POST['structure_toggle']) && isset($_POST['toggle_name'])) {
+  if ($_POST['toggle_name'] === 'drinks_permission' || $_POST['toggle_name'] === 'newsletter_permission' || $_POST['toggle_name'] === 'planning_permission') {
 
-    $perm = $_POST['id'];
-    $mail = htmlspecialchars($_POST['mail']);
-    $toggle = mysqli_real_escape_string($db, $_POST['structure_toggle']);
+    $toggle = $_POST['toggle_name'];
+    $mail = htmlspecialchars($_POST['structure_mail']);
+    $toggle_status = mysqli_real_escape_string($db, $_POST['structure_toggle']);
 
-    if ($toggle == "true") {
-      $toggle = 1;
+    if ($toggle_status == "true") {
+      $toggle_status = 1;
     } else {
-      $toggle = 0;
+      $toggle_status = 0;
     }
 
     $permS = $db->prepare(
       "UPDATE FitnessP_Structure
-        SET $perm = ?
+        SET $toggle = ?
         WHERE mail = ?"
     );
 
-    $permS->bind_param("is", $toggle, $mail);
+    $permS->bind_param("is", $toggle_status, $mail);
     $permS->execute();
     $permS->close();
   }
@@ -70,9 +69,9 @@ if (isset($_POST['id']) && isset($_POST['structure_toggle'])) {
   </thead>
   <tbody>
     <tr>
-      <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($_POST['nom']) . ",
-      <br>La modification de la permission - " . htmlspecialchars($_POST['permission']) . "
-       - liée à la structure située au " . htmlspecialchars($_POST['adresse']) . " a bien été prise en compte.
+      <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($_POST['structure_city']) . ",
+      <br>La modification de la permission - " . htmlspecialchars($_POST['toggle_name']) . "
+       - liée à la structure située au " . htmlspecialchars($_POST['structure_address']) . " a bien été prise en compte.
        <br>Cordialement,
        <br>Votre club FitnessP</td>
     </tr>

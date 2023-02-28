@@ -23,8 +23,8 @@ if (!isset($_SESSION['admin'])) {
       <div class="col-4 col-md-4 col-lg-3" id="sidebar"></div>
       <main class="ui-widget col-8 col-md-8 col-lg-9 pt-2 px-5">
         <h1 class="display-6">Rechercher un partenaire :</h1>
-        <input id="recherche_part" placeholder="Rechercher un partenaire">
-        <div id="resultat_part"></div>
+        <input id="partner_search" placeholder="Rechercher un partenaire">
+        <div id="search_result"></div>
       </main>
     </div>
      <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="

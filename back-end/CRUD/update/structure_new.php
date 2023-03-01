@@ -1,47 +1,56 @@
 <?php
-// Va gérer la logique des formulaires de création de structures
-if (isset($_POST["structure_adress"])) {
 
-  $adresse = mysqli_real_escape_string($db, $_POST["structure_adress"]);
+if (isset($_POST["structure_address"])) {
+
+  $address = mysqli_real_escape_string($db, $_POST["structure_address"]);
   $mail = mysqli_real_escape_string($db, $_POST["structure_mail"]);
   $password = mysqli_real_escape_string($db, $_POST["structure_password"]);
   $city = mysqli_real_escape_string($db, $_POST["city"]);
 
   $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-  // Etape 1 : récupérer les infos du partenaire à injecter dans la structure grâce à son nom
-  $partenaireQ = $db->prepare("SELECT mail, perm_boissons, perm_newsletter, perm_planning
-    FROM FitnessP_Partenaire
-    WHERE nom = ?");
+  // Je récupère les infos du partenaire à injecter dans la structure :
+  $partenaireQ = $db->prepare(
+    "SELECT drinks_permission, newsletter_permission, planning_permission
+    FROM partner
+    WHERE city = ?"
+  );
 
   $partenaireQ->bind_param("s", $city);
   $partenaireQ->execute();
   $partenaireQ->store_result();
-  $partenaireQ->bind_result($mail_partenaire, $perm_boissons_p, $perm_newsletter_p, $perm_planning_p);
+  $partenaireQ->bind_result($drinks_permission, $newsletter_permission, $planning_permission);
   $partenaireQ->fetch();
   $partenaireQ->close();
 
-  // Etape 2 : vérifie que le mail n'est pas déjà utilisé par un partenaire
-  $mail_verif = $db->prepare("SELECT mail
-    FROM FitnessP_Partenaire
-    WHERE mail = ?");
+  // Je vérifie que le mail est dispo dans mes différents tableaux SQL :
+  $check = $db->prepare(
+    "SELECT EXISTS(
+      SELECT admin.mail, partner.mail, structure.mail
+      FROM admin, partner, structure
+      WHERE 
+      admin.mail = ?
+      OR
+      partner.mail = ?
+      OR
+      structure.mail = ?
+    )"
+  );
+  $check->bind_param("sss", $mail, $mail, $mail);
+  $check->execute();
+  $check->store_result();
+  $check->bind_result($result);
+  $check->fetch();
+  $check->close();
 
-  $mail_verif->bind_param("s", $mail);
-  $mail_verif->execute();
-  $mail_verif->store_result();
-  $mail_verif->bind_result($verif);
-  $mail_verif->fetch();
-  $mail_verif->close();
-
-  // Si le résultat est positif :
-  if ($verif == null) {
+  if ($result == false) {
 
     $structureR = $db->prepare(
-      "INSERT IGNORE INTO FitnessP_Structure (adresse, mail, mot_de_passe, mail_part, perm_boissons, perm_planning, perm_newsletter)
+      "INSERT INTO structure (address, mail, password, city, drinks_permission, planning_permission, newsletter_permission)
       VALUES (?, ?, ?, ?, ?, ?, ?)"
     );
 
-    $structureR->bind_param("ssssiii", $adresse, $mail, $passwordHash, $mail_partenaire, $perm_boissons_p, $perm_planning_p, $perm_newsletter_p);
+    $structureR->bind_param("ssssiii", $address, $mail, $passwordHash, $city, $drinks_permission, $planning_permission, $newsletter_permission);
     $structureR->execute();
 
     // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
@@ -49,12 +58,14 @@ if (isset($_POST["structure_adress"])) {
 
       $structureR->close();
 
-      // Etape 3 : incrémentation de la colonne "nombre_de_structures"
-      $partenaireU = $db->prepare("UPDATE FitnessP_Partenaire
-      SET nombre_de_structures = nombre_de_structures + 1
-      WHERE mail = ?");
+      // Incrémentation de la colonne "number_of_structures" :
+      $partenaireU = $db->prepare(
+        "UPDATE partner
+        SET number_of_structures = number_of_structures + 1
+        WHERE city = ?"
+      );
 
-      $partenaireU->bind_param("s", $mail_partenaire);
+      $partenaireU->bind_param("s", $city);
       $partenaireU->execute();
       $partenaireU->close();
 

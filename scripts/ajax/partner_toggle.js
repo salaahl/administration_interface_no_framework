@@ -1,7 +1,8 @@
 $(".toggle").change(function () {
   let partnerToggle = $(this).prop("checked");
   let toggleName = $(this).attr("name");
-  let partnerCity = document.getElementById("nom_partenaire").textContent.slice(13);
+  console.log(toggleName)
+  let partnerCity = document.getElementById("city").textContent.slice(13);
   let searchParams = new URLSearchParams(window.location.search);
   let partnerMail = searchParams.get("partner_mail");
 

@@ -21,7 +21,7 @@ $(document).ready(function () {
         } else if (response.rights == 2) {
           if (response.first_connection == 1) {
             location.replace(
-              "./front-end/partner.php?partner_mail=" + response.mail
+              "./front-end/partner_page.php?partner_mail=" + response.mail
             );
           } else {
             changerMdp();
@@ -29,7 +29,7 @@ $(document).ready(function () {
         } else if (response.rights == 1) {
           if (response.first_connection == 1) {
             location.replace(
-              "./front-end/structure.php?structure_mail=" +
+              "./front-end/structure_page.php?structure_mail=" +
                 response.structure_mail +
                 "&partner_mail=" +
                 response.partner_mail

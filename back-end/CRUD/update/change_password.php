@@ -8,7 +8,7 @@ if (isset($_POST['change_password']) && isset($_POST['mail'])) {
 
     // Vérifie dans quelle base de données se trouve le mail :
     $partnerQ = $db->prepare(
-        "SELECT mail, mot_de_passe FROM FitnessP_Partenaire WHERE mail = ?"
+        "SELECT mail, password FROM partner WHERE mail = ?"
     );
     $partnerQ->bind_param("s", $mail);
     $partnerQ->execute();
@@ -18,7 +18,7 @@ if (isset($_POST['change_password']) && isset($_POST['mail'])) {
     $partnerQ->close();
 
     $structureQ = $db->prepare(
-        "SELECT mail, mot_de_passe FROM FitnessP_Structure WHERE mail = ?"
+        "SELECT mail, password FROM structure WHERE mail = ?"
     );
     $structureQ->bind_param("s", $mail);
     $structureQ->execute();
@@ -34,8 +34,8 @@ if (isset($_POST['change_password']) && isset($_POST['mail'])) {
         } else {
             // Met la colonne 1è connexion sur "1" si ce n'est pas déjà fait et change le mot de passe :
             $partnerU = $db->prepare(
-                "UPDATE FitnessP_Partenaire
-                SET premiere_connexion = 1, mot_de_passe = ?
+                "UPDATE partner
+                SET first_connection = 1, password = ?
                 WHERE mail = ?"
             );
 
@@ -51,8 +51,8 @@ if (isset($_POST['change_password']) && isset($_POST['mail'])) {
             die();
         } else {
             $structureU = $db->prepare(
-                "UPDATE FitnessP_Structure
-                SET premiere_connexion = 1, mot_de_passe = ?
+                "UPDATE structure
+                SET first_connection = 1, password = ?
                 WHERE mail = ?"
             );
 

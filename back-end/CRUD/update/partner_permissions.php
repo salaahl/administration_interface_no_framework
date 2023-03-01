@@ -15,7 +15,7 @@ if (isset($_POST['partner_mail']) && isset($_POST['partner_toggle']) && isset($_
     }
 
     $permP = $db->prepare(
-      "UPDATE FitnessP_Partenaire
+      "UPDATE partner
         SET $toggle = ?
         WHERE mail = ?"
     );
@@ -25,7 +25,7 @@ if (isset($_POST['partner_mail']) && isset($_POST['partner_toggle']) && isset($_
     $permP->close();
 
     $permS = $db->prepare(
-      "UPDATE FitnessP_Structure
+      "UPDATE structure
         SET $toggle = ?
         WHERE mail_part = ?"
     );

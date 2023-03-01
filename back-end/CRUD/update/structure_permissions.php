@@ -15,7 +15,7 @@ if (isset($_POST['structure_mail']) && isset($_POST['structure_toggle']) && isse
     }
 
     $permS = $db->prepare(
-      "UPDATE FitnessP_Structure
+      "UPDATE structure
         SET $toggle = ?
         WHERE mail = ?"
     );

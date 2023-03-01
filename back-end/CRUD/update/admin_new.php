@@ -10,14 +10,14 @@ if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
   // Je vérifie que le mail est dispo dans mes différents tableaux SQL
   $check = $db->prepare(
     "SELECT EXISTS(
-      SELECT FitnessP_Admin.mail_admin, FitnessP_Partenaire.mail, FitnessP_Structure.mail
-      FROM FitnessP_Admin, FitnessP_Partenaire, FitnessP_Structure
+      SELECT admin.mail, partner.mail, structure.mail
+      FROM admin, partner, structure
       WHERE 
-      FitnessP_Admin.mail_admin = ?
+      admin.mail = ?
       OR
-      FitnessP_Partenaire.mail = ?
+      partner.mail = ?
       OR
-      FitnessP_Structure.mail = ?
+      structure.mail = ?
     )"
   );
 
@@ -30,7 +30,7 @@ if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
 
   if ($exist == false) {
     $adminR = $db->prepare(
-      "INSERT INTO FitnessP_Admin (mail_admin, mot_de_passe_admin)
+      "INSERT INTO admin (mail, password)
     VALUES (?, ?)"
     );
 

@@ -7,8 +7,8 @@ if (isset($_POST['partner_page']) && isset($_POST['partner_mail'])) {
   $response = [];
   
   $partenaireQ = $db->prepare(
-    "SELECT nom, niveau_droits, perm_boissons, perm_newsletter, perm_planning
-    FROM FitnessP_Partenaire
+    "SELECT city, rights, drinks_permission, newsletter_permission, planning_permission
+    FROM partner
     WHERE mail = ?"
   );
   
@@ -34,26 +34,26 @@ if (isset($_POST['partner_page']) && isset($_POST['partner_mail'])) {
 
   // Structures du partenaire
   $structureQ = $db->prepare(
-    "SELECT adresse, mail
-    FROM FitnessP_Structure
-    WHERE mail_part = ?"
+    "SELECT address, mail
+    FROM structure
+    WHERE city = ?"
   );
 
-  $structureQ->bind_param("s", $partner_mail);
+  $structureQ->bind_param("s", $city);
   $structureQ->execute();
   $structureQ->store_result();
-  $structureQ->bind_result($structure_adress, $structure_mail);
+  $structureQ->bind_result($structure_address, $structure_mail);
 
-  $address = [];
-  $structure_mail = [];
+  $addresses = [];
+  $structures_mails = [];
   
   while ($structureQ->fetch()) {
-    $address[] = htmlspecialchars($structure_adress);
-    $structure_mail[] = htmlspecialchars($structure_mail);
+    $address[] = htmlspecialchars($structure_address);
+    $structures_mails[] = htmlspecialchars($structure_mail);
   }
 
-  $response['address'] = $address;
-  $response['structure_mail'] = $structure_mail;
+  $response['addresses'] = $addresses;
+  $response['structures_mails'] = $structures_mails;
 
   $structureQ->close();
 

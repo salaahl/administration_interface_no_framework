@@ -8,7 +8,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   $response = [];
 
   $adminsQ = $db->prepare(
-    "SELECT mot_de_passe_admin, niveau_droits FROM FitnessP_Admin WHERE mail_admin = ?"
+    "SELECT password, rights FROM admin WHERE mail = ?"
   );
   $adminsQ->bind_param("s", $mail);
   $adminsQ->execute();
@@ -20,7 +20,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   }
 
   $partenairesQ = $db->prepare(
-    "SELECT mot_de_passe, niveau_droits, premiere_connexion FROM FitnessP_Partenaire WHERE mail = ?"
+    "SELECT password, rights, first_connection FROM partner WHERE mail = ?"
   );
   $partenairesQ->bind_param("s", $mail);
   $partenairesQ->execute();
@@ -32,12 +32,12 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   }
 
   $structuresQ = $db->prepare(
-    "SELECT mail_part, mot_de_passe, niveau_droits, premiere_connexion FROM FitnessP_Structure WHERE mail = ?"
+    "SELECT city, password, rights, first_connection FROM structure WHERE mail = ?"
   );
   $structuresQ->bind_param("s", $mail);
   $structuresQ->execute();
   $structuresQ->store_result();
-  $structuresQ->bind_result($partner_mail, $structure_password, $structure_rights, $structure_first_connection);
+  $structuresQ->bind_result($city, $structure_password, $structure_rights, $structure_first_connection);
   
   if (isset($structuresQ)) {
     $structuresQ->fetch();
@@ -77,7 +77,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
     $_SESSION['rights'] = htmlspecialchars($structure_rights);
     $response['rights'] = htmlspecialchars($structure_rights);
     $response['mail'] = htmlspecialchars($mail);
-    $response['partner_mail'] = htmlspecialchars($partner_mail);
+    $response['city'] = htmlspecialchars($city);
     $response['first_connection'] = htmlspecialchars($structure_first_connection);
     echo json_encode($response);
     die();

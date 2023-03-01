@@ -12,8 +12,8 @@ if (isset($_POST['structure_activate']) && isset($_POST['structure_mail'])) {
   }
 
   $statutS = $db->prepare(
-    "UPDATE FitnessP_Structure
-      SET niveau_droits = ?
+    "UPDATE structure
+      SET rights = ?
       WHERE mail = ?"
   );
   $statutS->bind_param("is", $statutStc, $structure_mail);

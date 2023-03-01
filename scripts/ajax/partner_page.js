@@ -30,7 +30,7 @@ $(document).ready(function () {
           );
         }
       }
-      $("city").append(data.city);
+      $("#city").append(data.city);
       $("#mail").append(partnerMail);
       $("#partner-delete").val(partnerMail);
       $("#status").prop("checked", data.status);

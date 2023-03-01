@@ -6,8 +6,8 @@ if (isset($_POST['partners'])) {
   $response = [];
 
   $partenairesQ = $db->query(
-    "SELECT nom, mail, niveau_droits, nombre_de_structures
-     FROM FitnessP_Partenaire"
+    "SELECT city, mail, rights, number_of_structures
+     FROM partner"
   );
 
   $partner_city = [];
@@ -16,10 +16,10 @@ if (isset($_POST['partners'])) {
   $partner_structures_number = [];
 
   foreach ($partenairesQ as $partenaire) {
-    $partner_city[] = htmlspecialchars($partenaire['nom']);
+    $partner_city[] = htmlspecialchars($partenaire['city']);
     $partner_mail[] = htmlspecialchars($partenaire['mail']);
-    $partner_rights[] = htmlspecialchars($partenaire['niveau_droits']);
-    $partner_structures_number[] = htmlspecialchars($partenaire['nombre_de_structures']);
+    $partner_rights[] = htmlspecialchars($partenaire['rights']);
+    $partner_structures_number[] = htmlspecialchars($partenaire['number_of_structures']);
   }
 
   $response['partner_city'] = $partner_city;
@@ -46,21 +46,21 @@ if (isset($_POST['partner_status'])) {
   // Si le switch est activé...
   if ($toggle == "true") {
     $partenairesQ = $db->query(
-      "SELECT nom, mail, niveau_droits, nombre_de_structures
-      FROM FitnessP_Partenaire WHERE niveau_droits > 0"
+      "SELECT city, mail, rights, number_of_structures
+      FROM partner WHERE rights > 0"
     );
   } else {
     $partenairesQ = $db->query(
-      "SELECT nom, mail, niveau_droits, nombre_de_structures
-      FROM FitnessP_Partenaire"
+      "SELECT city, mail, rights, number_of_structures
+      FROM partner"
     );
   }
   
   foreach ($partenairesQ as $partenaire) {
-    $partner_city[] = htmlspecialchars($partenaire['nom']);
+    $partner_city[] = htmlspecialchars($partenaire['city']);
     $partner_mail[] = htmlspecialchars($partenaire['mail']);
-    $partner_rights[] = htmlspecialchars($partenaire['niveau_droits']);
-    $partner_structures_number[] = htmlspecialchars($partenaire['nombre_de_structures']);
+    $partner_rights[] = htmlspecialchars($partenaire['rights']);
+    $partner_structures_number[] = htmlspecialchars($partenaire['number_of_structures']);
   }
   
   $response['partner_city'] = $partner_city;

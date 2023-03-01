@@ -14,8 +14,8 @@ if (isset($_POST['partner_activate']) && isset($_POST['partner_mail'])) {
   }
 
   $statutP = $db->prepare(
-    "UPDATE FitnessP_Partenaire
-      SET niveau_droits = ?
+    "UPDATE partner
+      SET rights = ?
       WHERE mail = ?"
   );
   $statutP->bind_param("is", $statutPrt, $partner_mail);
@@ -23,11 +23,11 @@ if (isset($_POST['partner_activate']) && isset($_POST['partner_mail'])) {
   $statutP->close();
 
   $statutS = $db->prepare(
-    "UPDATE FitnessP_Structure
-      SET niveau_droits = ?
-      WHERE mail_part = ?"
+    "UPDATE structure
+      SET rights = ?
+      WHERE city = ?"
   );
-  $statutS->bind_param("is", $statutStc, $partner_mail);
+  $statutS->bind_param("is", $statutStc, $city);
   $statutS->execute();
   $statutS->close();
 }

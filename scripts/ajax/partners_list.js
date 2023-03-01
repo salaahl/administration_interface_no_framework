@@ -13,7 +13,7 @@ $(document).ready(function () {
           var statut = "Partenaire désactivé";
           var classe = "partner-inactive";
         }
-        $("#liste_part").append(
+        $("#partners-list").append(
           '<div class="liste_part col-12 col-xl-5">' +
             '<div class="partner-about">' +
             "<div>" +
@@ -31,7 +31,7 @@ $(document).ready(function () {
             statut +
             "</div>" +
             "</div>" +
-            '<div class="partner_link">' +
+            '<div class="partner-link">' +
             '<a href="partner_page.php?partner_mail=' +
             data.mails[c] +
             '">Détails</a>' +

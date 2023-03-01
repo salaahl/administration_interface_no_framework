@@ -5,25 +5,25 @@ $(document).ready(function () {
     data: { liste_part: "initialize" },
     dataType: "JSON",
     success: function (data) {
-      for (let c = 0; data.noms.length > c; c++) {
-        if (data.niveau_droits[c] == 2) {
+      for (let c = 0; data.city.length > c; c++) {
+        if (data.rights[c] == 2) {
           var statut = "Partenaire activé";
-          var classe = "part_actif";
+          var classe = "partner-active";
         } else {
           var statut = "Partenaire désactivé";
-          var classe = "part_non_actif";
+          var classe = "partner-inactive";
         }
         $("#liste_part").append(
           '<div class="liste_part col-12 col-xl-5">' +
-            '<div class="infos_part">' +
+            '<div class="partner-about">' +
             "<div>" +
-            data.noms[c] +
+            data.cities[c] +
             "</div>" +
             "<div>" +
             data.mails[c] +
             "</div>" +
             "<div>Nombre de structures : " +
-            data.nombre_de_structures[c] +
+            data.number_of_structures[c] +
             "</div>" +
             '<div class="' +
             classe +
@@ -31,8 +31,8 @@ $(document).ready(function () {
             statut +
             "</div>" +
             "</div>" +
-            '<div class="lien">' +
-            '<a href="partenaire.php?mail_p=' +
+            '<div class="partner_link">' +
+            '<a href="partner_page.php?partner_mail=' +
             data.mails[c] +
             '">Détails</a>' +
             "</div>" +

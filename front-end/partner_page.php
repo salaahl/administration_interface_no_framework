@@ -11,8 +11,8 @@ if (!isset($_SESSION['admin'])) {
   }
 
   // 3è vérification : empêcher un partenaire de se rendre sur la page d'un autre partenaire
-  else if ($_SESSION['partner_mail'] !== $_GET['partner_mail']) {
-    echo '<script>window.location.href="./partner.php?partner_mail=' . $_SESSION['partner_mail'] . '"</script>';
+  else if ($_SESSION['city'] !== $_GET['city']) {
+    echo '<script>window.location.href="./partner.php?city=' . $_SESSION['city'] . '"</script>';
   }
 }
 ?>

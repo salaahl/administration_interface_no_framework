@@ -20,12 +20,12 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   }
 
   $partenairesQ = $db->prepare(
-    "SELECT password, rights, first_connection FROM partner WHERE mail = ?"
+    "SELECT city, password, rights, first_connection FROM partner WHERE mail = ?"
   );
   $partenairesQ->bind_param("s", $mail);
   $partenairesQ->execute();
   $partenairesQ->store_result();
-  $partenairesQ->bind_result($partner_password, $partner_rights, $partner_first_connection);
+  $partenairesQ->bind_result($partner_city, $partner_password, $partner_rights, $partner_first_connection);
   
   if (isset($partenairesQ)) {
     $partenairesQ->fetch();
@@ -37,7 +37,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   $structuresQ->bind_param("s", $mail);
   $structuresQ->execute();
   $structuresQ->store_result();
-  $structuresQ->bind_result($city, $structure_password, $structure_rights, $structure_first_connection);
+  $structuresQ->bind_result($structure_city, $structure_password, $structure_rights, $structure_first_connection);
   
   if (isset($structuresQ)) {
     $structuresQ->fetch();
@@ -61,10 +61,10 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   // LOGIN PARTENAIRE :
   if (isset($partner_password) && password_verify($password, $partner_password)) {
     session_start();
-    $_SESSION['partner_mail'] = htmlspecialchars($mail);
+    $_SESSION['city'] = htmlspecialchars($partner_city);
     $_SESSION['rights'] = htmlspecialchars($partner_rights);
     $response['rights'] = htmlspecialchars($partner_rights);
-    $response['mail'] = htmlspecialchars($mail);
+    $response['city'] = htmlspecialchars($partner_city);
     $response['first_connection'] = htmlspecialchars($partner_first_connection);
     echo json_encode($response);
     die();
@@ -77,7 +77,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
     $_SESSION['rights'] = htmlspecialchars($structure_rights);
     $response['rights'] = htmlspecialchars($structure_rights);
     $response['mail'] = htmlspecialchars($mail);
-    $response['city'] = htmlspecialchars($city);
+    $response['city'] = htmlspecialchars($structure_city);
     $response['first_connection'] = htmlspecialchars($structure_first_connection);
     echo json_encode($response);
     die();

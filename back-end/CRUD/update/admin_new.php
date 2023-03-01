@@ -30,11 +30,11 @@ if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
 
   if ($exist == false) {
     $adminR = $db->prepare(
-      "INSERT INTO admin (mail, password)
-    VALUES (?, ?)"
+      "INSERT INTO admin (brand_name, mail, password)
+    VALUES (?, ?, ?)"
     );
 
-    $adminR->bind_param("ss", $mail, $passwordHash);
+    $adminR->bind_param("sss", 'fitnessp', $mail, $passwordHash);
     $adminR->execute();
     $adminR->close();
   }

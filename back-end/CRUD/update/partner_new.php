@@ -31,10 +31,10 @@ if (isset($_POST["partner_name"]) && isset($_POST["partner_mail"]) && isset($_PO
 
   if ($result == false) {
     $partenaireR = $db->prepare(
-      "INSERT INTO partner (city, mail, password)
-      VALUES (?, ?, ?)"
+      "INSERT INTO partner (brand_name, city, mail, password)
+      VALUES (?, ?, ?, ?)"
     );
-    $partenaireR->bind_param("sss", $city, $mail, $passwordHash);
+    $partenaireR->bind_param("ssss", 'fitnessp', $city, $mail, $passwordHash);
     $partenaireR->execute();
 
     // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue

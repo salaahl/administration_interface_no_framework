@@ -46,11 +46,11 @@ if (isset($_POST["structure_address"])) {
   if ($result == false) {
 
     $structureR = $db->prepare(
-      "INSERT INTO structure (address, mail, password, city, drinks_permission, planning_permission, newsletter_permission)
-      VALUES (?, ?, ?, ?, ?, ?, ?)"
+      "INSERT INTO structure (brand_name, address, mail, password, city, drinks_permission, planning_permission, newsletter_permission)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
     );
 
-    $structureR->bind_param("ssssiii", $address, $mail, $passwordHash, $city, $drinks_permission, $planning_permission, $newsletter_permission);
+    $structureR->bind_param("sssssiii", 'fitnessp', $address, $mail, $passwordHash, $city, $drinks_permission, $planning_permission, $newsletter_permission);
     $structureR->execute();
 
     // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue

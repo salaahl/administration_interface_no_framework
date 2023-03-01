@@ -19,8 +19,8 @@ if (!isset($_SESSION['admin'])) {
     }
   }
   // Cas de figure 2 : accès depuis un login partenaire
-  if (isset($_SESSION['partner_mail'])) {
-    if ($_SESSION['partner_mail'] !== $_GET['partner_mail']) {
+  if (isset($_SESSION['city'])) {
+    if ($_SESSION['city'] !== $_GET['city']) {
       echo '<script>window.location.href="./partner_page.php?partner_mail=' . $_SESSION['partner_mail'] . '"</script>';
     }
   }

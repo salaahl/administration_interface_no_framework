@@ -31,23 +31,18 @@ if (!isset($_SESSION['admin'])) {
       </h2>
 
       <div class="inputDiv">
-        <label class="inputLabel" for="partner_name">Nom de la ville :</label>
-        <input type="text" id="partner_name" name="partner_name" />
+        <label class="inputLabel" for="partner-city">Nom de la ville :</label>
+        <input type="text" id="partner-city" name="partner_city" />
       </div>
 
       <div class="inputDiv">
-        <label class="inputLabel" for="partner_mail">Entrez votre mail :</label>
-        <input type="email" id="partner_mail" name="partner_mail" />
+        <label class="inputLabel" for="partner-mail">Entrez votre mail :</label>
+        <input type="email" id="partner-mail" name="partner_mail" />
       </div>
 
       <div class="inputDiv">
-        <label class="inputLabel" for="partner_password">Entrez votre mot de passe :</label>
-        <input type="password" id="partner_password" name="partner_password" />
-      </div>
-
-      <div class="inputDiv">
-        <label class="inputLabel" for="confirm_password">Confirmez votre mot de passe :</label>
-        <input type="password" id="confirm_password" name="confirm_password" />
+        <label class="inputLabel" for="partner-password">Entrez votre mot de passe :</label>
+        <input type="password" id="partner-password" name="partner_password" />
       </div>
 
       <button type="submit" class="btn btn-dark">Valider</button>
@@ -61,7 +56,7 @@ if (!isset($_SESSION['admin'])) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"
     integrity="sha512-6S5LYNn3ZJCIm0f9L6BCerqFlQ4f5MwNKq+EthDXabtaJvg3TuFLhpno9pcm+5Ynm6jdA9xfpQoMz2fcjVMk9g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="../scripts/ajax/new_partner.js"></script>
+  <script src="../scripts/ajax/partner_new.js"></script>
 </body>
 
 </html>

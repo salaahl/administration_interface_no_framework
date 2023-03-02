@@ -1,27 +1,31 @@
 <?php
 
-if (isset($_POST["structure_address"])) {
+if (
+  isset($_POST["address"]) && isset($_POST["structure_mail"])
+  && isset($_POST["password"]) && isset($_POST["city"])
+) {
 
-  $address = mysqli_real_escape_string($db, $_POST["structure_address"]);
+  $brand = "fitnessp";
+  $address = mysqli_real_escape_string($db, $_POST["address"]);
   $mail = mysqli_real_escape_string($db, $_POST["structure_mail"]);
-  $password = mysqli_real_escape_string($db, $_POST["structure_password"]);
+  $password = mysqli_real_escape_string($db, $_POST["password"]);
   $city = mysqli_real_escape_string($db, $_POST["city"]);
 
   $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-  // Je récupère les infos du partenaire à injecter dans la structure :
-  $partenaireQ = $db->prepare(
+  // Je récupère les permissions globales du partenaire à injecter dans la structure :
+  $partner = $db->prepare(
     "SELECT drinks_permission, newsletter_permission, planning_permission
     FROM partner
     WHERE city = ?"
   );
 
-  $partenaireQ->bind_param("s", $city);
-  $partenaireQ->execute();
-  $partenaireQ->store_result();
-  $partenaireQ->bind_result($drinks_permission, $newsletter_permission, $planning_permission);
-  $partenaireQ->fetch();
-  $partenaireQ->close();
+  $partner->bind_param("s", $city);
+  $partner->execute();
+  $partner->store_result();
+  $partner->bind_result($drinks_permission, $newsletter_permission, $planning_permission);
+  $partner->fetch();
+  $partner->close();
 
   // Je vérifie que le mail est dispo dans mes différents tableaux SQL :
   $check = $db->prepare(
@@ -50,7 +54,7 @@ if (isset($_POST["structure_address"])) {
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
     );
 
-    $structureR->bind_param("sssssiii", 'fitnessp', $address, $mail, $passwordHash, $city, $drinks_permission, $planning_permission, $newsletter_permission);
+    $structureR->bind_param("sssssiii", $brand, $address, $mail, $passwordHash, $city, $drinks_permission, $planning_permission, $newsletter_permission);
     $structureR->execute();
 
     // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
@@ -112,7 +116,7 @@ if (isset($_POST["structure_address"])) {
       </thead>
       <tbody>
         <tr>
-          <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($city) . ",<br>Voici les identifiants de connexion de la structure située au " . htmlspecialchars($adresse) . ".<br>Notez que le mot de passe n'est valable que pour la première connexion. Il
+          <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($city) . ",<br>Voici les identifiants de connexion de la structure située au " . htmlspecialchars($address) . ".<br>Notez que le mot de passe n'est valable que pour la première connexion. Il
             devra être changé lors de la première connexion au site.</td>
         </tr>
         <tr>

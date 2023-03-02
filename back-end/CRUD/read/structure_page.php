@@ -6,33 +6,33 @@ if (isset($_POST['structure_page']) && isset($_POST['mail'])) {
   $mail = $_POST['mail'];
   $response = [];
 
-  $structureQ = $db->prepare(
-    "SELECT city, address, mail, drinks_permission, newsletter_permission, planning_permission
+  $structure = $db->prepare(
+    "SELECT city, address, mail, rights, drinks_permission, newsletter_permission, planning_permission
     FROM structure
     WHERE mail = ?"
   );
   
-  $structureQ->bind_param("s", $mail);
-  $structureQ->execute();
-  $structureQ->store_result();
-  $structureQ->bind_result($city, $address, $structure_mail, $drinks_permission, $newsletter_permission, $planning_permission);
-  $structureQ->fetch();
+  $structure->bind_param("s", $mail);
+  $structure->execute();
+  $structure->store_result();
+  $structure->bind_result($city, $address, $mail, $rights, $drinks_permission, $newsletter_permission, $planning_permission);
+  $structure->fetch();
 
   $response['city'] = htmlspecialchars($city);
   $response['address'] = htmlspecialchars($address);
-  $response['structure_mail'] = htmlspecialchars($structure_mail);
+  $response['structure_mail'] = htmlspecialchars($mail);
   $response['drinks_permission'] = $drinks_permission;
   $response['newsletter_permission'] = $newsletter_permission;
   $response['planning_permission'] = $planning_permission;
 
   // Conversion de mon niveau de droits en boolean
-  if ($droits == 1) {
+  if ($rights == 1) {
     $reponse['status'] = true;
   } else {
     $reponse['status'] = false;
   }
 
-  $structureQ->close();
+  $structure->close();
 
   echo json_encode($response);
 }

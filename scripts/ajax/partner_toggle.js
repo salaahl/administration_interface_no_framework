@@ -1,10 +1,8 @@
 $(".toggle").change(function () {
   let partnerToggle = $(this).prop("checked");
   let toggleName = $(this).attr("name");
-  console.log(toggleName)
-  let partnerCity = document.getElementById("city").textContent.slice(13);
   let searchParams = new URLSearchParams(window.location.search);
-  let partnerMail = searchParams.get("partner_mail");
+  let city = searchParams.get("city");
 
   if (confirm("Veuillez confirmer votre choix") == true) {
     $.ajax({
@@ -13,8 +11,7 @@ $(".toggle").change(function () {
       data: {
         partner_toggle: partnerToggle,
         toggle_name: toggleName,
-        partner_mail: partnerMail,
-        partner_city: partnerCity
+        city: city,
       },
       error: function () {
         alert("Impossible de mettre à jour la permission. Veuillez contacter un administrateur.");

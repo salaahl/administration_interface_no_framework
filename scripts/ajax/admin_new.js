@@ -1,11 +1,9 @@
 $(function() {
 
-  $.getScript("../composants/common_password.js");
-
   $.validator.addMethod(
     "noCommonPassword",
     function() {
-      return commonPassword('#change_password');
+      return commonPassword('#password');
     },
     "Votre mot de passe n'est pas assez sécurisé. Veuillez le modifier."
   );

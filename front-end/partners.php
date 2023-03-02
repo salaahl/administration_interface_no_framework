@@ -17,7 +17,7 @@ if (!isset($_SESSION['admin'])) {
   <meta name="viewport" content="width=device-width">
   <title>Liste des partenaires</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <link href="../css/partners_list.css" rel="stylesheet" type="text/css" />
+  <link href="../css/partners.css" rel="stylesheet" type="text/css" />
   <link href="../css/sidebar.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -28,9 +28,9 @@ if (!isset($_SESSION['admin'])) {
       <div id="en_tete">
         <h1 class="display-6">Liste de mes partenaires :</h1>
         <!-- Switch des actifs -->
-        <div class="switch_des_actifs form-check form-switch">
-          <input class="form-check-input toggle" type="checkbox" role="switch" id="statut_du_partenaire" />
-          <label class="form-check-label" for="statut_du_partenaire">Actifs uniquement</label>
+        <div class="active-partner-switch form-check form-switch">
+          <input type="checkbox" role="switch" class="form-check-input toggle" id="partner-active" />
+          <label class="form-check-label" for="partners_status">Actifs uniquement</label>
         </div>
       </div>
       <div class="ajouter_partenaire">
@@ -51,7 +51,6 @@ if (!isset($_SESSION['admin'])) {
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../scripts/composants/sidebar.js"></script>
   <script src="../scripts/ajax/partners.js"></script>
-  <script src="../scripts/ajax/partners_filter.js"></script>
 </body>
 
 </html>

@@ -1,24 +1,24 @@
 <?php
 
 // PAGE PARTENAIRES :
-if (isset($_POST['partner_page']) && isset($_POST['partner_mail'])) {
+if (isset($_POST['partner_page']) && isset($_POST['city'])) {
   
-  $partner_mail = $_POST['partner_mail'];
+  $city = $_POST['city'];
   $response = [];
   
   $partenaireQ = $db->prepare(
-    "SELECT city, rights, drinks_permission, newsletter_permission, planning_permission
+    "SELECT mail, rights, drinks_permission, newsletter_permission, planning_permission
     FROM partner
-    WHERE mail = ?"
+    WHERE city = ?"
   );
   
-  $partenaireQ->bind_param("s", $partner_mail);
+  $partenaireQ->bind_param("s", $city);
   $partenaireQ->execute();
   $partenaireQ->store_result();
-  $partenaireQ->bind_result($city, $rights, $drinks_permission, $newsletter_permission, $planning_permission);
+  $partenaireQ->bind_result($mail, $rights, $drinks_permission, $newsletter_permission, $planning_permission);
   $partenaireQ->fetch();
 
-  $response['city'] = htmlspecialchars($city);
+  $response['mail'] = htmlspecialchars($mail);
   $response['drinks_permission'] = $drinks_permission;
   $response['newsletter_permission'] = $newsletter_permission;
   $response['planning_permission'] = $planning_permission;
@@ -48,7 +48,7 @@ if (isset($_POST['partner_page']) && isset($_POST['partner_mail'])) {
   $structures_mails = [];
   
   while ($structureQ->fetch()) {
-    $address[] = htmlspecialchars($structure_address);
+    $addresses[] = htmlspecialchars($structure_address);
     $structures_mails[] = htmlspecialchars($structure_mail);
   }
 

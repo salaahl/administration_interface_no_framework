@@ -1,18 +1,18 @@
 $(document).ready(function () {
   var searchParams = new URLSearchParams(window.location.search);
-  var structureMail = searchParams.get("structure_mail");
-  var partnerMail = searchParams.get("partner_mail");
+  var mail = searchParams.get("structure_mail");
+  var partnerMail = searchParams.get("city");
 
   $.ajax({
     type: "POST",
     url: "../index.php",
-    data: { structure_page: "initialize", structure_mail: structureMail },
+    data: { structure_page: "initialize", mail: mail },
     dataType: "JSON",
     success: function (data) {
-      $("#structure-delete").val(structureMail);
-      $("#structure-mail").append(structureMail);
+      $("#structure-delete").val(mail);
+      $("#structure-mail").append(mail);
       $("#partner-page").attr("href",
-        "../front-end/partner_page.php?partner_mail=" + partnerMail
+        "../front-end/partner_page.php?city=" + partnerMail
       );
       $("#city").append(data.city);
       $("#structure-address").append(data.address);

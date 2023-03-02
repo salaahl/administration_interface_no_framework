@@ -1,11 +1,11 @@
 <?php
 
 // PERMISSIONS GLOBALES D'UN PARTENAIRE :
-if (isset($_POST['partner_mail']) && isset($_POST['partner_toggle']) && isset($_POST['toggle_name'])) {
+if (isset($_POST['city']) && isset($_POST['partner_toggle']) && isset($_POST['toggle_name'])) {
   if ($_POST['toggle_name'] === 'drinks_permission' || $_POST['toggle_name'] === 'newsletter_permission' || $_POST['toggle_name'] === 'planning_permission') {
 
     $toggle = $_POST['toggle_name'];
-    $mail = htmlspecialchars($_POST['partner_mail']);
+    $city = htmlspecialchars($_POST['city']);
     $toggle_status = mysqli_real_escape_string($db, $_POST['partner_toggle']);
 
     if ($toggle_status == "true") {
@@ -17,20 +17,20 @@ if (isset($_POST['partner_mail']) && isset($_POST['partner_toggle']) && isset($_
     $permP = $db->prepare(
       "UPDATE partner
         SET $toggle = ?
-        WHERE mail = ?"
+        WHERE city = ?"
     );
 
-    $permP->bind_param("is", $toggle_status, $mail);
+    $permP->bind_param("is", $toggle_status, $city);
     $permP->execute();
     $permP->close();
 
     $permS = $db->prepare(
       "UPDATE structure
         SET $toggle = ?
-        WHERE mail_part = ?"
+        WHERE city = ?"
     );
 
-    $permS->bind_param("is", $toggle_status, $mail);
+    $permS->bind_param("is", $toggle_status, $city);
     $permS->execute();
     $permS->close();
 

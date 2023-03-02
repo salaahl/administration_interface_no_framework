@@ -4,32 +4,32 @@
 if (isset($_POST['partner_delete'])) {
   $mail = mysqli_real_escape_string($db, $_POST['partner_delete']);
 
-  $partnerD = $db->prepare(
+  $partner = $db->prepare(
     "DELETE FROM partner
     WHERE mail = ?"
   );
 
-  $partnerD->bind_param("s", $mail);
-  $partnerD->execute();
+  $partner->bind_param("s", $mail);
+  $partner->execute();
   
-  $structureD = $db->prepare(
+  $structure = $db->prepare(
     "DELETE FROM structure
     WHERE mail = ?"
   );
 
-  $structureD->bind_param("s", $mail);
-  $structureD->execute();
+  $structure->bind_param("s", $mail);
+  $structure->execute();
 }
 
 // STRUCTURE
 if (isset($_POST['structure_delete'])) {
   $mail = mysqli_real_escape_string($db, $_POST['structure_delete']);
 
-  $structureD = $db->prepare(
+  $structure = $db->prepare(
     "DELETE FROM structure
     WHERE mail = ?"
   );
 
-  $structureD->bind_param("s", $mail);
-  $structureD->execute();
+  $structure->bind_param("s", $mail);
+  $structure->execute();
 }

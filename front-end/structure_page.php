@@ -1,11 +1,11 @@
 <?php session_start();
 
 // Page de niveau 1 : structure
-// 1è vérification : attribution d'un passe-droit pour l'admin
+// 1è vérification : attribution d'un "passe-droit" pour l'admin
 if (!isset($_SESSION['admin'])) {
 
   // 2è vérification : les droits
-  if (isset($_SESSION['rights']) && $_SESSION['rights'] < 1) {
+  if ($_SESSION['rights'] < 1) {
     echo '<script>alert("Connectez-vous pour accéder à cette page.");
           window.location.href="../login.html"</script>';
   }
@@ -21,7 +21,7 @@ if (!isset($_SESSION['admin'])) {
   // Cas de figure 2 : accès depuis un login partenaire
   if (isset($_SESSION['city'])) {
     if ($_SESSION['city'] !== $_GET['city']) {
-      echo '<script>window.location.href="./partner_page.php?partner_mail=' . $_SESSION['partner_mail'] . '"</script>';
+      echo '<script>window.location.href="./partner_page.php?city=' . $_SESSION['city'] . '"</script>';
     }
   }
 }
@@ -45,8 +45,8 @@ if (!isset($_SESSION['admin'])) {
     <div class="col-4 col-md-4 col-lg-3" id="sidebar"></div>
     <div class="body col-8 col-md-8 col-lg-9 pt-2 px-5">
       <?php
-      if (isset($_SESSION['partner_mail']) or isset($_SESSION['admin'])) { ?>
-        <a href="" id="partner-page"><svg xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+      if (isset($_SESSION['city']) or isset($_SESSION['admin'])) { ?>
+        <a id="partner-page"><svg xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
             <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
           </svg></a>
       <?php } ?>
@@ -69,16 +69,13 @@ if (!isset($_SESSION['admin'])) {
           <div class="structure-delete">
             <form action="../index.php" method="POST">
               <input type="hidden" id="structure-delete" name="structure_delete" />
-              <button class="btn btn-danger" 
-              type="submit" 
-              onclick="return confirm(
+              <button class="btn btn-danger" type="submit" onclick="return confirm(
                 'Etes-vous sûr ? Cette action est irréversible.'
               )">
-              Supprimer ce partenaire
+                Supprimer cette structure
               </button>
             </form>
           </div>
-
         <?php } ?>
       </div>
 
@@ -102,23 +99,15 @@ if (!isset($_SESSION['admin'])) {
         </div>
       </div>
     </div>
-    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
-    integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"
-    integrity="sha512-6S5LYNn3ZJCIm0f9L6BCerqFlQ4f5MwNKq+EthDXabtaJvg3TuFLhpno9pcm+5Ynm6jdA9xfpQoMz2fcjVMk9g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
   <?php if (isset($_SESSION['rights']) && $_SESSION['rights'] > 2) { ?>
     <script src="../scripts/composants/sidebar.js"></script>
   <?php } else { ?>
     <script src="../scripts/composants/sidebar_part_struc.js"></script>
   <?php } ?>
-  <script src="../scripts/ajax/structure.js"></script>
+  <script src="../scripts/ajax/structure_page.js"></script>
   <script src="../scripts/ajax/structure_toggle.js"></script>
   <script src="../scripts/ajax/structure_status.js"></script>
 </body>

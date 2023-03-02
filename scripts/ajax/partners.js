@@ -2,16 +2,19 @@ $(document).ready(function () {
   $.ajax({
     type: "POST",
     url: "../index.php",
-    data: { liste_part: "initialize" },
+    data: {
+      partners: "initialize",
+      partners_active: $("#partner-active").prop("checked"),
+    },
     dataType: "JSON",
     success: function (data) {
       for (let c = 0; data.city.length > c; c++) {
         if (data.rights[c] == 2) {
-          var statut = "Partenaire activé";
-          var classe = "partner-active";
+          var status = "Partenaire activé";
+          var statusClass = "partner-active";
         } else {
-          var statut = "Partenaire désactivé";
-          var classe = "partner-inactive";
+          var status = "Partenaire désactivé";
+          var statusClass = "partner-inactive";
         }
         $("#partners-list").append(
           '<div class="liste_part col-12 col-xl-5">' +
@@ -26,9 +29,9 @@ $(document).ready(function () {
             data.number_of_structures[c] +
             "</div>" +
             '<div class="' +
-            classe +
+            statusClass +
             ' px-2">' +
-            statut +
+            status +
             "</div>" +
             "</div>" +
             '<div class="partner-link">' +

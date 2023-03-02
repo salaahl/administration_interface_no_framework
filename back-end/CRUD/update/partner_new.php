@@ -1,9 +1,10 @@
 <?php
 
 // Va gérer la logique des formulaires de création de partenaires
-if (isset($_POST["partner_name"]) && isset($_POST["partner_mail"]) && isset($_POST["partner_password"])) {
+if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_POST["partner_password"])) {
 
-  $city = mysqli_real_escape_string($db, $_POST["partner_name"]);
+  $brand = "fitnessp";
+  $city = mysqli_real_escape_string($db, $_POST["partner_city"]);
   $mail = mysqli_real_escape_string($db, $_POST["partner_mail"]);
   $password = mysqli_real_escape_string($db, $_POST["partner_password"]);
 
@@ -34,7 +35,7 @@ if (isset($_POST["partner_name"]) && isset($_POST["partner_mail"]) && isset($_PO
       "INSERT INTO partner (brand_name, city, mail, password)
       VALUES (?, ?, ?, ?)"
     );
-    $partenaireR->bind_param("ssss", 'fitnessp', $city, $mail, $passwordHash);
+    $partenaireR->bind_param("ssss", $brand, $city, $mail, $passwordHash);
     $partenaireR->execute();
 
     // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue

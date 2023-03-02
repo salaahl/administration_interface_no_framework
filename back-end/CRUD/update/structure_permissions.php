@@ -1,11 +1,11 @@
 <?php
 
 // PERMISSIONS D'UNE STRUCTURE :
-if (isset($_POST['structure_mail']) && isset($_POST['structure_toggle']) && isset($_POST['toggle_name'])) {
+if (isset($_POST['mail']) && isset($_POST['structure_toggle']) && isset($_POST['toggle_name'])) {
   if ($_POST['toggle_name'] === 'drinks_permission' || $_POST['toggle_name'] === 'newsletter_permission' || $_POST['toggle_name'] === 'planning_permission') {
 
     $toggle = $_POST['toggle_name'];
-    $mail = htmlspecialchars($_POST['structure_mail']);
+    $mail = htmlspecialchars($_POST['mail']);
     $toggle_status = mysqli_real_escape_string($db, $_POST['structure_toggle']);
 
     if ($toggle_status == "true") {
@@ -69,9 +69,9 @@ if (isset($_POST['structure_mail']) && isset($_POST['structure_toggle']) && isse
   </thead>
   <tbody>
     <tr>
-      <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($_POST['structure_city']) . ",
+      <td colspan='2'>Bonjour partenaire de " . htmlspecialchars($_POST['city']) . ",
       <br>La modification de la permission - " . htmlspecialchars($_POST['toggle_name']) . "
-       - liée à la structure située au " . htmlspecialchars($_POST['structure_address']) . " a bien été prise en compte.
+       - liée à la structure située au " . htmlspecialchars($_POST['address']) . " a bien été prise en compte.
        <br>Cordialement,
        <br>Votre club FitnessP</td>
     </tr>

@@ -7,45 +7,45 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   $password = $_POST['password'];
   $response = [];
 
-  $adminsQ = $db->prepare(
+  $admin = $db->prepare(
     "SELECT password, rights FROM admin WHERE mail = ?"
   );
-  $adminsQ->bind_param("s", $mail);
-  $adminsQ->execute();
-  $adminsQ->store_result();
-  $adminsQ->bind_result($admin_password, $admin_rights);
+  $admin->bind_param("s", $mail);
+  $admin->execute();
+  $admin->store_result();
+  $admin->bind_result($admin_password, $admin_rights);
   
-  if (isset($adminsQ)) {
-    $adminsQ->fetch();
+  if (isset($admin)) {
+    $admin->fetch();
   }
 
-  $partenairesQ = $db->prepare(
+  $partner = $db->prepare(
     "SELECT city, password, rights, first_connection FROM partner WHERE mail = ?"
   );
-  $partenairesQ->bind_param("s", $mail);
-  $partenairesQ->execute();
-  $partenairesQ->store_result();
-  $partenairesQ->bind_result($partner_city, $partner_password, $partner_rights, $partner_first_connection);
+  $partner->bind_param("s", $mail);
+  $partner->execute();
+  $partner->store_result();
+  $partner->bind_result($partner_city, $partner_password, $partner_rights, $partner_first_connection);
   
-  if (isset($partenairesQ)) {
-    $partenairesQ->fetch();
+  if (isset($partner)) {
+    $partner->fetch();
   }
 
-  $structuresQ = $db->prepare(
+  $structure = $db->prepare(
     "SELECT city, password, rights, first_connection FROM structure WHERE mail = ?"
   );
-  $structuresQ->bind_param("s", $mail);
-  $structuresQ->execute();
-  $structuresQ->store_result();
-  $structuresQ->bind_result($structure_city, $structure_password, $structure_rights, $structure_first_connection);
+  $structure->bind_param("s", $mail);
+  $structure->execute();
+  $structure->store_result();
+  $structure->bind_result($structure_city, $structure_password, $structure_rights, $structure_first_connection);
   
-  if (isset($structuresQ)) {
-    $structuresQ->fetch();
+  if (isset($structure)) {
+    $structure->fetch();
   }
 
-  $adminsQ->close();
-  $partenairesQ->close();
-  $structuresQ->close();
+  $admin->close();
+  $partner->close();
+  $structure->close();
 
   // LOGIN ADMIN :
   if (isset($admin_password) && password_verify($password, $admin_password)) {

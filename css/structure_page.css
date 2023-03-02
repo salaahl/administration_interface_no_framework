@@ -1,12 +1,12 @@
 @media only screen and (min-width: 1024px) {
-  #partner_page {
+  #partner-page {
     left: 27%;
     
   }
 }
 
 @media only screen and (max-width: 1023px) {
-  #partner_page {
+  #partner-page {
     left: 34%;
   }
 }
@@ -21,12 +21,11 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
   padding: 1%;
   margin-left: -0, 5%;
 }
 
-#partner_page {
+#partner-page {
   position: fixed;
   top: 3%;
 }
@@ -50,7 +49,7 @@ body {
   grid-column-end: LaDer;
 }
 
-#mail {
+#structure-mail {
   grid-row-start: ligneDeux;
   grid-column-start: colonneUne;
   grid-column-end: LaDer;

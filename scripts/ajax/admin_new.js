@@ -4,32 +4,31 @@ $(function() {
     "noCommonPassword",
     function() {
       return commonPassword('#password');
-    },
-    "Votre mot de passe n'est pas assez sécurisé. Veuillez le modifier."
-  );
+    });
 
   $("form").validate({
     rules: {
       admin_mail: {
         required: true
       },
-      admin_password: {
+      password: {
         required: true,
         minlength: 5,
         noCommonPassword: true
       },
       confirm_password: {
         required: true,
-        equalTo: "#admin_password"
+        equalTo: "#password"
       }
     },
     messages: {
       admin_mail: {
         required: "Ce champ est obligatoire."
       },
-      admin_password: {
+      password: {
         required: "Ce champ est obligatoire.",
-        minlength: "Veuillez saisir au moins 5 caractères."
+        minlength: "Veuillez saisir au moins 5 caractères.",
+        noCommonPassword: "Votre mot de passe n'est pas assez sécurisé. Veuillez le modifier."
       },
       confirm_password: {
         required: "Ce champ est obligatoire.",

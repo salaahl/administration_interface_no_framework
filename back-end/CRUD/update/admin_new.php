@@ -6,6 +6,7 @@ if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
   $mail = mysqli_real_escape_string($db, $_POST['admin_mail']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
   $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+  $brand = 'fitnessp';
 
   // Je vérifie que le mail est dispo dans mes différents tableaux SQL
   $check = $db->prepare(
@@ -34,7 +35,7 @@ if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
     VALUES (?, ?, ?)"
     );
 
-    $adminR->bind_param("sss", 'fitnessp', $mail, $passwordHash);
+    $adminR->bind_param("sss", $brand, $mail, $passwordHash);
     $adminR->execute();
     $adminR->close();
   }

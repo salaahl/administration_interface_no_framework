@@ -1,24 +1,26 @@
 <?php
 
 // ACTIVER/DESACTIVER PARTENAIRE ET SES STRUCTURES :
-if (isset($_POST['partner_activate']) && isset($_POST['partner_mail'])) {
+if (isset($_POST['partner_activate']) && isset($_POST['city'])) {
 
-  $partner_mail = mysqli_real_escape_string($db, $_POST['partner_mail']);
-
-  if ($_POST['partner_activate'] == 'true') {
-    $statutPrt = 2;
-    $statutStc = 1;
+  $city = mysqli_real_escape_string($db, $_POST['city']);
+  $statusPartner = null;
+  $statusStructure = null;
+  
+  if ($_POST['partner_activate'] == "true") {
+    $statusPartner = 2;
+    $statusStructure = 1;
   } else {
-    $statutPrt = 0;
-    $statutStc = 0;
+    $statusPartner = 0;
+    $statusStructure = 0;
   }
 
   $statutP = $db->prepare(
     "UPDATE partner
       SET rights = ?
-      WHERE mail = ?"
+      WHERE city = ?"
   );
-  $statutP->bind_param("is", $statutPrt, $partner_mail);
+  $statutP->bind_param("is", $statusPartner, $city);
   $statutP->execute();
   $statutP->close();
 
@@ -27,7 +29,7 @@ if (isset($_POST['partner_activate']) && isset($_POST['partner_mail'])) {
       SET rights = ?
       WHERE city = ?"
   );
-  $statutS->bind_param("is", $statutStc, $city);
+  $statutS->bind_param("is", $statusStructure, $city);
   $statutS->execute();
   $statutS->close();
 }

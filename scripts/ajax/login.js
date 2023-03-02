@@ -17,7 +17,7 @@ $(document).ready(function () {
           return location.replace("./change_password.php?mail=" + response.mail);
         }
         if (response.rights == 3) {
-          location.replace("./front-end/partners_list.php");
+          location.replace("./front-end/partners.php");
         } else if (response.rights == 2) {
           if (response.first_connection == 1) {
             location.replace(

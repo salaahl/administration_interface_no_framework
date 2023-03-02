@@ -25,30 +25,24 @@ if (!isset($_SESSION['admin'])) {
   <div class="row">
     <div class="col-4 col-md-4 col-lg-3" id="sidebar"></div>
     <main class="col-8 col-md-8 col-lg-9 pt-2 px-5 pt-2 px-5">
-      <div id="en_tete">
+      <div>
         <h1 class="display-6">Liste de mes partenaires :</h1>
         <!-- Switch des actifs -->
-        <div class="active-partner-switch form-check form-switch">
-          <input type="checkbox" role="switch" class="form-check-input toggle" id="partner-active" />
-          <label class="form-check-label" for="partners_status">Actifs uniquement</label>
+        <div class="form-check form-switch">
+          <input type="checkbox" role="switch" class="form-check-input" id="partners-active" />
+          <label class="form-check-label" for="partners-active">Actifs uniquement</label>
         </div>
       </div>
-      <div class="ajouter_partenaire">
-        <a href="../ajouter/partenaire.php">
+      <div class="partner-add">
+        <a href="../ajouter/partner_new.php">
           Ajouter un nouveau partenaire
         </a>
       </div>
-      <div id="liste_part"></div>
+      <div id="partners-list"></div>
     </main>
   </div>
    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
-    integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"
-    integrity="sha512-6S5LYNn3ZJCIm0f9L6BCerqFlQ4f5MwNKq+EthDXabtaJvg3TuFLhpno9pcm+5Ynm6jdA9xfpQoMz2fcjVMk9g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../scripts/composants/sidebar.js"></script>
   <script src="../scripts/ajax/partners.js"></script>
 </body>

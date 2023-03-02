@@ -8,7 +8,7 @@ $(document).ready(function () {
     data: { partner_page: "initialize", city: city },
     dataType: "JSON",
     success: function (data) {
-      if (data.structures_mails != "") {
+      if (data != "") {
         for (let c = 0; data.structures_mails.length > c; c++) {
           $("#structures").append(
             '<div class="structure">' +
@@ -32,8 +32,8 @@ $(document).ready(function () {
       }
       $("#city").append(city);
       $("#mail").append(data.mail);
-      $("#partner-delete").val(data.mail);
-      $("#status").prop("checked", data.status);
+      $("#delete-user").val(data.mail);
+      $("#partner-status").prop("checked", data.status);
       $("#drinks-permission").prop("checked", data.drinks_permission);
       $("#newsletter-permission").prop("checked", data.newsletter_permission);
       $("#planning-permission").prop("checked", data.planning_permission);

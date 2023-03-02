@@ -18,6 +18,7 @@ if (!isset($_SESSION['admin'])) {
 ?>
 
 <html lang="fr">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -28,6 +29,7 @@ if (!isset($_SESSION['admin'])) {
   <link href="../css/bouton_desac.css" rel="stylesheet" type="text/css" />
   <link href="../css/sidebar.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
   <div class="row">
     <div class="col-4 col-md-4 col-lg-3" id="sidebar"></div>
@@ -40,22 +42,17 @@ if (!isset($_SESSION['admin'])) {
 
         <?php if (isset($_SESSION['rights']) && $_SESSION['rights'] > 2) { ?>
 
-          <div class="partner-status">
-            <label>Partenaire actif : </label>
-            <label class="switch">
-              <input id="statut_part" type="checkbox">
-              <div class="slider"></div>
-            </label>
+          <div class="partner-status form-check form-switch">
+            <label class="form-check-label" for="partner-status">Partenaire actif : </label>
+            <input type="checkbox" role="switch" class="form-check-input" id="partner-status" />
           </div>
           <div class="partner-delete">
             <form action="../index.php" method="POST">
-              <input type="hidden" id="partner-delete" name="partner_delete" />
-              <button class="btn btn-danger" 
-              type="submit" 
-              onclick="return confirm(
+              <input type="hidden" id="delete-user" name="partner_delete" />
+              <button class="btn btn-danger" type="submit" onclick="return confirm(
                 'Etes-vous sûr ? Cette action est irréversible.'
               )">
-              Supprimer ce partenaire
+                Supprimer ce partenaire
               </button>
             </form>
           </div>
@@ -68,7 +65,7 @@ if (!isset($_SESSION['admin'])) {
       <div id="structures">
         <?php if (isset($_SESSION['admin'])) { ?>
           <div class="structure">
-            <a href="../ajouter/structure.php" style="text-align: center;">
+            <a href="../ajouter/structure_new.php" style="text-align: center;">
               <h4>Ajouter une structure</h4>
             </a>
           </div>
@@ -97,14 +94,13 @@ if (!isset($_SESSION['admin'])) {
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-   <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
   <?php if (isset($_SESSION['rights']) && $_SESSION['rights'] > 2) { ?>
     <script src="../scripts/composants/sidebar.js"></script>
   <?php } else { ?>
     <script src="../scripts/composants/sidebar_part_struc.js"></script>
   <?php } ?>
-  
+
   <script src="../scripts/ajax/partner_page.js"></script>
   <script src="../scripts/ajax/partner_status.js"></script>
   <script src="../scripts/ajax/partner_toggle.js"></script>

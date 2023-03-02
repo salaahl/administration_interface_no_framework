@@ -15,7 +15,7 @@ body {
   margin: 0%;
 }
 
-.switch_des_actifs {
+.partners-active {
   margin-top: 5%;
   margin-bottom: 3%;
 }
@@ -30,8 +30,14 @@ body {
   border-radius: 5px;
 }
 
-/* Liste des partenaires */
-.partners-list {
+/* CONTENEUR de la liste dynamique des partenaires */
+#partners-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.partner-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -42,19 +48,8 @@ body {
   border-radius: 5px;
 }
 
-/* CONTENEUR de la liste dynamique des partenaires */
-#partners-list {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.search-result {
-  padding: 20% !important;
-}
-
-.partner-active,
-.partner-inactive {
+.active,
+.inactive {
   display: inline-block;
   margin-top: 2%;
   margin-bottom: 2%;
@@ -63,20 +58,20 @@ body {
   font-weight: bold;
 }
 
-.partner-active {
+.active {
   background-color: green;
 }
-.partner-inactive {
+.inactive {
   background-color: darkred;
 }
 
-.partner-about {
+.about {
   display: inline-block;
   height: 100%;
   width: 70%;
 }
 
-.partner-link {
+.link {
   display: flex;
   align-items: center;
   justify-content: center;

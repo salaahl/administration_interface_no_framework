@@ -1,53 +1,55 @@
 $(document).ready(function () {
-  $("#partner_search").keyup(function () {
-    $("#search_result").html("");
-    let saisie = $(this).val();
-    if (saisie != "") {
+  $("#partner-search").keyup(function () {
+    let input = $(this).val();
+    $("#search-result").html("");
+
+    if (input != "") {
       $.ajax({
         type: "POST",
         url: "../index.php",
-        data: { partner_search: encodeURIComponent(saisie) },
+        data: { partner_search: encodeURIComponent(input) },
         dataType: "JSON",
         success: function (data) {
-          if (data.city.length !== 0) {
-            for (let c = 0; data.city.length > c; c++) {
-              if (data.rights[c] == 2) {
+          if (data != "") {
+            for (let c = 0; data.partner_city.length > c; c++) {
+              if (data.partner_rights[c] == 2) {
                 var status = "Partenaire activé";
-                var classe = "partner_active";
+                var statusClass = "active";
               } else {
                 var status = "Partenaire désactivé";
-                var classe = "partner_inactive";
+                var statusClass = "inactive";
               }
-              $("#search_result").append(
-                '<div class="partner_list">' +
-                  '<div class="partner-about">' +
+              $("#search-result").append(
+                '<div class="partner-card col-12 col-xl-5">' +
+                  '<div class="about">' +
                   "<div>" +
-                  data.city[c] +
+                  data.partner_city[c] +
                   "</div>" +
                   "<div>" +
-                  data.mail[c] +
+                  data.partner_mail[c] +
                   "</div>" +
                   "<div>Nombre de structures : " +
-                  data.structures[c] +
+                  data.partner_structures_number[c] +
                   "</div>" +
                   '<div class="' +
-                  classe +
+                  statusClass +
                   ' px-2">' +
                   status +
                   "</div>" +
                   "</div>" +
-                  '<div class="partner-link">' +
-                  '<a href="partner_page.php?partner_mail=' +
-                  data.mail[c] +
+                  '<div class="link">' +
+                  '<a href="partner_page.php?city=' +
+                  data.partner_mail[c] +
                   '">Détails</a>' +
                   "</div>" +
                   "</div>"
               );
-              $(".partner-list").animate({ opacity: 1 }, 500);
+              $(".partner-card").animate({ opacity: 1 }, 500);
             }
           } else {
-            document.getElementById("search_result").innerHTML =
-              "<div style='font-size: 20px; text-align: center;'>Aucun partenaire trouvé</div>";
+            $("#search-result").html(
+              "<div style='font-size: 20px; text-align: center;'>Aucun partenaire trouvé</div>"
+            )
           }
         },
       });

@@ -10,6 +10,7 @@ $(document).ready(function () {
     dataType: "JSON",
     success: function (data) {
       $("#structure-delete").val(mail);
+      $("#structure-city").append(data.city);
       $("#structure-mail").append(mail);
       $("#partner-page").attr("href",
         "../front-end/partner_page.php?city=" + partnerMail

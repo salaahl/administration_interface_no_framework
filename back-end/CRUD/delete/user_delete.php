@@ -19,11 +19,15 @@ if (isset($_POST['partner_delete'])) {
 
   $structure->bind_param("s", $mail);
   $structure->execute();
+
+  header("Location: ../partners.php");
+  die();
 }
 
 // STRUCTURE
 if (isset($_POST['structure_delete'])) {
   $mail = mysqli_real_escape_string($db, $_POST['structure_delete']);
+  $city = $_POST['structure_city'];
 
   $structure = $db->prepare(
     "DELETE FROM structure
@@ -32,4 +36,7 @@ if (isset($_POST['structure_delete'])) {
 
   $structure->bind_param("s", $mail);
   $structure->execute();
+
+  header("Location: ../partners?city=" . $city . ".php");
+  die();
 }

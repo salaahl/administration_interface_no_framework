@@ -69,6 +69,7 @@ if (!isset($_SESSION['admin'])) {
           <div class="structure-delete">
             <form action="../index.php" method="POST">
               <input type="hidden" id="structure-delete" name="structure_delete" />
+              <input type="hidden" id="structure-city" name="structure_city" />
               <button class="btn btn-danger" type="submit" onclick="return confirm(
                 'Etes-vous sûr ? Cette action est irréversible.'
               )">

@@ -1,6 +1,5 @@
 <?php
 
-// Va gérer la logique des formulaires de création de partenaires
 if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_POST["partner_password"])) {
 
   $brand = "fitnessp";
@@ -31,16 +30,16 @@ if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_PO
   $check->close();
 
   if ($result == 0) {
-    $partenaireR = $db->prepare(
+    $partner = $db->prepare(
       "INSERT INTO partner (brand_name, city, mail, password)
       VALUES (?, ?, ?, ?)"
     );
-    $partenaireR->bind_param("ssss", $brand, $city, $mail, $passwordHash);
-    $partenaireR->execute();
+    $partner->bind_param("ssss", $brand, $city, $mail, $passwordHash);
+    $partner->execute();
 
-    // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
+    // Si la requête aboutit... Conditionne l'envoi du mail
     if (mysqli_affected_rows($db) > 0) {
-      $partenaireR->close();
+      $partner->close();
 
       $mailConfirmation =
         "<html lang='fr'>
@@ -153,10 +152,10 @@ if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_PO
         }
       }
     } else {
-      $partenaireR->close();
-      echo "Erreur. Le mail et/ou le nom de ville sont déjà pris.";
+      $partner->close();
+      echo "Erreur. Le nom de ville est déjà pris.";
     }
   } else {
-    echo 'Ce mail est déjà utilisé. Veuillez en choisir un autre';
+    echo "Ce mail est déjà utilisé. Veuillez en choisir un autre";
   }
 }

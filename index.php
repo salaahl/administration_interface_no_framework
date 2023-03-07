@@ -23,7 +23,4 @@ foreach (glob("./back-end/CRUD/*") as $dossier) {
 
 require_once './back-end/session_timeout.php';
 
-
-
-
 exit();

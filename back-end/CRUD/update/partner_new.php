@@ -11,7 +11,8 @@ if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_PO
 
   // Je vérifie que le mail est dispo dans mes différents tableaux SQL
   $check = $db->prepare(
-    "SELECT EXISTS(
+    "SELECT EXISTS
+    (
       SELECT admin.mail, partner.mail, structure.mail
       FROM admin, partner, structure
       WHERE 
@@ -141,6 +142,7 @@ if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_PO
           print $response->body() . "\n";
         } catch (Exception $e) {
           echo "Caught exception: " . $e->getMessage() . "\n";
+          die();
         }
       } else {
         // Mode production :
@@ -148,13 +150,16 @@ if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_PO
           $response = $sendgrid->send($email);
         } catch (Exception $e) {
           echo "Erreur. La requête n'a pas aboutie.";
+          die();
         }
       }
     } else {
       $partner->close();
       echo "Erreur. Le nom de ville est déjà pris.";
+      die();
     }
   } else {
     echo "Ce mail est déjà utilisé. Veuillez en choisir un autre";
+    die();
   }
 }

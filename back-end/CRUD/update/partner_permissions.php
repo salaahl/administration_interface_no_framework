@@ -6,33 +6,33 @@ if (isset($_POST['city']) && isset($_POST['partner_toggle']) && isset($_POST['to
 
     $toggle = $_POST['toggle_name'];
     $city = htmlspecialchars($_POST['city']);
-    $toggle_status = mysqli_real_escape_string($db, $_POST['partner_toggle']);
+    $status = mysqli_real_escape_string($db, $_POST['partner_toggle']);
 
-    if ($toggle_status == "true") {
-      $toggle_status = 1;
+    if ($status == "true") {
+      $status = 1;
     } else {
-      $toggle_status = 0;
+      $status = 0;
     }
 
-    $permP = $db->prepare(
+    $permission = $db->prepare(
       "UPDATE partner
         SET $toggle = ?
         WHERE city = ?"
     );
 
-    $permP->bind_param("is", $toggle_status, $city);
-    $permP->execute();
-    $permP->close();
+    $permission->bind_param("is", $status, $city);
+    $permission->execute();
+    $permission->close();
 
-    $permS = $db->prepare(
+    $structures_permission = $db->prepare(
       "UPDATE structure
         SET $toggle = ?
         WHERE city = ?"
     );
 
-    $permS->bind_param("is", $toggle_status, $city);
-    $permS->execute();
-    $permS->close();
+    $structures_permission->bind_param("is", $status, $city);
+    $structures_permission->execute();
+    $structures_permission->close();
 
 
     // Confirmer au partenaire que la permission a bien été changée :

@@ -49,29 +49,27 @@ if (
 
   if ($result == false) {
 
-    $structureR = $db->prepare(
+    $structure_new = $db->prepare(
       "INSERT INTO structure (brand_name, address, mail, password, city, drinks_permission, planning_permission, newsletter_permission)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
     );
-
-    $structureR->bind_param("sssssiii", $brand, $address, $mail, $passwordHash, $city, $drinks_permission, $planning_permission, $newsletter_permission);
-    $structureR->execute();
+    $structure_new->bind_param("sssssiii", $brand, $address, $mail, $passwordHash, $city, $drinks_permission, $planning_permission, $newsletter_permission);
+    $structure_new->execute();
 
     // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
     if (mysqli_affected_rows($db) > 0) {
-
-      $structureR->close();
+      $structure_new->close();
 
       // Incrémentation de la colonne "number_of_structures" :
-      $partenaireU = $db->prepare(
+      $partner_update = $db->prepare(
         "UPDATE partner
         SET number_of_structures = number_of_structures + 1
         WHERE city = ?"
       );
 
-      $partenaireU->bind_param("s", $city);
-      $partenaireU->execute();
-      $partenaireU->close();
+      $partner_update->bind_param("s", $city);
+      $partner_update->execute();
+      $partner_update->close();
 
       $mailConfirmation = "
       <html>
@@ -163,6 +161,7 @@ if (
           print $response->body() . "\n";
         } catch (Exception $e) {
           echo "Caught exception: " . $e->getMessage() . "\n";
+          die();
         }
       } else {
         // Mode production :
@@ -170,13 +169,16 @@ if (
           $response = $sendgrid->send($email);
         } catch (Exception $e) {
           echo "Erreur. Veuillez contacter un administrateur.";
+          die();
         }
       }
     } else {
-      $structureR->close();
+      $structure_new->close();
       echo "Erreur. Le mail est déjà pris.";
+      die();
     }
   } else {
     echo 'Ce mail est déjà utilisé. Veuillez en choisir un autre';
+    die();
   }
 }

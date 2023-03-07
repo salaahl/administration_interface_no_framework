@@ -25,7 +25,7 @@ if (isset($_POST['partner_delete'])) {
 }
 
 // STRUCTURE
-if (isset($_POST['structure_delete'])) {
+if (isset($_POST['structure_delete']) && isset($_POST['structure_city'])) {
   $mail = mysqli_real_escape_string($db, $_POST['structure_delete']);
   $city = $_POST['structure_city'];
 
@@ -37,6 +37,15 @@ if (isset($_POST['structure_delete'])) {
   $structure->bind_param("s", $mail);
   $structure->execute();
 
-  header("Location: ../partners?city=" . $city . ".php");
+  $partner = $db->prepare(
+    "UPDATE partner
+    SET number_of_structures = number_of_structures - 1
+    WHERE city = ?"
+  );
+
+  $partner->bind_param("s", $city);
+  $partner->execute();
+
+  header("Location: ../partner_page.php?city=" . $city);
   die();
 }

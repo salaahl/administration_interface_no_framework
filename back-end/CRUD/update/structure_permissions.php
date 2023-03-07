@@ -14,15 +14,15 @@ if (isset($_POST['mail']) && isset($_POST['structure_toggle']) && isset($_POST['
       $toggle_status = 0;
     }
 
-    $permS = $db->prepare(
+    $permission = $db->prepare(
       "UPDATE structure
         SET $toggle = ?
         WHERE mail = ?"
     );
 
-    $permS->bind_param("is", $toggle_status, $mail);
-    $permS->execute();
-    $permS->close();
+    $permission->bind_param("is", $toggle_status, $mail);
+    $permission->execute();
+    $permission->close();
   }
 
   // Confirmer au partenaire et à sa structure que la permission a bien été changée :

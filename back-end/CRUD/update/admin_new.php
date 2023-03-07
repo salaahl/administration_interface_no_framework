@@ -30,13 +30,13 @@ if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
   $check->close();
 
   if ($exist == false) {
-    $adminR = $db->prepare(
+    $new_admin = $db->prepare(
       "INSERT INTO admin (brand_name, mail, password)
     VALUES (?, ?, ?)"
     );
 
-    $adminR->bind_param("sss", $brand, $mail, $passwordHash);
-    $adminR->execute();
-    $adminR->close();
+    $new_admin->bind_param("sss", $brand, $mail, $passwordHash);
+    $new_admin->execute();
+    $new_admin->close();
   }
 }

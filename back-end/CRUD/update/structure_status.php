@@ -4,19 +4,20 @@
 if (isset($_POST['structure_activate']) && isset($_POST['structure_mail'])) {
 
   $structure_mail = mysqli_real_escape_string($db, $_POST['structure_mail']);
+  $rights = null;
 
   if ($_POST['structure_activate'] == 'true') {
-    $statutStc = 1;
+    $rights = 1;
   } else {
-    $statutStc = 0;
+    $rights = 0;
   }
 
-  $statutS = $db->prepare(
+  $status = $db->prepare(
     "UPDATE structure
       SET rights = ?
       WHERE mail = ?"
   );
-  $statutS->bind_param("is", $statutStc, $structure_mail);
-  $statutS->execute();
-  $statutS->close();
+  $status->bind_param("is", $rights, $structure_mail);
+  $status->execute();
+  $status->close();
 }

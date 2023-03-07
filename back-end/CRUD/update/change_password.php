@@ -7,58 +7,58 @@ if (isset($_POST['change_password']) && isset($_POST['mail'])) {
     $password = password_hash($_POST['change_password'], PASSWORD_DEFAULT);
 
     // Vérifie dans quelle base de données se trouve le mail :
-    $partnerQ = $db->prepare(
+    $partner = $db->prepare(
         "SELECT mail, password FROM partner WHERE mail = ?"
     );
-    $partnerQ->bind_param("s", $mail);
-    $partnerQ->execute();
-    $partnerQ->store_result();
-    $partnerQ->bind_result($partner, $passwordHashP);
-    $partnerQ->fetch();
-    $partnerQ->close();
+    $partner->bind_param("s", $mail);
+    $partner->execute();
+    $partner->store_result();
+    $partner->bind_result($is_partner, $passwordHashP);
+    $partner->fetch();
+    $partner->close();
 
-    $structureQ = $db->prepare(
+    $structure = $db->prepare(
         "SELECT mail, password FROM structure WHERE mail = ?"
     );
-    $structureQ->bind_param("s", $mail);
-    $structureQ->execute();
-    $structureQ->store_result();
-    $structureQ->bind_result($structure, $passwordHashS);
-    $structureQ->fetch();
-    $structureQ->close();
+    $structure->bind_param("s", $mail);
+    $structure->execute();
+    $structure->store_result();
+    $structure->bind_result($is_structure, $passwordHashS);
+    $structure->fetch();
+    $structure->close();
 
-    if (isset($partner)) {
+    if (isset($is_partner)) {
         if (password_verify($_POST['change_password'], $passwordHashP)) {
             echo 'Vous ne pouvez pas réutiliser le même mot de passe';
             die();
         } else {
             // Met la colonne 1è connexion sur "1" si ce n'est pas déjà fait et change le mot de passe :
-            $partnerU = $db->prepare(
+            $update = $db->prepare(
                 "UPDATE partner
                 SET first_connection = 1, password = ?
                 WHERE mail = ?"
             );
 
-            $partnerU->bind_param("ss", $password, $mail);
-            $partnerU->execute();
-            $partnerU->close();
+            $update->bind_param("ss", $password, $mail);
+            $update->execute();
+            $update->close();
         }
     }
     
-    if (isset($structure)) {
+    if (isset($is_structure)) {
         if (password_verify($_POST['change_password'], $passwordHashS)) {
             echo 'Vous ne pouvez pas réutiliser le même mot de passe';
             die();
         } else {
-            $structureU = $db->prepare(
+            $update = $db->prepare(
                 "UPDATE structure
                 SET first_connection = 1, password = ?
                 WHERE mail = ?"
             );
 
-            $structureU->bind_param("ss", $password, $mail);
-            $structureU->execute();
-            $structureU->close();
+            $update->bind_param("ss", $password, $mail);
+            $update->execute();
+            $update->close();
         }
     }
     

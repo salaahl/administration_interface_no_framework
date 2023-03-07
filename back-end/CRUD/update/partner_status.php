@@ -4,32 +4,32 @@
 if (isset($_POST['partner_activate']) && isset($_POST['city'])) {
 
   $city = mysqli_real_escape_string($db, $_POST['city']);
-  $statusPartner = null;
-  $statusStructure = null;
+  $partner_rights = null;
+  $structures_rights = null;
   
   if ($_POST['partner_activate'] == "true") {
-    $statusPartner = 2;
-    $statusStructure = 1;
+    $partner_rights = 2;
+    $structures_rights = 1;
   } else {
-    $statusPartner = 0;
-    $statusStructure = 0;
+    $partner_rights = 0;
+    $structures_rights = 0;
   }
 
-  $statutP = $db->prepare(
+  $status_partner = $db->prepare(
     "UPDATE partner
       SET rights = ?
       WHERE city = ?"
   );
-  $statutP->bind_param("is", $statusPartner, $city);
-  $statutP->execute();
-  $statutP->close();
+  $status_partner->bind_param("is", $partner_rights, $city);
+  $status_partner->execute();
+  $status_partner->close();
 
-  $statutS = $db->prepare(
+  $status_structures = $db->prepare(
     "UPDATE structure
       SET rights = ?
       WHERE city = ?"
   );
-  $statutS->bind_param("is", $statusStructure, $city);
-  $statutS->execute();
-  $statutS->close();
+  $status_structures->bind_param("is", $structures_rights, $city);
+  $status_structures->execute();
+  $status_structures->close();
 }

@@ -12,10 +12,10 @@ function OpenCon()
 
         return $db;
     } else {
-        $dbhost = "j5zntocs2dn6c3fj.chr7pe7iynqr.eu-west-1.rds.amazonaws.com";
-        $dbuser = "vpk8227nz3b524if";
-        $dbpass = "djeyefmr9yqydz28";
-        $conn = "kscazh2duxaig5hi";
+        $dbhost = "f80b6byii2vwv8cx.chr7pe7iynqr.eu-west-1.rds.amazonaws.com";
+        $dbuser = "oetcwb50h4tlvms9";
+        $dbpass = "a0fcpccauuoj2vk9";
+        $conn = "hrp3ccgxjq3oxaiz";
         ($db = new mysqli($dbhost, $dbuser, $dbpass, $conn)) or
             die("Connect failed: %s\n" . $db->error);
 

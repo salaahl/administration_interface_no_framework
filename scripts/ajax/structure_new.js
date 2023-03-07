@@ -40,9 +40,9 @@ $(function () {
         success: function (data) {
           if (data == "") {
             alert(
-              "Profil de la structure crée ! Un mail lui a été automatiquement envoyé avec ses informations d'identification."
+              "Profil de la structure créée ! Un mail lui a été automatiquement envoyé avec ses informations d'identification."
             );
-            location.replace("../front-end/partners_list.php");
+            location.replace("../front-end/partners.php");
           } else {
             alert(data);
           }

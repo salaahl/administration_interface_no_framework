@@ -30,7 +30,7 @@ if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_PO
   $check->fetch();
   $check->close();
 
-  if ($result == false) {
+  if ($result == 0) {
     $partenaireR = $db->prepare(
       "INSERT INTO partner (brand_name, city, mail, password)
       VALUES (?, ?, ?, ?)"

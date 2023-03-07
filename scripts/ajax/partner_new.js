@@ -29,8 +29,7 @@ $(function () {
             alert(data);
           }
         },
-        error: function (xhr) {
-          console.log(xhr)
+        error: function () {
           alert("Erreur. Le partenaire n'a pas été créé.");
         },
       });

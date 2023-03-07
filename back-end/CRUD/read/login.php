@@ -61,6 +61,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   // LOGIN PARTENAIRE :
   if (isset($partner_password) && password_verify($password, $partner_password)) {
     session_start();
+    $_SESSION['partner_mail'] = htmlspecialchars($mail);
     $_SESSION['city'] = htmlspecialchars($partner_city);
     $_SESSION['rights'] = htmlspecialchars($partner_rights);
     $response['rights'] = htmlspecialchars($partner_rights);

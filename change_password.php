@@ -2,14 +2,14 @@
 session_start();
 
 // Cas de figure 1 : accès depuis un login structure
-if (isset($_SESSION['mail_s'])) {
-  if ($_SESSION['mail_s'] !== $_GET['mail']) {
+if (isset($_SESSION['structure_mail'])) {
+  if ($_SESSION['structure_mail'] !== $_GET['mail']) {
     echo '<script>window.location.href="./login.html"</script>';
   }
 }
 // Cas de figure 2 : accès depuis un login partenaire
-if (isset($_SESSION['mail_p'])) {
-  if ($_SESSION['mail_p'] !== $_GET['mail']) {
+if (isset($_SESSION['partner_mail'])) {
+  if ($_SESSION['partner_mail'] !== $_GET['mail']) {
     echo '<script>window.location.href="./login.html"</script>';
   }
 }

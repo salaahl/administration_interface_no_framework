@@ -27,7 +27,6 @@ if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_PO
   $check->store_result();
   $check->bind_result($result);
   $check->fetch();
-  $check->close();
 
   if ($result == 0) {
     $partner = $db->prepare(

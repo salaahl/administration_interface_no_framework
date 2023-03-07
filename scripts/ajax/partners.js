@@ -7,7 +7,6 @@ $(document).ready(function () {
     },
     dataType: "JSON",
     success: function (data) {
-      console.log(data)
       if (data != "") {
         for (let c = 0; data.partner_city.length > c; c++) {
           if (data.partner_rights[c] == 2) {
@@ -45,6 +44,9 @@ $(document).ready(function () {
         }
       }
     },
+    error: function() { 
+      alert("Erreur. Impossible de charger la liste des partenaires")
+    }
   });
 
   $("#partners-active").change(function () {
@@ -59,7 +61,6 @@ $(document).ready(function () {
       },
       dataType: "JSON",
       success: function (data) {
-        console.log(data)
         if (data != "") {
           for (let c = 0; data.partner_city.length > c; c++) {
             if (data.partner_rights[c] == 2) {
@@ -97,7 +98,9 @@ $(document).ready(function () {
           }
         }
       },
-      error: function(xhr) { console.log(xhr) }
+      error: function() { 
+        alert("Erreur. Impossible de charger la liste des partenaires actifs")
+      }
     });
   });
 });

@@ -35,8 +35,8 @@ if (!isset($_SESSION['admin'])) {
     <div class="col-4 col-md-4 col-lg-3" id="sidebar"></div>
     <div class="body col-8 col-md-8 col-lg-9">
       <div class="en-tete">
-        <div>
-          <h1 id="city" class="display-6">Partenaire : </h1>
+        <div id="city">
+          <h1 class="display-6">Partenaire : </h1>
         </div>
         <div id="mail">Mail : </div>
 

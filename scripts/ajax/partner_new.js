@@ -4,7 +4,7 @@ $(function () {
 
     let mail = $("#partner-mail").val();
 
-    function IsEmail(email) {
+    function isEmail(email) {
       var regex =
         /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       if (!regex.test(email)) {
@@ -14,7 +14,7 @@ $(function () {
       }
     }
 
-    if (IsEmail(mail) == true) {
+    if (isEmail(mail) == true) {
       $.ajax({
         type: "post",
         url: "../index.php",

@@ -38,11 +38,11 @@ $(document).ready(function () {
             changePassword();
           }
         } else if (response.rights == 0) {
-          $(".id_incorrects").text(
+          $(".error").text(
             "Profil désactivé. Veuillez contacter un administrateur."
           );
         } else {
-          $(".id_incorrects").text(response.rights);
+          $(".error").text(response.rights);
         }
       },
       error: function () {

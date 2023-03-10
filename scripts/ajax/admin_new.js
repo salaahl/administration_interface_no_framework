@@ -1,5 +1,11 @@
 $(function() {
 
+  jQuery.validator.addMethod(
+    "isEmail", 
+    function(value, element) {
+      return this.optional(element) || /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value);
+    });
+  
   $.validator.addMethod(
     "noCommonPassword",
     function() {
@@ -9,7 +15,8 @@ $(function() {
   $("form").validate({
     rules: {
       admin_mail: {
-        required: true
+        required: true,
+        isEmail: true
       },
       password: {
         required: true,
@@ -23,7 +30,8 @@ $(function() {
     },
     messages: {
       admin_mail: {
-        required: "Ce champ est obligatoire."
+        required: "Ce champ est obligatoire.",
+        isEmail: "Veuillez entrer un mail valide."
       },
       password: {
         required: "Ce champ est obligatoire.",

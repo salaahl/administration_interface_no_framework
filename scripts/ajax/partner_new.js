@@ -24,7 +24,7 @@ $(function () {
             alert(
               "Profil partenaire crée ! Un mail lui a été automatiquement envoyé avec ses informations d'identification."
             );
-            location.replace("../front-end/partners.php");
+            location.replace("../template/partners.php");
           } else {
             alert(data);
           }

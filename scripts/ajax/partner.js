@@ -19,7 +19,7 @@ $(document).ready(function () {
       for (let c = 0; data.structures_mails.length > c; c++) {
         $("#structures").append(
           '<div class="structure">' +
-            '<a href="structure_page.php?structure_mail=' +
+            '<a href="structure.php?structure_mail=' +
               data.structures_mails[c] +
               "&city=" + city + '">' +
             '<div class="structure-address">' +

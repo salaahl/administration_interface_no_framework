@@ -13,7 +13,7 @@ $(document).ready(function () {
       $("#structure-city").append(data.city);
       $("#structure-mail").append(mail);
       $("#partner-page").attr("href",
-        "../front-end/partner_page.php?city=" + partnerMail
+        "../template/partner.php?city=" + partnerMail
       );
       $("#city").append(data.city);
       $("#structure-address").append(data.address);

@@ -27,8 +27,7 @@ if (!isset($_SESSION['admin'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page partenaire</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <link href="../css/partner_page.css" rel="stylesheet" type="text/css" />
-  <link href="../css/bouton_desac.css" rel="stylesheet" type="text/css" />
+  <link href="../css/partner.css" rel="stylesheet" type="text/css" />
   <link href="../css/sidebar.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -103,7 +102,7 @@ if (!isset($_SESSION['admin'])) {
     <script src="../scripts/composants/sidebar_part_struc.js"></script>
   <?php } ?>
 
-  <script src="../scripts/ajax/partner_page.js"></script>
+  <script src="../scripts/ajax/partner.js"></script>
   <script src="../scripts/ajax/partner_status.js"></script>
   <script src="../scripts/ajax/partner_toggle.js"></script>
 </body>

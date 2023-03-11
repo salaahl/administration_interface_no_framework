@@ -13,7 +13,7 @@ sidebar.innerHTML = `
           </a>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
             <li class="nav-item">
-              <a href="../front-end/partner_search.php" class="nav-link align-middle px-0">
+              <a href="../template/partner_search.php" class="nav-link align-middle px-0">
                 <div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-search" viewBox="0 0 16 16">
@@ -25,7 +25,7 @@ sidebar.innerHTML = `
               </a>
             </li>
             <li class="nav-item">
-              <a href="../front-end/partners.php" class="nav-link px-0 align-middle">
+              <a href="../template/partners.php" class="nav-link px-0 align-middle">
                 <div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-card-list" viewBox="0 0 16 16">

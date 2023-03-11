@@ -42,7 +42,7 @@ $(function () {
             alert(
               "Profil de la structure créée ! Un mail lui a été automatiquement envoyé avec ses informations d'identification."
             );
-            location.replace("../front-end/partners.php");
+            location.replace("../template/partners.php");
           } else {
             alert(data);
           }

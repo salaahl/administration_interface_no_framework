@@ -12,6 +12,7 @@ $(document).ready(function () {
       dataType: "JSON",
       data: $(this).serialize(),
       success: function (response) {
+        console.log(response)
         function changePassword() {
           return location.replace(
             "./reset_password.php?mail=" + response.mail

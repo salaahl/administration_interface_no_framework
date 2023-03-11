@@ -53,6 +53,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
     $_SESSION['admin_mail'] = htmlspecialchars($mail);
     $_SESSION['admin'] = 'initialize';
     $_SESSION['rights'] = htmlspecialchars($admin_rights);
+    $response['mail'] = htmlspecialchars($mail);
     $response['rights'] = htmlspecialchars($admin_rights);
     echo json_encode($response);
     die();
@@ -64,6 +65,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
     $_SESSION['partner_mail'] = htmlspecialchars($mail);
     $_SESSION['city'] = htmlspecialchars($partner_city);
     $_SESSION['rights'] = htmlspecialchars($partner_rights);
+    $response['mail'] = htmlspecialchars($mail);
     $response['rights'] = htmlspecialchars($partner_rights);
     $response['city'] = htmlspecialchars($partner_city);
     $response['first_connection'] = htmlspecialchars($partner_first_connection);
@@ -84,6 +86,6 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
     die();
   }
 
-  $response['droits'] = 'Identifiants inconnus. Veuillez réessayer.';
+  $response['rights'] = 'Identifiants inconnus. Veuillez réessayer.';
   echo json_encode($response);
 }

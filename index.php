@@ -1,6 +1,8 @@
 <?php
 
-require_once 'env.php';
+if ($_SERVER["SERVER_NAME"] == "localhost") {
+  require_once 'env.php';
+}
 require_once 'vendor/autoload.php';
 require_once './model/database/db_connection.php';
 $db = OpenCon();

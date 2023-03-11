@@ -34,7 +34,7 @@ $(function () {
         },
       });
     } else {
-      alert('Le format du mail est incorrect. Veuillez le modifier');
+      alert("Le format du mail est incorrect. Veuillez le modifier");
     }
   });
 });

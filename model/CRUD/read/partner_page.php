@@ -2,16 +2,16 @@
 
 // PAGE PARTENAIRES :
 if (isset($_POST['partner_page']) && isset($_POST['city'])) {
-  
+
   $city = $_POST['city'];
   $response = [];
-  
+
   $partner = $db->prepare(
     "SELECT mail, rights, drinks_permission, newsletter_permission, planning_permission
     FROM partner
     WHERE city = ?"
   );
-  
+
   $partner->bind_param("s", $city);
   $partner->execute();
   $partner->store_result();
@@ -46,7 +46,7 @@ if (isset($_POST['partner_page']) && isset($_POST['city'])) {
 
   $addresses = [];
   $structures_mails = [];
-  
+
   while ($structure->fetch()) {
     $addresses[] = htmlspecialchars($structure_address);
     $structures_mails[] = htmlspecialchars($structure_mail);

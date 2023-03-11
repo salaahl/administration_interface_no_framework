@@ -19,9 +19,11 @@ $(".toggle").change(function () {
         city: city,
         address: address,
       },
-      error: function() {
-        alert("Impossible de mettre à jour la permission. Veuillez contacter un administrateur.")
-      }
+      error: function () {
+        alert(
+          "Impossible de mettre à jour la permission. Veuillez contacter un administrateur."
+        );
+      },
     });
   } else {
     return toggle

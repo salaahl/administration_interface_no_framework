@@ -1,5 +1,5 @@
 body {
-  width: 99%;
+  display: flex;
 }
 
 .ui-widget {

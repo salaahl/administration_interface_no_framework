@@ -9,7 +9,9 @@ $("#structure_status").change(function () {
       method: "POST",
       data: { structure_activate: toggle, structure_mail: structureMail },
       error: function () {
-        alert('Impossible de mettre à jour le statut. Veuillez contacter un administrateur.')
+        alert(
+          "Impossible de mettre à jour le statut. Veuillez contacter un administrateur."
+        );
       },
     });
   } else {

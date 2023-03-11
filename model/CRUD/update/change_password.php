@@ -44,7 +44,7 @@ if (isset($_POST['change_password']) && isset($_POST['mail'])) {
             $update->close();
         }
     }
-    
+
     if (isset($is_structure)) {
         if (password_verify($_POST['change_password'], $passwordHashS)) {
             echo 'Vous ne pouvez pas réutiliser le même mot de passe';
@@ -61,7 +61,7 @@ if (isset($_POST['change_password']) && isset($_POST['mail'])) {
             $update->close();
         }
     }
-    
+
     session_start();
     session_unset();
     session_destroy();

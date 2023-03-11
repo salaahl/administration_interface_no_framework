@@ -133,13 +133,11 @@ if (
   </body>
   </html>";
 
-      // Etape 4 : Envoyer un mail...
-      // Initialisation des données. Méthode de récup différente selon l'environnemment
-      $from_email = $_SERVER["SERVER_NAME"] == "localhost" ? FROM_EMAIL : getenv("FROM_EMAIL");
-      $from_name = $_SERVER["SERVER_NAME"] == "localhost" ? FROM_NAME : getenv("FROM_NAME");
-      $key = $_SERVER["SERVER_NAME"] == "localhost" ? SENDGRID_API_KEY : getenv("SENDGRID_API_KEY");
-      $to_email = $_SERVER["SERVER_NAME"] == "localhost" ? TO_EMAIL : $mail;
-      $mail_cc = $_SERVER["SERVER_NAME"] == "localhost" ? EMAIL_CC : $mail_partenaire;
+      $from_email = getenv("FROM_EMAIL");
+      $from_name = getenv("FROM_NAME");
+      $key = getenv("SENDGRID_API_KEY");
+      $to_email = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("TO_EMAIL") : $mail;
+      $mail_cc = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("EMAIL_CC") : $mail_partenaire;
 
       $email = new \SendGrid\Mail\Mail();
       $email->setFrom($from_email, $from_name);

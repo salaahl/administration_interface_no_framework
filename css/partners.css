@@ -11,8 +11,7 @@
 }
 
 body {
-  width: 99%;
-  margin: 0%;
+  display: flex;
 }
 
 .partners-active {

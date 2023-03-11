@@ -22,7 +22,7 @@ if (isset($_SESSION['partner_mail'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Changer de mot de passe</title>
-  <link href="./css/change_password.css" rel="stylesheet" type="text/css" />
+  <link href="./css/reset_password.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
@@ -48,7 +48,7 @@ if (isset($_SESSION['partner_mail'])) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js" integrity="sha512-6S5LYNn3ZJCIm0f9L6BCerqFlQ4f5MwNKq+EthDXabtaJvg3TuFLhpno9pcm+5Ynm6jdA9xfpQoMz2fcjVMk9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./scripts/composants/common_password.js"></script>
-  <script src="./scripts/ajax/change_password.js"></script>
+  <script src="./scripts/ajax/reset_password.js"></script>
 </body>
 
 </html>

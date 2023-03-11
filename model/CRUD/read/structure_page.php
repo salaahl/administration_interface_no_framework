@@ -11,7 +11,7 @@ if (isset($_POST['structure_page']) && isset($_POST['mail'])) {
     FROM structure
     WHERE mail = ?"
   );
-  
+
   $structure->bind_param("s", $mail);
   $structure->execute();
   $structure->store_result();

@@ -14,7 +14,9 @@ $(".toggle").change(function () {
         city: city,
       },
       error: function () {
-        alert("Impossible de mettre à jour la permission. Veuillez contacter un administrateur.");
+        alert(
+          "Impossible de mettre à jour la permission. Veuillez contacter un administrateur."
+        );
       },
     });
   } else {

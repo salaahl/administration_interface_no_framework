@@ -14,7 +14,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   $admin->execute();
   $admin->store_result();
   $admin->bind_result($admin_password, $admin_rights);
-  
+
   if (isset($admin)) {
     $admin->fetch();
   }
@@ -26,7 +26,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   $partner->execute();
   $partner->store_result();
   $partner->bind_result($partner_city, $partner_password, $partner_rights, $partner_first_connection);
-  
+
   if (isset($partner)) {
     $partner->fetch();
   }
@@ -38,7 +38,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
   $structure->execute();
   $structure->store_result();
   $structure->bind_result($structure_city, $structure_password, $structure_rights, $structure_first_connection);
-  
+
   if (isset($structure)) {
     $structure->fetch();
   }
@@ -57,7 +57,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
     echo json_encode($response);
     die();
   }
-  
+
   // LOGIN PARTENAIRE :
   if (isset($partner_password) && password_verify($password, $partner_password)) {
     session_start();
@@ -70,7 +70,7 @@ if (isset($_POST['login_mail']) && isset($_POST['password'])) {
     echo json_encode($response);
     die();
   }
-  
+
   // LOGIN STRUCTURE :
   if (isset($structure_password) && password_verify($password, $structure_password)) {
     session_start();

@@ -44,9 +44,9 @@ $(document).ready(function () {
         }
       }
     },
-    error: function() { 
-      alert("Erreur. Impossible de charger la liste des partenaires")
-    }
+    error: function () {
+      alert("Erreur. Impossible de charger la liste des partenaires");
+    },
   });
 
   $("#partners-active").change(function () {
@@ -98,9 +98,9 @@ $(document).ready(function () {
           }
         }
       },
-      error: function() { 
-        alert("Erreur. Impossible de charger la liste des partenaires actifs")
-      }
+      error: function () {
+        alert("Erreur. Impossible de charger la liste des partenaires actifs");
+      },
     });
   });
 });

@@ -11,7 +11,7 @@ if (isset($_POST['partner_delete'])) {
 
   $partner->bind_param("s", $mail);
   $partner->execute();
-  
+
   $structure = $db->prepare(
     "DELETE FROM structure
     WHERE mail = ?"

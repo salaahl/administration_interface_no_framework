@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   // Va lancer mes scripts de création de tables
   $.ajax({
     url: "index.php",
@@ -14,15 +13,15 @@ $(document).ready(function () {
       data: $(this).serialize(),
       success: function (response) {
         function changePassword() {
-          return location.replace("./change_password.php?mail=" + response.mail);
+          return location.replace(
+            "./reset_password.php?mail=" + response.mail
+          );
         }
         if (response.rights == 3) {
           location.replace("./template/partners.php");
         } else if (response.rights == 2) {
           if (response.first_connection == 1) {
-            location.replace(
-              "./template/partner.php?city=" + response.city
-            );
+            location.replace("./template/partner.php?city=" + response.city);
           } else {
             changePassword();
           }
@@ -46,9 +45,8 @@ $(document).ready(function () {
         }
       },
       error: function () {
-        alert('Connexion impossible. Veuillez contacter un administrateur.')
+        alert("Connexion impossible. Veuillez contacter un administrateur.");
       },
     });
   });
-
 });

@@ -1,5 +1,5 @@
 @media only screen and (max-width: 900px) {
-  .body {
+  main {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 2fr 2fr 1fr 2fr;
   }
@@ -28,7 +28,7 @@
 }
 
 @media only screen and (min-width: 901px) {
-  .body {
+  main {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 2fr 1fr 2fr;
     margin-left: -0, 5%;
@@ -40,7 +40,7 @@
   }
 
   /* structures */
-  .label_structures {
+  .label-structures {
     grid-row-start: 2;
     grid-column-start: 2;
   }
@@ -58,11 +58,10 @@
 
 /* CSS global */
 body {
-  width: 99%;
-  margin: 0%;
+  display: flex;
 }
 
-.body {
+main {
   display: grid;
   padding: 1%;
 }
@@ -122,7 +121,7 @@ div:has(> #city) {
   background-color: gray;
 }
 
-.label_structures {
+.label-structures {
   display: flex;
   margin-top: 5%;
   padding: 10%;

@@ -91,10 +91,10 @@ if (isset($_POST['city']) && isset($_POST['partner_toggle']) && isset($_POST['to
 
     // Envoyer un mail...
     // Initialisation des données. Méthode de récup différente selon l'environnemment
-    $from_email = $_SERVER["SERVER_NAME"] == "localhost" ? FROM_EMAIL : getenv("FROM_EMAIL");
-    $from_name = $_SERVER["SERVER_NAME"] == "localhost" ? FROM_NAME : getenv("FROM_NAME");
-    $key = $_SERVER["SERVER_NAME"] == "localhost" ? SENDGRID_API_KEY : getenv("SENDGRID_API_KEY");
-    $to_email = $_SERVER["SERVER_NAME"] == "localhost" ? TO_EMAIL : $mail;
+    $from_email = getenv("FROM_EMAIL");
+    $from_name = getenv("FROM_NAME");
+    $key = getenv("SENDGRID_API_KEY");
+    $to_email = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("TO_EMAIL") : $mail;
 
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom($from_email, $from_name);

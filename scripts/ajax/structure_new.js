@@ -1,5 +1,4 @@
 $(function () {
-
   // Récupération des villes :
   $.ajax({
     type: "post",

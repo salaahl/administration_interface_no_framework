@@ -15,21 +15,23 @@ $(document).ready(function () {
       $("#drinks-permission").prop("checked", data.drinks_permission);
       $("#newsletter-permission").prop("checked", data.newsletter_permission);
       $("#planning-permission").prop("checked", data.planning_permission);
-      
+
       for (let c = 0; data.structures_mails.length > c; c++) {
         $("#structures").append(
           '<div class="structure">' +
             '<a href="structure.php?structure_mail=' +
-              data.structures_mails[c] +
-              "&city=" + city + '">' +
+            data.structures_mails[c] +
+            "&city=" +
+            city +
+            '">' +
             '<div class="structure-address">' +
-              data.addresses[c] +
+            data.addresses[c] +
             "</div>" +
             '<div class="structure-mail">' +
-              data.structures_mails[c] +
-            '</div>' +
-            '</a>' +
-          '</div>'
+            data.structures_mails[c] +
+            "</div>" +
+            "</a>" +
+            "</div>"
         );
       }
     },

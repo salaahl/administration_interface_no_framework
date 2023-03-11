@@ -13,13 +13,13 @@ nom : studi, mdp : studi
 
 Identifiants de profils existants :
 
-Admin : 
+Admin :
 mail : s.admin@gmail.com, mdp : Sokhona
 
-Partenaire : 
+Partenaire :
 mail : sokhona.salaha@gmail.com, mdp : Sokhona
 
-Structure : 
+Structure :
 mail : s.paris@gmail.com, mdp : Sokhonaa
 
 ---

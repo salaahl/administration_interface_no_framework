@@ -12,7 +12,8 @@ $(document).ready(function () {
       $("#structure-delete").val(mail);
       $("#structure-city").append(data.city);
       $("#structure-mail").append(mail);
-      $("#partner-page").attr("href",
+      $("#partner-page").attr(
+        "href",
         "../template/partner.php?city=" + partnerMail
       );
       $("#city").append(data.city);
@@ -23,7 +24,9 @@ $(document).ready(function () {
       $("#planning-permission").prop("checked", data.planning_permission);
     },
     error: function () {
-      alert("L'initialisation du profil a échouée. Veuillez contacter un administrateur.");
+      alert(
+        "L'initialisation du profil a échouée. Veuillez contacter un administrateur."
+      );
     },
   });
 });

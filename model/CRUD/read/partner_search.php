@@ -23,7 +23,7 @@ if (isset($_POST['partner_search'])) {
   $partner->execute();
   $partner->store_result();
   $partner->bind_result($city, $mail, $rights, $number_of_structures);
-  
+
   while ($partner->fetch()) {
     $partner_city[] = htmlspecialchars($city);
     $partner_mail[] = htmlspecialchars($mail);

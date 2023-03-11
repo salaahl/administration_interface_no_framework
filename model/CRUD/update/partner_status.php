@@ -6,7 +6,7 @@ if (isset($_POST['partner_activate']) && isset($_POST['city'])) {
   $city = mysqli_real_escape_string($db, $_POST['city']);
   $partner_rights = null;
   $structures_rights = null;
-  
+
   if ($_POST['partner_activate'] == "true") {
     $partner_rights = 2;
     $structures_rights = 1;

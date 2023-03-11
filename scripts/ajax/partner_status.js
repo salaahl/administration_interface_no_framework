@@ -9,7 +9,9 @@ $("#partner-status").change(function () {
       method: "POST",
       data: { partner_activate: toggle, city: city },
       error: function () {
-        alert('Impossible de mettre à jour le statut. Veuillez contacter un administrateur.')
+        alert(
+          "Impossible de mettre à jour le statut. Veuillez contacter un administrateur."
+        );
       },
     });
   } else {

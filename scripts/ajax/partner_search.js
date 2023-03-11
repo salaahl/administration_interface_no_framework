@@ -49,7 +49,7 @@ $(document).ready(function () {
           } else {
             $("#search-result").html(
               "<div style='font-size: 20px; text-align: center;'>Aucun partenaire trouvé</div>"
-            )
+            );
           }
         },
       });

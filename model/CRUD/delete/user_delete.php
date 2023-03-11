@@ -46,6 +46,6 @@ if (isset($_POST['structure_delete']) && isset($_POST['structure_city'])) {
   $partner->bind_param("s", $city);
   $partner->execute();
 
-  header("Location: ../partner_page.php?city=" . $city);
+  header("Location: ../partner.php?city=" . $city);
   die();
 }

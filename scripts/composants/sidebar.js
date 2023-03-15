@@ -1,10 +1,10 @@
 var sidebar = document.getElementById("sidebar");
 
 sidebar.innerHTML = `
-<div id="sidebar_content">
+<div id="sidebar-content">
     <div class="flex-nowrap">
       <div class="bg-dark">
-        <div class=" justify_sidebar_content d-flex flex-column align-items-center px-3 pt-3 text-white min-vh-100">
+        <div class="justify-sidebar-content d-flex flex-column align-items-center px-3 pt-3 text-white min-vh-100">
           <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <div>
               <img class="logo" src="../src/logo.jpg" alt="Logo FitnessP">

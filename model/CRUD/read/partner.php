@@ -1,6 +1,5 @@
 <?php
 
-// PAGE PARTENAIRES :
 if (isset($_POST['partner_page']) && isset($_POST['city'])) {
 
   $city = $_POST['city'];

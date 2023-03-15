@@ -1,11 +1,11 @@
 <?php
 
 // Va gérer la logique des formulaires de création d'admins
-if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
+if (isset($_POST['admin_new'])) {
 
   $mail = mysqli_real_escape_string($db, $_POST['admin_mail']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
-  $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+  $password = password_hash($password, PASSWORD_DEFAULT);
   $brand = 'fitnessp';
 
   // Je vérifie que le mail est dispo dans mes différents tableaux SQL
@@ -35,7 +35,7 @@ if (isset($_POST['admin_mail']) && isset($_POST['password'])) {
     VALUES (?, ?, ?)"
     );
 
-    $new_admin->bind_param("sss", $brand, $mail, $passwordHash);
+    $new_admin->bind_param("sss", $brand, $mail, $password);
     $new_admin->execute();
     $new_admin->close();
   }

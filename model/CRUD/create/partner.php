@@ -1,13 +1,11 @@
 <?php
 
-if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_POST["partner_password"])) {
+if (isset($_POST["partner_new"])) {
 
   $brand = "fitnessp";
   $city = mysqli_real_escape_string($db, $_POST["partner_city"]);
   $mail = mysqli_real_escape_string($db, $_POST["partner_mail"]);
-  $password = mysqli_real_escape_string($db, $_POST["partner_password"]);
-
-  $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+  $password = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 10);
 
   // Je vérifie que le mail est dispo dans mes différents tableaux SQL
   $check = $db->prepare(
@@ -31,10 +29,10 @@ if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_PO
 
   if ($result == 0) {
     $partner = $db->prepare(
-      "INSERT INTO partner (brand_name, city, mail, password)
+      "INSERT INGORE INTO partner (brand_name, city, mail, password)
       VALUES (?, ?, ?, ?)"
     );
-    $partner->bind_param("ssss", $brand, $city, $mail, $passwordHash);
+    $partner->bind_param("ssss", $brand, $city, $mail, $password);
     $partner->execute();
 
     // Si la requête aboutit... Conditionne l'envoi du mail
@@ -105,13 +103,10 @@ if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_PO
           </body>
          </html>";
 
-      $from_email = getenv("FROM_EMAIL");
-      $from_name = getenv("FROM_NAME");
-      $key = getenv("SENDGRID_API_KEY");
       $to_email = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("TO_EMAIL") : $mail;
 
       $email = new \SendGrid\Mail\Mail();
-      $email->setFrom($from_email, $from_name);
+      $email->setFrom(getenv("FROM_EMAIL"), getenv("FROM_NAME"));
       $email->setSubject("Vos identifiants");
 
       $email->addTo($to_email);
@@ -121,7 +116,7 @@ if (isset($_POST["partner_city"]) && isset($_POST["partner_mail"]) && isset($_PO
       );
       $email->addContent("text/html", $mailConfirmation);
 
-      $sendgrid = new \SendGrid($key);
+      $sendgrid = new \SendGrid(getenv("SENDGRID_API_KEY"));
       // Mode developpement :
       if ($_SERVER["SERVER_NAME"] == "localhost") {
         try {

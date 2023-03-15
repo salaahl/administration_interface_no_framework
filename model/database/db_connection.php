@@ -1,18 +1,27 @@
 <?php
 
-function OpenCon()
+class Database
 {
-    $dbhost = getenv("DB_HOST");
-    $dbuser = getenv("DB_USER");
-    $dbpass = getenv("DB_PASS");
-    $conn = getenv("DB_CONN");
-    ($db = new mysqli($dbhost, $dbuser, $dbpass, $conn)) or
-        die("Connect failed: %s\n" . $db->error);
+    private $host, $user, $pass, $conn;
 
-    return $db;
-}
+    public function __construct($host = "", $user = "", $pass = "", $conn = "")
+    {
+        $this->host = $host;
+        $this->user = $user;
+        $this->pass = $pass;
+        $this->conn = $conn;
+    }
 
-function CloseCon($db)
-{
-    $db->close();
+    public function conn()
+    {
+        ($db = new mysqli($this->host, $this->user, $this->pass, $this->conn)) or
+            die("Connection failed: " . $db->connect_error);
+
+        return $db;
+    }
+
+    public function close()
+    {
+        $this->close();
+    }
 }

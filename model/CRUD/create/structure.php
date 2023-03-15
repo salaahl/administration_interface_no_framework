@@ -1,17 +1,12 @@
 <?php
 
-if (
-  isset($_POST["address"]) && isset($_POST["structure_mail"])
-  && isset($_POST["password"]) && isset($_POST["city"])
-) {
+if (isset($_POST["structure_new"])) {
 
   $brand = "fitnessp";
   $address = mysqli_real_escape_string($db, $_POST["address"]);
   $mail = mysqli_real_escape_string($db, $_POST["structure_mail"]);
-  $password = mysqli_real_escape_string($db, $_POST["password"]);
+  $password = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 10);
   $city = mysqli_real_escape_string($db, $_POST["city"]);
-
-  $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
   // Je récupère les permissions globales du partenaire à injecter dans la structure :
   $partner = $db->prepare(
@@ -53,23 +48,12 @@ if (
       "INSERT INTO structure (brand_name, address, mail, password, city, drinks_permission, planning_permission, newsletter_permission)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
     );
-    $structure_new->bind_param("sssssiii", $brand, $address, $mail, $passwordHash, $city, $drinks_permission, $planning_permission, $newsletter_permission);
+    $structure_new->bind_param("sssssiii", $brand, $address, $mail, $password, $city, $drinks_permission, $planning_permission, $newsletter_permission);
     $structure_new->execute();
 
     // Si la requête aboutit... Evite que le mail ne soit envoyé pour rien si la requête échoue
     if (mysqli_affected_rows($db) > 0) {
       $structure_new->close();
-
-      // Incrémentation de la colonne "number_of_structures" :
-      $partner_update = $db->prepare(
-        "UPDATE partner
-        SET number_of_structures = number_of_structures + 1
-        WHERE city = ?"
-      );
-
-      $partner_update->bind_param("s", $city);
-      $partner_update->execute();
-      $partner_update->close();
 
       $mailConfirmation = "
       <html>

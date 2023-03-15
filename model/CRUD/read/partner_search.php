@@ -1,6 +1,5 @@
 <?php
 
-// RECHERCHE D'UN PARTENAIRE :
 if (isset($_POST['partner_search'])) {
 
   $filter = mysqli_real_escape_string($db, $_POST['partner_search']);

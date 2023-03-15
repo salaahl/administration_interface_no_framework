@@ -24,10 +24,10 @@ if (!isset($_SESSION['admin'])) {
 </head>
 
 <body>
-  <aside class="col-4 col-md-4 col-lg-3">
+  <aside class="col-4 col-md-4 col-lg-2">
     <div id="sidebar"></div>
   </aside>
-  <main class="ui-widget col-8 col-md-8 col-lg-9 pt-2 px-5">
+  <main class="ui-widget col-8 col-md-8 col-lg-10 pt-2 px-5">
     <h1 class="display-6">Rechercher un partenaire :</h1>
     <input id="partner-search" placeholder="Rechercher un partenaire">
     <div id="search-result"></div>

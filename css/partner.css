@@ -1,5 +1,7 @@
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 991px) {
+
   main {
+    width: 100%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 2fr 2fr 1fr 2fr;
   }
@@ -8,27 +10,34 @@
     grid-column-end: 4;
   }
 
-  .label_structures {
+  .label-structures {
     grid-row-start: 3;
-    grid-column-start: 2;
-    grid-column-end: 3;
+    grid-column: 1/4;
   }
 
   #structures {
     grid-row-start: 4;
   }
 
+  .structure {
+    width: 100%;
+  }
+
   .permissions {
     grid-row-start: 2;
     grid-column-start: 1;
     grid-column-end: 4;
-    margin-right: 2%;
+  }
+
+  .label-structures, #structures, .permissions {
     margin-top: 2%;
   }
 }
 
-@media only screen and (min-width: 901px) {
+@media only screen and (min-width: 992px) {
+
   main {
+    width: 80%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 2fr 1fr 2fr;
     margin-left: -0, 5%;
@@ -39,7 +48,6 @@
     grid-column-end: 3;
   }
 
-  /* structures */
   .label-structures {
     grid-row-start: 2;
     grid-column-start: 2;
@@ -49,6 +57,10 @@
     grid-row-start: 3;
   }
 
+  .structure {
+    width: 30%;
+  }
+
   .permissions {
     grid-row-start: 1;
     grid-column-start: 3;
@@ -56,22 +68,23 @@
   }
 }
 
-/* CSS global */
+
 body {
   display: flex;
 }
 
 main {
   display: grid;
-  padding: 1%;
 }
 
+.en-tete, .permissions, .label-structures, #structures {
+  margin: 1%;
+}
 .en-tete {
   grid-row-start: 1;
   grid-column-start: 1;
   display: grid;
   grid-template-rows: repeat(4, 1fr);
-  margin-right: 2%;
   border-radius: 20px;
   padding: 1%;
   background-color: lightgrey;
@@ -91,6 +104,7 @@ main {
   grid-row-start: 3;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .partner-delete button {
@@ -109,9 +123,9 @@ div:has(> #city) {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70%;
+  height: auto;
   padding: 10%;
-  margin: 10%;
+  margin: 1%;
   border-radius: 30px;
   border: 2px solid gray;
   background-color: lightgrey;
@@ -123,7 +137,6 @@ div:has(> #city) {
 
 .label-structures {
   display: flex;
-  margin-top: 5%;
   padding: 10%;
   justify-content: center;
   align-items: center;
@@ -134,9 +147,8 @@ div:has(> #city) {
 #structures {
   grid-column-start: 1;
   grid-column-end: 4;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .permissions {

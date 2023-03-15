@@ -25,27 +25,30 @@ if (!isset($_SESSION['admin'])) {
 </head>
 
 <body>
-  <aside class="col-4 col-md-4 col-lg-3">
-    <div id="sidebar"></div>
+  <aside>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="menu-text">MENU</span><span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="sidebar" class="collapse"></div>
   </aside>
-  <main class="col-8 col-md-8 col-lg-9 pt-2 px-5 pt-2 px-5">
-    <div>
-      <h1 class="display-6">Liste de mes partenaires :</h1>
-      <!-- Switch des actifs -->
-      <div class="form-check form-switch">
-        <input type="checkbox" role="switch" class="form-check-input" id="partners-active" />
-        <label class="form-check-label" for="partners-active">Actifs uniquement</label>
-      </div>
+  <main>
+    <h1 class="display-6">Liste de mes partenaires</h1>
+    <!-- Switch des actifs -->
+    <div class="form-check form-switch">
+      <input type="checkbox" role="switch" class="form-check-input" id="partners-active" />
+      <label class="form-check-label" for="partners-active">Actifs uniquement</label>
     </div>
     <div class="partner-add">
-      <a href="../ajouter/partner_new.php">
+      <a href="../new/partner.php">
         Ajouter un nouveau partenaire
       </a>
     </div>
     <div id="partners-list"></div>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
   <script src="../scripts/composants/sidebar.js"></script>
+  <script src="../scripts/ajax/post_data.js"></script>
   <script src="../scripts/ajax/partners.js"></script>
 </body>
 

@@ -32,10 +32,13 @@ if (!isset($_SESSION['admin'])) {
 </head>
 
 <body>
-  <aside class="col-4 col-md-4 col-lg-3">
-    <div id="sidebar"></div>
+  <aside>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="menu-text">MENU</span><span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="sidebar" class="collapse"></div>
   </aside>
-  <main class="col-8 col-md-8 col-lg-9">
+  <main>
     <div class="en-tete">
       <div id="city">
         <h1 class="display-6">Partenaire : </h1>
@@ -67,7 +70,7 @@ if (!isset($_SESSION['admin'])) {
     <div id="structures">
       <?php if (isset($_SESSION['admin'])) { ?>
         <div class="structure">
-          <a href="../ajouter/structure_new.php" style="text-align: center;">
+          <a href="../new/structure.php" style="text-align: center;">
             <h4>Ajouter une structure</h4>
           </a>
         </div>
@@ -93,7 +96,7 @@ if (!isset($_SESSION['admin'])) {
         <label class="form-check-label" for="planning_permission">Gérer le planning d'une équipe</label>
       </div>
     </div>
-      </main>
+  </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
   <?php if (isset($_SESSION['rights']) && $_SESSION['rights'] > 2) { ?>

@@ -1,6 +1,0 @@
-AuthType Basic
-AuthName "Restricted access"
-AuthUserFile /app/ajouter/admin/.htpasswd
-Require valid-user
-
-# Ceci est un commentaire. En local : AuthUserFile "C:/xampp/htdocs/ECF/ajouter/admin/.htpasswd". En ligne : AuthUserFile /app/ajouter/admin/.htpasswd

@@ -20,7 +20,7 @@ $(document).ready(function () {
                 var statusClass = "inactive";
               }
               $("#search-result").append(
-                '<div class="partner-card col-12 col-xl-5">' +
+                '<div class="partner-card col-12">' +
                   '<div class="about">' +
                   "<div>" +
                   data.partner_city[c] +

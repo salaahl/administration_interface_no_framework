@@ -1,6 +1,5 @@
 <?php
 
-// PAGE D'UNE STRUCTURE :
 if (isset($_POST['structure_page']) && isset($_POST['mail'])) {
 
   $mail = $_POST['mail'];

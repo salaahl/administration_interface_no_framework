@@ -6,7 +6,7 @@ if (isset($_POST['structure_activate']) && isset($_POST['structure_mail'])) {
   $structure_mail = mysqli_real_escape_string($db, $_POST['structure_mail']);
   $rights = null;
 
-  if ($_POST['structure_activate'] == 'true') {
+  if ($_POST['structure_activate'] == true) {
     $rights = 1;
   } else {
     $rights = 0;

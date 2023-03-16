@@ -5,16 +5,16 @@ if (isset($_POST['partners'])) {
   $partners = null;
   $response = [];
 
-  if (isset($_POST['active_only']) && $_POST['active_only'] === true) {
+  if (isset($_POST['active_only']) && $_POST['active_only'] === "true") {
     $partners = $db->query(
-      "SELECT city, mail, rights, number_of_structures
+      "SELECT city, mail, rights
       FROM partner 
       WHERE rights > 0
       ORDER BY city ASC"
     );
   } else {
     $partners = $db->query(
-      "SELECT city, mail, rights, number_of_structures
+      "SELECT city, mail, rights
       FROM partner
       ORDER BY city ASC"
     );

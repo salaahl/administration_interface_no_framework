@@ -39,7 +39,7 @@ $(document).ready(function () {
                   "</div>" +
                   '<div class="link">' +
                   '<a href="partner.php?city=' +
-                  data.partner_mail[c] +
+                  data.city[c] +
                   '">Détails</a>' +
                   "</div>" +
                   "</div>"

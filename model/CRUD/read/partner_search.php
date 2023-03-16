@@ -12,7 +12,7 @@ if (isset($_POST['partner_search'])) {
   $partner_structures_number = [];
 
   $partner = $db->prepare(
-    "SELECT city, mail, rights, number_of_structures
+    "SELECT city, mail, rights
     FROM partner
     WHERE city LIKE CONCAT(?, '%')
     LIMIT 3"
@@ -21,13 +21,16 @@ if (isset($_POST['partner_search'])) {
   $partner->bind_param("s", $input);
   $partner->execute();
   $partner->store_result();
-  $partner->bind_result($city, $mail, $rights, $number_of_structures);
+  $partner->bind_result($city, $mail, $rights);
 
   while ($partner->fetch()) {
+    $structures_number = $db->query(
+      "SELECT COUNT(*) FROM structure WHERE city = '$city'"
+    );
     $partner_city[] = htmlspecialchars($city);
     $partner_mail[] = htmlspecialchars($mail);
     $partner_rights[] = htmlspecialchars($rights);
-    $partner_structures_number[] = htmlspecialchars($number_of_structures);
+    $partner_structures_number[] = $structures_number->fetch_row();
   }
   $partner->close();
 

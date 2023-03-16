@@ -1,4 +1,4 @@
-$("#structure_status").change(function () {
+$("#structure-status").change(function () {
   var toggle = $(this).prop("checked");
   var searchParams = new URLSearchParams(window.location.search);
   var structureMail = searchParams.get("structure_mail");

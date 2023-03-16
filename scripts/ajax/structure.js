@@ -18,7 +18,7 @@ $(document).ready(function () {
       );
       $("#city").append(data.city);
       $("#structure-address").append(data.address);
-      $("#status").prop("checked", data.status);
+      $("#structure-status").prop("checked", data.status);
       $("#drinks-permission").prop("checked", data.drinks_permission);
       $("#newsletter-permission").prop("checked", data.newsletter_permission);
       $("#planning-permission").prop("checked", data.planning_permission);

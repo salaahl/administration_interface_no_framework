@@ -37,19 +37,6 @@ if (isset($_POST['structure_delete']) && isset($_POST['structure_city'])) {
   $structure->bind_param("s", $mail);
   $structure->execute();
 
-<<<<<<< HEAD
   header("Location: ../partner_page.php?city=" . $city);
-=======
-  $partner = $db->prepare(
-    "UPDATE partner
-    SET number_of_structures = number_of_structures - 1
-    WHERE city = ?"
-  );
-
-  $partner->bind_param("s", $city);
-  $partner->execute();
-
-  header("Location: ../partner.php?city=" . $city);
->>>>>>> 33d5033aeb3aabcdf787c879c05dc9051f9ba959
   die();
 }

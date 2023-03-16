@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $("#partner-search").keyup(function () {
+  $("#search-bar").keyup(function () {
     let input = $(this).val();
     $("#search-result").html("");
 
@@ -39,7 +39,7 @@ $(document).ready(function () {
                   "</div>" +
                   '<div class="link">' +
                   '<a href="partner.php?city=' +
-                  data.city[c] +
+                  data.partner_city[c] +
                   '">Détails</a>' +
                   "</div>" +
                   "</div>"

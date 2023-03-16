@@ -1,29 +1,29 @@
+@media only screen and (min-width: 992px) {
+  main {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  main {
+    width: 80%;
+  }
+}
+
 body {
   display: flex;
 }
 
-.ui-widget {
-  margin-top: 1%;
+main {
+  margin: 1%;
 }
 
-#partner-search {
+#search-bar {
   margin-top: 2%;
   margin-bottom: 5%;
   width: 100%;
   border-radius: 10px;
   padding: 0.5%;
-}
-
-.partner-list {
-  opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: lightgrey;
-  border: 2px solid black;
-  margin-bottom: 1%;
-  padding: 1%;
-  border-radius: 5px;
 }
 
 .search-result {

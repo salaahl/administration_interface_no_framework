@@ -1,25 +1,15 @@
 $(document).ready(function () {
   // Va lancer mes scripts de création de tables
-  $.ajax({url: "../index.php"})
+  $.ajax({ url: "../index.php" });
 
   $("form").on("submit", function (e) {
     e.preventDefault();
-<<<<<<< HEAD
-
-    postData("index.php", {
-      login_mail: $("#login-mail").val(),
-      password: $("#password").val(),
-    })
-      .then((response) => {
-        console.log(response);
-=======
     $.ajax({
       type: "post",
       url: "index.php",
       dataType: "JSON",
       data: $(this).serialize(),
       success: function (response) {
->>>>>>> 33d5033aeb3aabcdf787c879c05dc9051f9ba959
         function changePassword() {
           return location.replace("./reset_password.php?mail=" + response.mail);
         }
@@ -49,9 +39,7 @@ $(document).ready(function () {
         } else {
           $(".error").text(response.rights);
         }
-      })
-      .catch(() => {
-        alert("Connexion impossible. Veuillez contacter un administrateur.");
-      });
+      },
+    });
   });
 });

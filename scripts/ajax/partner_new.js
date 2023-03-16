@@ -15,23 +15,24 @@ $(function () {
     }
 
     if (isEmail(mail) == true) {
-      postData("../index.php", {
-        champ1: $("#").val(),
-        champ2: $("#").val(),
-      })
-        .then((response) => {
-          if (response == "") {
+      $.ajax({
+        type: "post",
+        url: "../index.php",
+        data: $(this).serialize(),
+        success: function (data) {
+          if (data == "") {
             alert(
               "Profil partenaire crée ! Un mail lui a été automatiquement envoyé avec ses informations d'identification."
             );
             location.replace("../template/partners.php");
           } else {
-            alert(response);
+            alert(data);
           }
-        })
-        .catch(() => {
+        },
+        error: function () {
           alert("Erreur. Le partenaire n'a pas été créé.");
-        });
+        },
+      });
     } else {
       alert("Le format du mail est incorrect. Veuillez le modifier");
     }

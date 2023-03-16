@@ -16,11 +16,6 @@ if ($_SERVER["SERVER_NAME"] !== "localhost") {
   ini_set('display_errors', 'On');
 }
 
-// takes raw data from the request 
-$json = file_get_contents('php://input');
-// Converts it into a PHP object 
-$_POST = json_decode($json, true);
-
 foreach (glob("./model/CRUD/*") as $dossier) {
   foreach (glob($dossier . '/*.php') as $fichier) {
     require_once $fichier;

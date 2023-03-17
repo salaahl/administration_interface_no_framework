@@ -32,12 +32,12 @@ if (!isset($_SESSION['admin'])) {
 </head>
 
 <body>
-  <aside>
+  <nav>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="menu-text">MENU</span><span class="navbar-toggler-icon"></span>
     </button>
     <div id="sidebar" class="collapse"></div>
-  </aside>
+  </nav>
   <main>
     <div class="en-tete">
       <div id="city">

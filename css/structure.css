@@ -37,6 +37,7 @@ main {
 
 #back-partner-page {
   position: fixed;
+  z-index: -1;
 }
 
 .en-tete {

@@ -39,8 +39,7 @@
   main {
     width: 80%;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 2fr 1fr 2fr;
-    margin-left: -0, 5%;
+    grid-template-rows: 50% 1fr 1fr;
     flex-wrap: wrap;
   }
 
@@ -124,7 +123,7 @@ div:has(> #city) {
   justify-content: center;
   align-items: center;
   height: auto;
-  padding: 10%;
+  padding: 5%;
   margin: 1%;
   border-radius: 30px;
   border: 2px solid gray;
@@ -149,6 +148,7 @@ div:has(> #city) {
   grid-column-end: 4;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .permissions {

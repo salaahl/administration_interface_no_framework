@@ -12,7 +12,7 @@
 
 @media only screen and (min-width: 992px) {
   #back-partner-page {
-    top: 3%;
+    top: 7%;
     left: 21%;
   }
 }
@@ -37,6 +37,7 @@ main {
 
 #back-partner-page {
   position: fixed;
+  z-index: -1;
 }
 
 .en-tete {

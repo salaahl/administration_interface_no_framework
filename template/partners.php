@@ -32,7 +32,7 @@ if (!isset($_SESSION['admin'])) {
     <div id="sidebar" class="collapse"></div>
   </nav>
   <main>
-    <h1 class="display-6">Liste de mes partenaires</h1>
+    <h1 class="display-6">Partenaires</h1>
     <!-- Switch des actifs -->
     <div class="form-check form-switch">
       <input type="checkbox" role="switch" class="form-check-input" id="partners-active" />

@@ -31,7 +31,7 @@ if (!isset($_SESSION['admin'])) {
     <div id="sidebar" class="collapse"></div>
   </nav>
   <main class="ui-widget">
-    <h1 class="display-6">Rechercher un partenaire :</h1>
+    <h1 class="display-6">Rechercher un partenaire</h1>
     <input id="search-bar" placeholder="Rechercher un partenaire">
     <div id="search-result"></div>
   </main>

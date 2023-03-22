@@ -8,12 +8,20 @@
     height: 3rem;
     width: 3rem;
   }
+
+  main {
+    width: 100%;
+  }
 }
 
 @media only screen and (min-width: 992px) {
   #back-partner-page {
     top: 7%;
     left: 21%;
+  }
+
+  main {
+    width: 80%;
   }
 }
 
@@ -32,7 +40,6 @@ main {
   align-items: center;
   justify-content: space-around;
   height: 100%;
-  width: 100%;
 }
 
 #back-partner-page {

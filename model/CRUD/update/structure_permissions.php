@@ -23,10 +23,21 @@ if (isset($_POST['mail']) && isset($_POST['structure_toggle']) && isset($_POST['
     $permission->bind_param("is", $toggle_status, $mail);
     $permission->execute();
     $permission->close();
-  }
 
-  // Confirmer au partenaire et à sa structure que la permission a bien été changée :
-  $mailConfirmation = "
+    $partner = $db->prepare(
+      "SELECT mail
+      FROM partner
+      WHERE city = ?"
+    );
+
+    $partner->bind_param("s", $city);
+    $partner->execute();
+    $partner->store_result();
+    $partner->bind_result($mail_partner);
+    $partner->fetch();
+
+    // Confirmer au partenaire et à sa structure que la permission a bien été changée :
+    $mailConfirmation = "
   <html>
 
 <head>
@@ -80,39 +91,40 @@ if (isset($_POST['mail']) && isset($_POST['structure_toggle']) && isset($_POST['
 </body>
 </html>";
 
-  $from_email = getenv("FROM_EMAIL");
-  $from_name = getenv("FROM_NAME");
-  $key = getenv("SENDGRID_API_KEY");
-  $to_email = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("TO_EMAIL") : $mail;
-  $mail_cc = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("EMAIL_CC") : $mail_partenaire;
+    $from_email = getenv("FROM_EMAIL");
+    $from_name = getenv("FROM_NAME");
+    $key = getenv("SENDGRID_API_KEY");
+    $to_email = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("TO_EMAIL") : $mail;
+    $mail_cc = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("EMAIL_CC") : $mail_partner;
 
-  $email = new \SendGrid\Mail\Mail();
-  $email->setFrom($from_email, $from_name);
-  $email->setSubject("Permission modifiée !");
+    $email = new \SendGrid\Mail\Mail();
+    $email->setFrom($from_email, $from_name);
+    $email->setSubject("Permission modifiée !");
 
-  $email->addTo($to_email);
-  $email->addCc($mail_cc);
-  $email->addContent("text/plain", "Texte de substitution. Ne s'affichera pas normalement.");
-  $email->addContent("text/html", $mailConfirmation);
+    $email->addTo($to_email);
+    $email->addCc($mail_cc);
+    $email->addContent("text/plain", "Texte de substitution. Ne s'affichera pas normalement.");
+    $email->addContent("text/html", $mailConfirmation);
 
-  $sendgrid = new \SendGrid($key);
-  // Mode developpement :
-  if ($_SERVER["SERVER_NAME"] == "localhost") {
-    try {
-      $response = $sendgrid->send($email);
+    $sendgrid = new \SendGrid($key);
+    // Mode developpement :
+    if ($_SERVER["SERVER_NAME"] == "localhost") {
+      try {
+        $response = $sendgrid->send($email);
 
-      print $response->statusCode() . "\n";
-      print_r($response->headers());
-      print $response->body() . "\n";
-    } catch (Exception $e) {
-      // En cas d'erreur :
-      echo "Caught exception: " . $e->getMessage() . "\n";
-    }
-  } else {
-    try {
-      $response = $sendgrid->send($email);
-    } catch (Exception $e) {
-      echo "Erreur. Veuillez contacter un administrateur.";
+        print $response->statusCode() . "\n";
+        print_r($response->headers());
+        print $response->body() . "\n";
+      } catch (Exception $e) {
+        // En cas d'erreur :
+        echo "Caught exception: " . $e->getMessage() . "\n";
+      }
+    } else {
+      try {
+        $response = $sendgrid->send($email);
+      } catch (Exception $e) {
+        echo "Erreur. Veuillez contacter un administrateur.";
+      }
     }
   }
 }

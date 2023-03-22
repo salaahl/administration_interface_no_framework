@@ -34,6 +34,17 @@ if (isset($_POST['city']) && isset($_POST['partner_toggle']) && isset($_POST['to
     $structures_permission->execute();
     $structures_permission->close();
 
+    $partner = $db->prepare(
+      "SELECT mail
+      FROM partner
+      WHERE city = ?"
+    );
+  
+    $partner->bind_param("s", $city);
+    $partner->execute();
+    $partner->store_result();
+    $partner->bind_result($mail);
+    $partner->fetch();
 
     // Confirmer au partenaire que la permission a bien été changée :
     $mailConfirmation = "

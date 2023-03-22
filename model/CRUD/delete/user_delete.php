@@ -20,7 +20,7 @@ if (isset($_POST['partner_delete'])) {
   $structure->bind_param("s", $mail);
   $structure->execute();
 
-  header("Location: ../partners.php");
+  header("Location: ./partners.php");
   die();
 }
 
@@ -37,6 +37,6 @@ if (isset($_POST['structure_delete']) && isset($_POST['structure_city'])) {
   $structure->bind_param("s", $mail);
   $structure->execute();
 
-  header("Location: ../partner.php?city=" . $city);
+  header("Location: ./partner.php?city=" . $city);
   die();
 }

@@ -123,7 +123,7 @@ if (isset($_POST["structure_new"])) {
           <td>" . htmlspecialchars($password) . "</td>
         </tr>
         <tr>
-          <td colspan='2'><a href='https://ecf-salaha.herokuapp.com/login.html' class='btn btn-primary'>Se connecter</a></td>
+          <td colspan='2'><a href='https://interface-d-administration.herokuapp.com/login.html' class='btn btn-primary'>Se connecter</a></td>
         </tr>
       </tbody>
     </table>

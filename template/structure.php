@@ -15,7 +15,7 @@ if (!isset($_SESSION['admin'])) {
   // Cas de figure 1 : accès depuis un login structure
   if (isset($_SESSION['structure_mail'])) {
     if ($_SESSION['structure_mail'] !== $_GET['structure_mail']) {
-      echo '<script>window.location.href="./structure_page.php?structure_mail=' . $_SESSION['structure_mail'] . '&partner_mail=' . $_GET['partner_mail'] . '"</script>';
+      echo '<script>window.location.href="./structure.php?structure_mail=' . $_SESSION['structure_mail'] . '&city=' . $_GET['city'] . '"</script>';
     }
   }
   // Cas de figure 2 : accès depuis un login partenaire
@@ -66,7 +66,7 @@ if (!isset($_SESSION['admin'])) {
       <?php if (isset($_SESSION['rights']) && $_SESSION['rights'] >= 2) { ?>
 
         <div class="structure-status form-check form-switch">
-          <label class="form-check-label" for="structure-status">Structure actif : </label>
+          <label class="form-check-label" for="structure-status">Structure active : </label>
           <input type="checkbox" role="switch" class="form-check-input" id="structure-status" />
         </div>
         <div class="structure-delete">

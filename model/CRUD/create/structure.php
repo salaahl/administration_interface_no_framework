@@ -55,18 +55,18 @@ if (isset($_POST["structure_new"])) {
     if (mysqli_affected_rows($db) > 0) {
       $structure_new->close();
 
-      $partner = $db->prepare(
+      $mail_partner = $db->prepare(
         "SELECT mail
           FROM partner
           WHERE 
           city = ?"
       );
-      $partner->bind_param("s", $city);
-      $partner->execute();
-      $partner->store_result();
-      $partner->bind_result($mail_partner);
-      $partner->fetch();
-      $partner->close();
+      $mail_partner->bind_param("s", $city);
+      $mail_partner->execute();
+      $mail_partner->store_result();
+      $mail_partner->bind_result($partner_mail);
+      $mail_partner->fetch();
+      $mail_partner->close();
 
       $mailConfirmation = "
       <html>
@@ -134,7 +134,7 @@ if (isset($_POST["structure_new"])) {
       $from_name = getenv("FROM_NAME");
       $key = getenv("SENDGRID_API_KEY");
       $to_email = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("TO_EMAIL") : $mail;
-      $mail_cc = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("EMAIL_CC") : $partner;
+      $mail_cc = $_SERVER["SERVER_NAME"] == "localhost" ? getenv("EMAIL_CC") : $partner_mail;
 
       $email = new \SendGrid\Mail\Mail();
       $email->setFrom($from_email, $from_name);
